@@ -7,7 +7,7 @@ import { Box, Button, CardActions, Tooltip } from '@mui/material';
 const RequestCard = ({ name, email, phone, subject }) => {
 
   return (
-    <Card sx={{maxWidth: {xs: 300, md: 350}, margin: 'auto', boxShadow: '1px 1px 8px 5px rgba(0, 0, 0, 0.2)'}}>
+    <Card sx={{maxWidth: {xs: 300, md: 350}, justifyContent: "space-between", display: "flex", flexDirection: "column", boxShadow: '1px 1px 8px 5px rgba(0, 0, 0, 0.2)'}}>
       <CardContent sx={{p: 2}}>
         <Box sx={{display: "flex", flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', position: 'relative'}}>
             <Typography variant="h5" gutterBottom>
