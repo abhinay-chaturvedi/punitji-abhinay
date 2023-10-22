@@ -13,14 +13,15 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
+import Image from 'next/image';
 
-const pages = ['Products', 'Pricing', 'Blog'];
+const pages = ['Home', 'About', 'Services','Blog', 'Visa', 'Contact'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function NavBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-
+  const [isLogin, setIsLogin] = React.useState(false);
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -37,27 +38,24 @@ function NavBar() {
   };
 
   return (
-    <AppBar position="static">
-      <Container maxWidth="xl" sx={{bgcolor: "red"}}>
-        <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-          <Typography
-            variant="h6"
+    <AppBar sx={{background: "white", top: 0}} position="static">
+      <Container sx={{bgcolor: "white"}}>
+        <Toolbar disableGutters sx={{height: "85px"}} >
+          <Box
             noWrap
-            component="a"
-            href="/"
+            component="div"
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
               fontFamily: 'monospace',
               fontWeight: 700,
               letterSpacing: '.3rem',
-              color: 'inherit',
+              color: 'gray',
               textDecoration: 'none',
             }}
           >
-            LOGO
-          </Typography>
+            <Image width={70} height={70} src ="/images/logo.jpeg"/>
+          </Box>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
@@ -114,12 +112,12 @@ function NavBar() {
           >
             LOGO
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+          <Box sx={{ flexGrow: 1, alignItems: "center", gap: 3, justifyContent: 'flex-end', marginRight: "80px", display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Button
                 key={page}
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block', fontWeight: 'bold' }}
+                sx={{ my: 2, color: '#222222', display: 'block', fontWeight: '600', fontFamily: "sans-serif" }}
               >
                 {page}
               </Button>
@@ -127,33 +125,54 @@ function NavBar() {
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: '45px' }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
+            {isLogin?
+            (<>
+              <Tooltip title="Open settings">
+                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                  <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                </IconButton>
+              </Tooltip>
+              <Menu
+                sx={{ mt: '45px' }}
+                id="menu-appbar"
+                anchorEl={anchorElUser}
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                open={Boolean(anchorElUser)}
+                onClose={handleCloseUserMenu}
+              >
+                {settings.map((setting) => (
+                  <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                    <Typography textAlign="center">{setting}</Typography>
+                  </MenuItem>
+                ))}
+              </Menu>
+            </>):
+            <Button
+             sx={{
+              background: "#fff",
+              color: "#0d172a",
+              fontWeight: 600,
+              boxShadow: "1px 1px 10px rgba(166, 175, 195, .25)",
+              p: "1rem 1.6rem",
+              borderRadius: "1.5rem",
+              border: "0px solid #e2e8f0",
+              "&:hover": {
+                backgroundColor: "#1e293b",
+                color: "#fff"
+              }
+            }}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
+              Login
+            </Button>
+            }
           </Box>
         </Toolbar>
       </Container>
