@@ -14,6 +14,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const pages = ['Home', 'About', 'Services','Blog', 'Visa', 'Contact'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
@@ -42,7 +43,6 @@ function NavBar() {
       <Container sx={{bgcolor: "white"}}>
         <Toolbar disableGutters sx={{height: "85px"}} >
           <Box
-            noWrap
             component="div"
             sx={{
               mr: 2,
@@ -156,6 +156,8 @@ function NavBar() {
               </Menu>
             </>):
             <Button
+             component={Link}
+             href='/login'
              sx={{
               background: "#fff",
               color: "#0d172a",

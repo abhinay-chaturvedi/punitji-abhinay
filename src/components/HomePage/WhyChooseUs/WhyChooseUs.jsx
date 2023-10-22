@@ -16,7 +16,7 @@ const WhyChooseUs = () => {
                         width="100%"
                         height="100%"
                         src={`https://www.youtube.com/embed/${"CwN7TWzsPW4"}?autoplay=0&controls=1&rel=1`}
-                        frameborder="0"
+                        frameBorder="0"
                     ></iframe>
                 </Grid>
             </Grid>
