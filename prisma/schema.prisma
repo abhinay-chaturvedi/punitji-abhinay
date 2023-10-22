@@ -10,8 +10,10 @@ datasource db {
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model User {
   createdAt  DateTime? @default(now()) @db.Timestamptz(6)
-  email      String?   @unique
-  password   String?
+  email      String   @unique
+  password   String
+  phone      String?
+  name       String?
   id         String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   profilePic String?
   role       Role      @default(USER)

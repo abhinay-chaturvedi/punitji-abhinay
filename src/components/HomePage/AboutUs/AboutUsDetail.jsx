@@ -9,7 +9,7 @@ import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
 //     font-size: 48px;
 //     color: #031F4B;
 const AboutUsDetail = () => {
-  return (
+      return (
     <Box>
         <Stack gap={2}>
             <Typography component="h4" sx={{textTransform: "uppercase", fontWeight: "600", fontSize: "18px", color: "#FF0000"}}>About Us</Typography>

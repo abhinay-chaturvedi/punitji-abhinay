@@ -1,11 +1,10 @@
-'use client'
 import { Box } from '@mui/material'
 import React from 'react'
 import useEmblaCarousel from 'embla-carousel-react'
 import HeroSectionItem from './HeroSectionItem'
 import Carousel from '@/components/Carousel'
 const HeroSection = () => {
-    const [emblaRef] = useEmblaCarousel({loop: true})
+  console.log("hello")
   return (
     <Box>
         {/* <Box

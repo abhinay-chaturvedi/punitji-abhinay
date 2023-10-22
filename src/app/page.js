@@ -15,7 +15,7 @@ import ClientSays from '@/components/HomePage/ClientSays/ClientSays'
 import Blogs from '@/components/HomePage/Blogs/Blogs'
 import Analytics from '@/components/HomePage/Anayltics/Analytics'
 export default function Home() {
-  return (
+    return (
     <Box>
       <NavBar/>
       <Stack gap={5}>

@@ -1,5 +1,7 @@
-const { default: prisma } = require("@/prisma/connect");
-const { NextResponse } = require("next/server");
+import prisma from "@/prisma/connect";
+import { NextResponse } from "next/server";
+import bcrypt from "bcrypt"
+import jwt from "jsonwebtoken"
 
 const POST = async (req) => {
     try {
@@ -14,9 +16,19 @@ const POST = async (req) => {
         if(!prismaResult) {
             return NextResponse.json({message: "User does not exist! Please Use correct email or signup first. 🙁", status: 400}, {status: 400})
         }
-        return  NextResponse.json({data:prismaResult, message: "success"}, {status: 200});
+        const match = await bcrypt.compare(loginData.password, prismaResult.password);
+        if(!match) {
+            return NextResponse.json({message: "Incorrect password!", status: 400}, {status: 400});
+        }
+        const token = jwt.sign({_id: prismaResult.id, email: prismaResult.email, role: prismaResult.role}, process.env.JWT_SECRET);
+        const {id, password, ...rest} = prismaResult;
+        const res = {
+            access_token: token,
+            ...rest
+        }
+        return  NextResponse.json({data: res, message: "success", status: 200}, {status: 200});
     } catch(err) {
-        return NextResponse.json({err: err, message: "Something went wrong!"}, {status: 500});
+        return NextResponse.json({err: err, message: "Something went wrong!", status: 200}, {status: 500});
     }
 }
 export { POST }
