@@ -8,7 +8,7 @@ import InfoIcon from '@mui/icons-material/Info';
 
 export default function PartnerCompanies() {
   return (
-    <ImageList sx={{display: 'flex', height: 150, flexWrap: 'nowrap', overflow: 'hidden' }}>
+    <ImageList sx={{display: 'flex', height: 150, overflow: 'hidden' }}>
       <ImageListItem key="Subheader" cols={2}>
         <ListSubheader component="div">December</ListSubheader>
       </ImageListItem>
