@@ -15,6 +15,8 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useLogin, useLogout } from '@/hooks/auth';
+import { useRouter } from 'next/navigation';
 
 const pages = ['Home', 'About', 'Services','Blog', 'Visa', 'Contact'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
@@ -22,7 +24,11 @@ const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 function NavBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-  const [isLogin, setIsLogin] = React.useState(true);
+  const loginUser = useLogin()
+  const logout = useLogout();
+  const router = useRouter();
+  // router.refresh()
+  // const [isLogin, setIsLogin] = React.useState(loginUser);
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -36,6 +42,7 @@ function NavBar() {
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
+    
   };
 
   return (
@@ -125,11 +132,11 @@ function NavBar() {
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
-            {isLogin?
+            {loginUser?
             (<>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0,"&:hover": {bgcolor: "white"} }}>
-                  <Typography sx={{fontWeight: "bold", mr: "10px"}}>😎Abhinay!</Typography>
+                  <Typography sx={{fontWeight: "bold", mr: "10px"}}>{ loginUser.name.slice(0,8)}</Typography>
                   <Avatar alt="Abhinay" src="/static/images/avatar/2.jpg" />
                 </IconButton>
               </Tooltip>
@@ -149,11 +156,25 @@ function NavBar() {
                 open={Boolean(anchorElUser)}
                 onClose={handleCloseUserMenu}
               >
-                {settings.map((setting) => (
-                  <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                    <Typography textAlign="center">{setting}</Typography>
+                  <MenuItem  onClick={() => {
+                    handleCloseUserMenu();
+                    router.push('/user')
+                  }}>
+                    <Typography textAlign="center">Profile</Typography>
                   </MenuItem>
-                ))}
+                  <MenuItem onClick={() => {
+                    handleCloseUserMenu();
+                    router.push("/user/dashboard")
+                  }}>
+                    <Typography textAlign="center">Dashboard</Typography>
+                  </MenuItem>
+                  <MenuItem onClick={() => {
+                    logout();
+                    window.location.reload()
+                    handleCloseUserMenu();
+                  }}>
+                    <Typography textAlign="center">Logout</Typography>
+                  </MenuItem>
               </Menu>
             </>):
             <Button

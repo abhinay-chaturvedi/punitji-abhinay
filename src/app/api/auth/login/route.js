@@ -6,6 +6,7 @@ import jwt from "jsonwebtoken"
 const POST = async (req) => {
     try {
         const loginData = await req.json();
+        console.log("cookies", req.cookies.get("token"));
         console.log("🚀 ~ file: route.js:4 ~ POST ~ loginData:", loginData)
         const prismaResult = await prisma.user.findUnique({
             where: {
@@ -22,11 +23,7 @@ const POST = async (req) => {
         }
         const token = jwt.sign({_id: prismaResult.id, email: prismaResult.email, role: prismaResult.role}, process.env.JWT_SECRET);
         const {id, password, ...rest} = prismaResult;
-        const res = {
-            access_token: token,
-            ...rest
-        }
-        return  NextResponse.json({data: res, message: "success", status: 200}, {status: 200});
+        return  NextResponse.json({data: rest, message: "success", status: 200}, {status: 200, headers: {'Set-Cookie': `token=${token}; Max-Age=${60*60*24};HttpOnly;path=/`}});
     } catch(err) {
         return NextResponse.json({err: err, message: "Something went wrong!", status: 200}, {status: 500});
     }

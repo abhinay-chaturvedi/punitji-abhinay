@@ -1,6 +1,6 @@
 const register = async (payload) => {
     try {
-        const res = fetch("/api/auth/register", {
+        const res = await fetch("/api/auth/register", {
             method: "POST",
             headers: {
                 'Accept': "application/json",

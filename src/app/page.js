@@ -1,4 +1,3 @@
-// import Image from 'next/image'
 import MediaCard from '@/components/Media/Media'
 import styles from './page.module.css'
 import NavBar from '@/components/NavBar/NavBar'
@@ -14,8 +13,9 @@ import ChooseCountry from '@/components/HomePage/ChooseCountry/ChooseCountry'
 import ClientSays from '@/components/HomePage/ClientSays/ClientSays'
 import Blogs from '@/components/HomePage/Blogs/Blogs'
 import Analytics from '@/components/HomePage/Anayltics/Analytics'
+import { useLogin } from '@/hooks/auth'
 export default function Home() {
-    return (
+  return (
     <Box>
       <NavBar/>
       <Stack gap={5}>

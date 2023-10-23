@@ -39,6 +39,11 @@ const Register = () => {
             return;
         }
         const res = await register({name, phone, email, password, address});
+        // await new Promise((resolve, reject) => {
+        //   setTimeout(() => {
+        //     resolve()
+        //   }, 5000);
+        // })
         if(res.status !== 200) {
           setError(res.message);
         }

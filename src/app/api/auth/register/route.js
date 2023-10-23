@@ -5,6 +5,7 @@ import bcrypt from "bcrypt";
 const POST = async (req) => {
     try {
         const regData = await req.json();
+        console.log("Req body for the register api", regData);
         const password = await bcrypt.hash(regData.password, 10);
         const check = await prisma.user.findUnique({
             where: {
@@ -34,3 +35,4 @@ const POST = async (req) => {
         return NextResponse.json({err: err, message: "something went wrong!", status: 500}, {status: 500})
     }
 }
+export { POST }
