@@ -5,39 +5,51 @@ import Visibility from '@mui/icons-material/Visibility';
 import EmailIcon from '@mui/icons-material/Email';
 import VisibilityOff from '@mui/icons-material/VisibilityOff'
 import login from '@/services/auth/login';
+import { setLogin, useLogin } from '../../hooks/auth';
 const emailPattern = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
+import { useRouter } from 'next/navigation'
+
+
 const Login = () => {
-    const [showPassword, setShowPassword] = useState(false);
-    const [btnText, setBtnText] = useState("Login");
-    const [isClicked, setIsClicked] = useState(false);
-    const [email, setEmail] = useState("");
-    const [password, setPassword]  = useState("");
-    const [error, setError] = useState(null);
-    console.log(password)
-    const handleClickShowPassword = () => setShowPassword((show) => !show);
-    const handleMouseDownPassword = (event) => {
-        event.preventDefault();
-        console.log("hi i am mouse down!")
-    };
-    const handleLogin  = async () => {
-        // first need to validate the email and password
-        setIsClicked(true)
-        setBtnText("Please Wait...");
-        console.log(email, password);
-        if(!email.match(emailPattern)) {
-            setError("Email is not valid!");
-            setBtnText("Login");
-            setIsClicked(false);
-            return;
-        }
-        const res = await login({email, password});
-        if(res.status !== 200) {
-          setError(res.message);
-        }
-        console.log("result while login is!", JSON.stringify(res));
+  const loginUser = useLogin();
+  console.log("use login 0000000000000000", loginUser)
+  const [showPassword, setShowPassword] = useState(false);
+  const [btnText, setBtnText] = useState("Login");
+  const [isClicked, setIsClicked] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword]  = useState("");
+  const [error, setError] = useState(null);
+  const router = useRouter()
+  console.log(password)
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
+  const handleMouseDownPassword = (event) => {
+      event.preventDefault();
+      console.log("hi i am mouse down!")
+  };
+  const handleLogin  = async () => {
+      // first need to validate the email and password
+      setIsClicked(true)
+      setBtnText("Please Wait...");
+      console.log(email, password);
+      if(!email.match(emailPattern)) {
+          setError("Email is not valid!");
+          setBtnText("Login");
+          setIsClicked(false);
+          return;
+      }
+      const res = await login({email, password});
+      if(res.status !== 200) {
+        setError(res.message);
         setIsClicked(false);
         setBtnText("Login");
-    }
+        return ;
+      }
+      console.log("result while login is!", JSON.stringify(res));
+      setLogin(res.data);
+      router.push("/")
+      setIsClicked(false);
+      setBtnText("Login");
+  }
   return (
     <Box sx={{bgcolor: "whitesmoke", minHeight: ""}}>
         <Container sx={{minHeight: "100vh", display: "flex", alignItems: "center"}}>

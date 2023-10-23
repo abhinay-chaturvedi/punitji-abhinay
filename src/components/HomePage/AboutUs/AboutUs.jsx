@@ -2,7 +2,7 @@ import React from 'react'
 import AboutUsDetail from './AboutUsDetail'
 import {Container, Grid} from '@mui/material'
 const AboutUs = () => {
-  return (
+    return (
     <Container sx={{}}>
         <Grid container>
             <Grid item md={5.5}>

@@ -9,7 +9,7 @@ export default function DashboardLayout({ children }) {
   return (
     <div>
         <NavBar/>
-        <div style={{marginTop: "20px"}}>
+        <div>
         {children}
         </div>
     </div>
