@@ -71,7 +71,6 @@ function NavBar() {
               aria-controls="menu-appbar"
               aria-haspopup="true"
               onClick={handleOpenNavMenu}
-              color="inherit"
             >
               <MenuIcon />
             </IconButton>
@@ -100,12 +99,10 @@ function NavBar() {
               ))}
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href="/"
+          {/* <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} /> */}
+          <Box
+            variant="div"
+            component="div"
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'none' },
@@ -113,18 +110,19 @@ function NavBar() {
               fontFamily: 'monospace',
               fontWeight: 700,
               letterSpacing: '.3rem',
-              color: 'inherit',
+              color: 'blue',
               textDecoration: 'none',
+              width: "max-content"
             }}
           >
-            LOGO
-          </Typography>
+            <Image onClick={() => router.push("/")} width={70} height={70} src ="/images/logo.jpeg"/>
+          </Box>
           <Box sx={{ flexGrow: 1, alignItems: "center", gap: 3, justifyContent: 'flex-end', marginRight: "80px", display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Button
                 key={page}
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: '#222222', display: 'block', fontWeight: '600', fontFamily: "sans-serif" }}
+                sx={{ my: 2, color: 'red', display: 'block', fontWeight: '600', fontFamily: "sans-serif" }}
               >
                 {page}
               </Button>
