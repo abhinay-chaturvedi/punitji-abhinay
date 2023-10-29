@@ -18,6 +18,7 @@ model User {
   profilePic String?
   role       Role      @default(USER)
   address    Address?
+  documents  Json[]
 }
 model Address {
   id        String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
@@ -29,7 +30,13 @@ model Address {
   district  String?
   createdAt DateTime? @default(now()) @db.Timestamptz(6)
 }
-
+model Document {
+  id String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name String?
+  desc String?
+  createtAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+}
 model ConsultingRequest {
   id String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   name String

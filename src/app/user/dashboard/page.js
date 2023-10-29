@@ -5,6 +5,7 @@ import LeftBar from '@/components/UserDashboard/LeftBar';
 import { useRouter, useSearchParams } from 'next/navigation';
 import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
 import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowLeft';
+import DocumentPage from '@/components/UserDashboard/Document/DocumentPage';
 const Page = () => {
 
   const router = useRouter();
@@ -19,7 +20,8 @@ const Page = () => {
       width: 240, 
       top: 0,
       transform: isOpened? "translateX(0)": "translateX(-240px)",
-      transition: "transform 1s linear"
+      transition: "transform 1s linear",
+      zIndex: 10
     }
   }
   const searchParams = useSearchParams();
@@ -45,7 +47,9 @@ const Page = () => {
                )}
             </Grid>
             <Grid item xs= {12} md={9.5}>
-              <Box sx={{minHeight: "100vh"}}>ksjdlks</Box>
+              <Box sx={{minHeight: "100vh"}}>
+                {q==="documents"? <DocumentPage/>: null}
+              </Box>
             </Grid>
         </Grid>
     </Box>

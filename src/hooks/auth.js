@@ -5,16 +5,13 @@ import { useState } from "react";
 
 
 export const useLogin = () => {
-    const [loginUser, setLoginUser] = useState(null);
+
     let User;
     if(!Cookies.get("User")) {
         User = null;
     }
-    else User = JSON.parse(Cookies.get("User"));
-    useEffect(() => {
-        setLoginUser(User);
-    }, [])
-    return loginUser;
+    else User = JSON.parse(Cookies.get("User"))
+    return User;
 }
 
 export const setLogin = (User) => {
