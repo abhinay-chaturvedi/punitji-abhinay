@@ -24,7 +24,8 @@ const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 function NavBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-  const loginUser = useLogin()
+  
+  const [isLogin, setIsLogin] = React.useState(false);
   const logout = useLogout();
   const router = useRouter();
   // router.refresh()
@@ -44,7 +45,10 @@ function NavBar() {
     setAnchorElUser(null);
     
   };
-
+  const loginUser = useLogin()
+  React.useEffect(() => {
+    setIsLogin(loginUser);
+  }, []);
   return (
     <AppBar sx={{background: "white", top: 0}} position="static">
       <Container sx={{bgcolor: "white"}}>
@@ -130,8 +134,8 @@ function NavBar() {
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
-            {loginUser?
-            (<>
+            {isLogin?
+            (<Box>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0,"&:hover": {bgcolor: "white"} }}>
                   <Typography sx={{fontWeight: "bold", mr: "10px"}}>{ loginUser.name.slice(0,8)}</Typography>
@@ -174,7 +178,7 @@ function NavBar() {
                     <Typography textAlign="center">Logout</Typography>
                   </MenuItem>
               </Menu>
-            </>):
+              </Box>):
             <Button
              component={Link}
              href='/login'

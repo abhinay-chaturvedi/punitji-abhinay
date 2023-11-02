@@ -5,6 +5,8 @@ import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { CircularProgress, Typography } from '@mui/material';
 import uploadfile from '@/services/document/upload';
 import { useLogin } from '@/hooks/auth';
+import { UserContext } from '@/contexts/user/context';
+import { setUserDocuments } from '@/contexts/user/action';
 
 const VisuallyHiddenInput = styled('input')({
   clip: 'rect(0 0 0 0)',
@@ -18,12 +20,13 @@ const VisuallyHiddenInput = styled('input')({
   width: 1,
 });
 
-export default function InputFileUpload({doc_id, setFileName, fileName, setDocuments}) {
+export default function InputFileUpload({doc_id, setFileName, fileName}) {
     
     const [uploadText, setUploadText] = React.useState("upload");
     const [file, setFile] = React.useState(null);
     const User = useLogin();
     console.log(User);
+    const user = React.useContext(UserContext);
     const handleChange = async (e) => {
         try {
             console.log("event", e);
@@ -57,11 +60,10 @@ export default function InputFileUpload({doc_id, setFileName, fileName, setDocum
             const res = await uploadfile(formData);
             console.log("🚀 ~ file: UploadButton.jsx:35 ~ handleChange ~ res:", res);
             setFileName(null);
-            if(res && res.prismaData && res.prismaData.documents)
-            setDocuments(res.prismaData.documents)
-            
+            if(res && res.prismaData && res.prismaData.documents){
+                user.dispatch(setUserDocuments(res.prismaData.documents));
+            }
             console.log(res.prismaData.documents)
-
             if(res.status === 200)
             setUploadText("uploaded")
             else setUploadText("upload");

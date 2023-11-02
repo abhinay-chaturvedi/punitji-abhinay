@@ -21,33 +21,35 @@ import { Divider } from '@mui/material';
 import { useLogin } from '@/hooks/auth';
 import { useRouter } from 'next/navigation';
 import getUser from '@/services/user/getUser';
+import { UserContext } from "@/contexts/user/context"
+import { useContext } from "react"
+import { setUser } from '@/contexts/user/action';
+
 const DocumentPage = () => {
   const [dense, setDense] = React.useState(false);
   const [secondary, setSecondary] = React.useState(false);
-  const [documents, setDocuments] = React.useState([])
   const User = useLogin();
   const router = useRouter();
   console.log("Logged in user is", User);
   console.log("hello");
-  // here we need to fetch the data or either we can use redux or context api
+  const user = useContext(UserContext)
   const getDocuments = async (email) => {
     const res = await getUser(email);
     console.log("🚀 ~ file: DocumentPage.jsx:35 ~ getDocuments ~ res:", res)
-    setDocuments(res.data.documents);
+    user.dispatch(setUser(res.data));
   }
   React.useEffect(() => {
     if(User && User.email){
       getDocuments(User.email);
     }
   }, []);
-  console.log(documents)
   return (
     <Box>
         <List>
           {
-            documents.map((item) => { 
+            user.state.documents.map((item) => { 
               return (
-                <CustomListItem key={item.id} item={item} setDocuments={setDocuments}/>
+                <CustomListItem key={item.id} item={item}/>
               )
             })
           }

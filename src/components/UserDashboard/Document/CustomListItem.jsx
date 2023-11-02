@@ -19,7 +19,7 @@ import InputFileUpload from './UploadButton';
 import { Button, Divider } from '@mui/material';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import VisibilityIcon from '@mui/icons-material/Visibility';
-const CustomListItem = ({item, setDocuments}) => {
+const CustomListItem = ({ item }) => {
     const [fileName, setFileName] = React.useState(null)
     return (
         <>
@@ -42,7 +42,7 @@ const CustomListItem = ({item, setDocuments}) => {
                             <Typography>view</Typography>
                         </Button>
                 ): (
-                    <InputFileUpload setDocuments={setDocuments} doc_id={item.id} fileName={fileName}  setFileName={setFileName}/>
+                    <InputFileUpload doc_id={item.id} fileName={fileName}  setFileName={setFileName}/>
                 )
             }
             <Typography>{fileName}</Typography>

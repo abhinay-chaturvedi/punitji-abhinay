@@ -26,23 +26,12 @@ const LeftBar = () => {
                       <DashboardIcon/>
                       <Typography component="span" sx={{color: "gray", fontWeight: "bold"}}>Dashboard</Typography>
                   </Box>
-                  <Divider sx={{width: "100%"}} />
-                  <Box component={Link} href="/user/dashboard/?page=services" sx={{bgcolor: q==="services"?"whitesmoke":"",display: "flex", gap: 2,alignItems: "center", p: "10px"}}>
-                      <DashboardIcon/>
-                      <Typography component="span" sx={{color: "gray", fontWeight: "bold"}}>Services</Typography>
-                  </Box>
-                  <Divider sx={{width: "100%"}} />
-                  <Box component={Link} href="/user/dashboard/?page=info" sx={{bgcolor: q==="info"?"whitesmoke":"", display: "flex", gap: 2,alignItems: "center", p: "10px"}}>
-                      <DashboardIcon/>
-                      <Typography component="span" sx={{color: "gray", fontWeight: "bold"}}>Info</Typography>
-                  </Box>
-                  <Divider sx={{width: "100%"}} />
-                  <Box component={Link} href="/user/dashboard/?page=process" sx={{bgcolor: q==="process"?"whitesmoke":"", display: "flex", gap: 2,alignItems: "center", p: "10px"}}>
+                  <Box component={Link} href="/user/?page=process" sx={{bgcolor: q==="process"?"whitesmoke":"", display: "flex", gap: 2,alignItems: "center", p: "10px"}}>
                       <DashboardIcon/>
                       <Typography component="span" sx={{color: "gray", fontWeight: "bold"}}>Track Process</Typography>
                   </Box>
                   <Divider sx={{width: "100%"}} />
-                  <Box component={Link} href="/user/dashboard/?page=documents" sx={{bgcolor: q==="documents"?"whitesmoke":"", display: "flex", gap: 2,alignItems: "center", p: "10px"}}>
+                  <Box component={Link} href="/user/?page=documents" sx={{bgcolor: q==="documents"?"whitesmoke":"", display: "flex", gap: 2,alignItems: "center", p: "10px"}}>
                       <DashboardIcon/>
                       <Typography component="span" sx={{color: "gray", fontWeight: "bold"}}>Documents</Typography>
                   </Box>

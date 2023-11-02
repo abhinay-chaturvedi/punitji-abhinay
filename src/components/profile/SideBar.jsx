@@ -1,7 +1,7 @@
 import { Box, Stack, Typography } from '@mui/material'
 import React from 'react'
 import ProcessStep from './ProcessStep'
-import DocumentStepper from './DocumentStepper'
+import DocumentStepper from '../UserDashboard/ProcessPage/ProcessStepper'
 
 const SideBar = () => {
   return (
