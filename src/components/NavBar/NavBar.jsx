@@ -158,15 +158,9 @@ function NavBar() {
                 open={Boolean(anchorElUser)}
                 onClose={handleCloseUserMenu}
               >
-                  <MenuItem  onClick={() => {
-                    handleCloseUserMenu();
-                    router.push('/user')
-                  }}>
-                    <Typography textAlign="center">Profile</Typography>
-                  </MenuItem>
                   <MenuItem onClick={() => {
                     handleCloseUserMenu();
-                    router.push("/user/dashboard")
+                    router.push("/user")
                   }}>
                     <Typography textAlign="center">Dashboard</Typography>
                   </MenuItem>

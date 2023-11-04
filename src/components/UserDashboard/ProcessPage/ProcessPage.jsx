@@ -6,7 +6,7 @@ const ProcessPage = () => {
   return (
     <Box>
         <Box>
-            <Typography>Your Process</Typography>
+            <Typography sx={{fontWeight: "bold", textAlign: "center", fontSize: "20px", mt: "10px"}}>Your Process</Typography>
         </Box>
         <Box>
             <DocumentStepper/>

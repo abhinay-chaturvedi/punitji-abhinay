@@ -4,6 +4,8 @@ import {Box, Typography, Stack, Avatar} from "@mui/material"
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import Divider from '@mui/material/Divider';
 import Link from 'next/link';
+import TrackChangesIcon from '@mui/icons-material/TrackChanges';
+import FolderIcon from '@mui/icons-material/Folder';
 import { useSearchParams } from 'next/navigation'
 
 const LeftBar = () => {
@@ -22,18 +24,18 @@ const LeftBar = () => {
           <Divider />
           <Box>
               <Stack>
-                  <Box component={Link} href="/user/dashboard" sx={{display: "flex", bgcolor: !q?"whitesmoke":"", gap: 2,alignItems: "center", p: "10px"}}>
+                  <Box component={Link} href="/user" sx={{display: "flex",color: "#520670", bgcolor: !q?"white":"", gap: 2,alignItems: "center", p: "10px"}}>
                       <DashboardIcon/>
-                      <Typography component="span" sx={{color: "gray", fontWeight: "bold"}}>Dashboard</Typography>
+                      <Typography component="span" sx={{color: "black", fontWeight: "bold"}}>Dashboard</Typography>
                   </Box>
-                  <Box component={Link} href="/user/?page=process" sx={{bgcolor: q==="process"?"whitesmoke":"", display: "flex", gap: 2,alignItems: "center", p: "10px"}}>
-                      <DashboardIcon/>
-                      <Typography component="span" sx={{color: "gray", fontWeight: "bold"}}>Track Process</Typography>
+                  <Box component={Link} href="/user/?page=process" sx={{color: "#520670", bgcolor: q==="process"?"white":"", display: "flex", gap: 2,alignItems: "center", p: "10px"}}>
+                      <TrackChangesIcon/>
+                      <Typography component="span" sx={{color: "black", fontWeight: "bold"}}>Track Process</Typography>
                   </Box>
                   <Divider sx={{width: "100%"}} />
-                  <Box component={Link} href="/user/?page=documents" sx={{bgcolor: q==="documents"?"whitesmoke":"", display: "flex", gap: 2,alignItems: "center", p: "10px"}}>
-                      <DashboardIcon/>
-                      <Typography component="span" sx={{color: "gray", fontWeight: "bold"}}>Documents</Typography>
+                  <Box component={Link} href="/user/?page=documents" sx={{color: "#520670", bgcolor: q==="documents"?"white":"", display: "flex", gap: 2,alignItems: "center", p: "10px"}}>
+                      <FolderIcon/>
+                      <Typography component="span" sx={{color: "black", fontWeight: "bold"}}>Documents</Typography>
                   </Box>
 
               </Stack>

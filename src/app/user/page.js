@@ -18,13 +18,13 @@ const Page = () => {
   const sideBarStyle = {
     [theme.breakpoints.down('md')]: {
       position: 'fixed', 
-      backgroundColor: "pink", 
       width: 240, 
       top: 0,
       transform: isOpened? "translateX(0)": "translateX(-240px)",
-      transition: "transform 1s linear",
+      transition: "transform .5s linear",
       zIndex: 10
-    }
+    },
+    backgroundColor: "whitesmoke",
   }
   const searchParams = useSearchParams();
   const q = searchParams.get('page');
