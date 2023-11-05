@@ -1,6 +1,6 @@
-const getUser = async (email) => {
+const getUser = async (email, role = "USER") => {
     try {
-        const res = await fetch(`/api/user/?email=${email}`, {
+        const res = await fetch(`/api/user/?email=${email}&&role=${role}`, {
             method: "GET",
             headers: {
                 'Content-Type': "application/json"

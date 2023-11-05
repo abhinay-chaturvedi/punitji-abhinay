@@ -160,7 +160,7 @@ function NavBar() {
               >
                   <MenuItem onClick={() => {
                     handleCloseUserMenu();
-                    router.push("/user")
+                    router.push(`${loginUser.role.toLowerCase()}`);
                   }}>
                     <Typography textAlign="center">Dashboard</Typography>
                   </MenuItem>

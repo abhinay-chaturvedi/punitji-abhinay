@@ -1,13 +1,16 @@
 'use client'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import {Box, Grid, Avatar, useTheme, useMediaQuery, Button, IconButton} from "@mui/material"
-import LeftBar from '@/components/UserDashboard/LeftBar';
+import LeftBar from '@/components/LeftBar';
 import { useRouter, useSearchParams } from 'next/navigation';
 import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
 import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowLeft';
 import DocumentPage from '@/components/UserDashboard/Document/DocumentPage';
-import UserContextProvider from '@/contexts/user/context';
+import UserContextProvider, { UserContext } from '@/contexts/user/context';
 import ProcessPage from '@/components/UserDashboard/ProcessPage/ProcessPage';
+import getUser from '@/services/user/getUser';
+import { setUser } from '@/contexts/user/action';
+import { useLogin } from '@/hooks/auth';
 const Page = () => {
 
   const router = useRouter();
@@ -15,6 +18,7 @@ const Page = () => {
   const theme = useTheme();
   const mdDown = useMediaQuery(theme.breakpoints.down('md'));
   const [isOpened, setIsOpened] = useState(false);
+  const User = useLogin();
   const sideBarStyle = {
     [theme.breakpoints.down('md')]: {
       position: 'fixed', 
@@ -31,8 +35,18 @@ const Page = () => {
   useEffect(() => {
     setIsOpened(false);
   }, [q]);
+  const user = useContext(UserContext)
+  const getDocuments = async (email, role) => {
+    const res = await getUser(email, role);
+    console.log("🚀 ~ file: DocumentPage.jsx:35 ~ getDocuments ~ res:", res)
+    user.dispatch(setUser(res.data));
+  }
+  React.useEffect(() => {
+    if(User && User.email){
+      getDocuments(User.email, User.role);
+    }
+  }, []);
   return (
-    <UserContextProvider>
     <Box>
         <Grid container>
             <Grid item sx={sideBarStyle} md={2.5}>
@@ -57,7 +71,6 @@ const Page = () => {
             </Grid>
         </Grid>
     </Box>
-    </UserContextProvider>
   )
 }
 

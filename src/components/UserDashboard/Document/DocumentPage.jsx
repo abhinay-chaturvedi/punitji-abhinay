@@ -33,16 +33,7 @@ const DocumentPage = () => {
   console.log("Logged in user is", User);
   console.log("hello");
   const user = useContext(UserContext)
-  const getDocuments = async (email) => {
-    const res = await getUser(email);
-    console.log("🚀 ~ file: DocumentPage.jsx:35 ~ getDocuments ~ res:", res)
-    user.dispatch(setUser(res.data));
-  }
-  React.useEffect(() => {
-    if(User && User.email){
-      getDocuments(User.email);
-    }
-  }, []);
+  console.log("🚀 ~ file: DocumentPage.jsx:36 ~ DocumentPage ~ user:", user)
   return (
     <Box>
         <List>

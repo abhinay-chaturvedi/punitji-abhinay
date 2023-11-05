@@ -4,12 +4,14 @@ const { NextResponse } = require("next/server")
 const GET  = async (req) => {
     try {
         const email = req.nextUrl.searchParams.get("email");
+        const role = req.nextUrl.searchParams.get('role');
         console.log("🚀 ~ file: route.js:7 ~ GET ~ email:", email)
         // return ;
         if(!email) return ;
         const prismaResult = await prisma.user.findUnique({
             where: {
-                email: email
+                email: email,
+                role: role
             }
         })
         return NextResponse.json({status: 200, message: "successfully fetched the user detail", data: prismaResult}, {status: 200});
