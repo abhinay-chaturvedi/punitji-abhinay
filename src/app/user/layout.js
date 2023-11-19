@@ -1,21 +1,22 @@
-"use client"
+// "use client"
 import NavBar from "@/components/NavBar/NavBar"
-import UserContextProvider from "@/contexts/user/context"
-
+// import UserContextProvider from "@/contexts/user/context"
+import { cookies } from 'next/headers'
 export const metadata = {
   title: 'Welcome User!',
   description: 'Welcome User!',
 }
 
 export default function DashboardLayout({ children }) {
+  console.log("here is server component in user layourt")
+  // const token = cookies().get("token");
+  // console.log("hello from the this side", token)
   return (
-    <UserContextProvider>
     <div>
         <NavBar/>
         <div>
-        {children}
+          {children}
         </div>
     </div>
-    </UserContextProvider>
   )
 }

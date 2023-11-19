@@ -9,58 +9,119 @@ datasource db {
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model User {
-  createdAt  DateTime? @default(now()) @db.Timestamptz(6)
-  email      String   @unique
-  password   String
-  phone      String?
-  name       String?
-  id         String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  profilePic String?
-  role       Role      @default(USER)
-  address    Address?
-  documents  Json[]
-  steps      Json[]
-  partnerId  String?   @db.Uuid()
-  // services    Services[]
+  createdAt      DateTime?        @default(now()) @db.Timestamptz(6)
+  email          String           @unique
+  password       String
+  phone          String?
+  id             String           @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  profilePic     String?
+  role           Role             @default(USER)
+  documents      Json[]
+  steps          ProcessSteps?
+  partnerId      String?          @db.Uuid()
+  regis          Regis?
+  education      Education[]
+  workExperience WorkExperience[]
+  languageTest   LanguageTest[]
+
+  // @@map("user")
 }
-// model Services {
-//   id          String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-//   type        Service? @default(VISA)
-//   steps       Json[]  @default([])
-//   user        User? @relation(fields: [userId], references: [id])
-//   userId      String? @db.Uuid
-//   isCompleted Boolean @default(false)
-// }
-model Address {
-  id        String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  user      User   @relation(fields: [userId], references: [id])
-  userId    String @unique @db.Uuid
-  pincode   String?
-  state     String?
-  country   String?
-  district  String?
-  createdAt DateTime? @default(now()) @db.Timestamptz(6)
+
+model ProcessSteps {
+  id             String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  user           User    @relation(fields: [userId], references: [id])
+  userId         String  @unique @db.Uuid
+  assessment     Boolean @default(false)
+  visaSelection  Boolean @default(false)
+  signContract   Boolean @default(false)
+  documents      Boolean @default(false)
+  fileProcessing Boolean @default(false)
+  fileReview     Boolean @default(false)
+  fileSubmitted  Boolean @default(false)
+  update         Boolean @default(false)
+  finalResult    Boolean @default(false)
+
+  @@map("process_steps")
 }
+
+model Regis {
+  id          String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  user        User     @relation(fields: [userId], references: [id])
+  userId      String   @unique @db.Uuid
+  name        String
+  email       String
+  address     String
+  dob         DateTime
+  visaCountry String
+
+  @@map("regis")
+}
+
+model Education {
+  id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String   @db.Uuid
+  college   String
+  stream    String
+  country   String
+  degree    String
+  startDate DateTime
+  endDate   DateTime
+  score     String
+
+  @@map("education")
+}
+
+model WorkExperience {
+  id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String   @db.Uuid
+  jobTitle  String
+  company   String
+  country   String
+  startDate DateTime
+  endDate   DateTime
+
+  @@map("work_experience")
+}
+
+model LanguageTest {
+  id            String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  user          User    @relation(fields: [userId], references: [id])
+  userId        String  @db.Uuid
+  exam          String
+  speakingBand  Decimal
+  listeningBand Decimal
+  readingBand   Decimal
+  writingBand   Decimal
+  overallBand   Decimal
+
+  @@map("language_test")
+}
+
 model Document {
-  id String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  name String?
-  desc String?
+  id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name      String?
+  desc      String?
   createtAt DateTime @default(now())
   updatedAt DateTime @default(now())
+
+  // @@map("document")
 }
+
 model ConsultingRequest {
-  id String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  name String
+  id          String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name        String
   phoneNumber String
-  email String
-  subject String
-  createdAt DateTime @default(now())
+  email       String
+  subject     String
+  createdAt   DateTime @default(now())
+
+  @@map("consulting_request")
 }
+
 enum Role {
   ADMIN
   USER
   PARTNER
-}
-enum Service {
-  VISA
 }

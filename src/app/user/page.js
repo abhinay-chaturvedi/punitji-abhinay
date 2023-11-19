@@ -11,13 +11,18 @@ import ProcessPage from '@/components/UserDashboard/ProcessPage/ProcessPage';
 import getUser from '@/services/user/getUser';
 import { setUser } from '@/contexts/user/action';
 import { useLogin } from '@/hooks/auth';
-const Page = () => {
+import ProfileDetailPage from '@/components/UserDashboard/ProfileDetailPage.jsx/ProfileDetailPage';
 
+
+const Page = () => {
+  // console.log("here is server component in user layourt----------------------------------")
+  
   const router = useRouter();
-  console.log("router object", router);
+  // console.log("router object", router);
   const theme = useTheme();
   const mdDown = useMediaQuery(theme.breakpoints.down('md'));
   const [isOpened, setIsOpened] = useState(false);
+  const [userDetail, setUserDetail] = useState({});
   const User = useLogin();
   const sideBarStyle = {
     [theme.breakpoints.down('md')]: {
@@ -35,15 +40,15 @@ const Page = () => {
   useEffect(() => {
     setIsOpened(false);
   }, [q]);
-  const user = useContext(UserContext)
-  const getDocuments = async (email, role) => {
+  // const user = useContext(UserContext)
+  const getUserDetail = async (email, role) => {
     const res = await getUser(email, role);
     console.log("🚀 ~ file: DocumentPage.jsx:35 ~ getDocuments ~ res:", res)
-    user.dispatch(setUser(res.data));
+    setUserDetail(res.data);
   }
   React.useEffect(() => {
     if(User && User.email){
-      getDocuments(User.email, User.role);
+      getUserDetail(User.email, User.role);
     }
   }, []);
   return (
@@ -51,7 +56,7 @@ const Page = () => {
         <Grid container>
             <Grid item sx={sideBarStyle} md={2.5}>
               <Box sx={{minHeight: "100vh", borderRight: "1px solid black"}}>
-                <LeftBar/>
+                <LeftBar userDetail={userDetail}/>
               </Box>
               {
               mdDown && (!isOpened? 
@@ -65,8 +70,10 @@ const Page = () => {
             </Grid>
             <Grid item xs= {12} md={9.5}>
               <Box sx={{minHeight: "100vh"}}>
-                {q==="documents"? <DocumentPage/>: null}
+                {!q && <ProfileDetailPage/>}
+                {q==="documents"? <DocumentPage documents={userDetail?.documents}/>: null}
                 {q==="process"? <ProcessPage/>: null}
+
               </Box>
             </Grid>
         </Grid>
@@ -75,7 +82,7 @@ const Page = () => {
 }
 
 export default Page
-const animation= {
+const animation = {
   animation: 'animeBtn 2s linear infinite alternate',
   "@keyframes animeBtn": {
     "0%": {

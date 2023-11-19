@@ -25,7 +25,9 @@ import { UserContext } from "@/contexts/user/context"
 import { useContext } from "react"
 import { setUser } from '@/contexts/user/action';
 
-const DocumentPage = () => {
+const DocumentPage = ({
+  documents
+}) => {
   const [dense, setDense] = React.useState(false);
   const [secondary, setSecondary] = React.useState(false);
   const User = useLogin();
@@ -38,7 +40,7 @@ const DocumentPage = () => {
     <Box>
         <List>
           {
-            user.state.documents.map((item) => { 
+            documents?.map((item) => { 
               return (
                 <CustomListItem key={item.id} item={item}/>
               )

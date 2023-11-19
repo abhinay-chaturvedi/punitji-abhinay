@@ -14,7 +14,13 @@ import ClientSays from '@/components/HomePage/ClientSays/ClientSays'
 import Blogs from '@/components/HomePage/Blogs/Blogs'
 import Analytics from '@/components/HomePage/Anayltics/Analytics'
 import { useLogin } from '@/hooks/auth'
-export default function Home() {
+import { cookies } from 'next/headers'
+import getUser from '@/services/user/getUser'
+export default async function Home() {
+  // console.log("server//////////////////////////////////////////////////////////")
+  const token = cookies().get("token");
+  console.log("hello from the this side", token)
+  // const user = await getUser();
   return (
     <Box>
       <NavBar/>
