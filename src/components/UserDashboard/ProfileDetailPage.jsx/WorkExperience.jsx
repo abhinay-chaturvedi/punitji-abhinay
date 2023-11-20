@@ -1,4 +1,5 @@
 import {
+  Alert,
   Box,
   Button,
   FormControl,
@@ -9,15 +10,131 @@ import {
   Select,
   Typography,
 } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import BasicDatePicker from "@/components/Date";
 import CustomInput from "@/components/CustomInput";
-
+import DataTable from "@/components/DataTable";
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
+import {
+  getWorkExperience,
+  saveWorkExperience,
+} from "@/services/user/workExperience";
+const experienceColumn = [
+  { field: "id", headerName: "ID" },
+  { field: "jobTitle", headerName: "Job Title", width: 200 },
+  { field: "company", headerName: "Company", width: 200 },
+  {
+    field: "country",
+    headerName: "Country",
+    width: 150,
+  },
+  // {
+  //   field: "country",
+  //   headerName: "Country",
+  //   description: "This column has a value getter and is not sortable.",
+  //   // sortable: false,
+  //   // valueGetter: (params) =>
+  //   //   `${params.row.firstName || ''} ${params.row.lastName || ''}`,
+  // },
+  {
+    field: "startDate",
+    headerName: "Start Date",
+    width: 150,
+  },
+  {
+    field: "endDate",
+    headerName: "End Date",
+    width: 150,
+  },
+];
 const WorkExperience = () => {
   const [arrow, setArrow] = useState(false);
   const [age, setAge] = useState("");
+  const [experienceRows, setExperienceRows] = useState(null);
+  const [btnText, setBtnText] = useState("save");
+  const [error, setError] = useState(null);
+  const [formOpen, setFormOpen] = useState(false);
+  const [workExperience, setWorkExperience] = useState({
+    jobTitle: "",
+    company: "",
+    country: "",
+    startDate: "",
+    endDate: "",
+  });
+  const fetchExperieceDetail = async () => {
+    try {
+      const userId = "8ddda531-e273-49ac-b24c-410d04efb7e9";
+      const result = await getWorkExperience(userId);
+      console.log(
+        "🚀 ~ file: WorkExperience.jsx:55 ~ fetchExperieceDetail ~ result:",
+        result
+      );
+      if (result.status == 200) {
+        setExperienceRows(result.data);
+      }
+    } catch (err) {
+      console.log(
+        "🚀 ~ file: WorkExperience.jsx:54 ~ fetchExperieceDetail ~ err:",
+        err
+      );
+    }
+  };
+  useEffect(() => {
+    fetchExperieceDetail();
+  }, []);
+  const handleSave = async () => {
+    try {
+      const data = {
+        userId: "8ddda531-e273-49ac-b24c-410d04efb7e9",
+        ...workExperience,
+      };
+      console.log(
+        "🚀 ~ file: WorkExperience.jsx:91 ~ handleSave ~ data:",
+        data
+      );
+      if (!data.jobTitle || !data.jobTitle.length) {
+        return setError("Please fill Job Title!");
+      }
+      if (!data.company || !data.company.length) {
+        return setError("Please fill Company!");
+      }
+      if (!data.country || !data.country.length) {
+        return setError("Please fill country!");
+      }
+      if (!data.startDate || !data.startDate.length) {
+        return setError("Please fill start date!");
+      }
+      if (!data.endDate || !data.endDate.length) {
+        return setError("Please fill end date!");
+      }
+      // return ;
+      setBtnText("saving...");
+      const result = await saveWorkExperience(data);
+      console.log("🚀 ~ file: WorkExperience.jsx:113 ~ handleSave ~ result:", result)
+      if (result.status == 200) {
+        setBtnText("Successfully saved!");
+        setError(null);
+        setExperienceRows((prev) => [result.data, ...prev]);
+        setWorkExperience({
+          jobTitle: "",
+          company: "",
+          country: "",
+          startDate: "",
+          endDate: "",
+        });
+      } else {
+        setBtnText("save");
+        setError(result.message);
+      }
+    } catch (err) {
+      console.log("🚀 ~ file: WorkExperience.jsx:130 ~ handleSave ~ err:", err)
+      setBtnText("save");
+      setError("something went wrong!");
+    }
+  };
   return (
     <Box sx={{ mt: "10px" }}>
       <Box sx={{ p: "10px", boxShadow: "2px 2px 5px 5px whitesmoke" }}>
@@ -33,7 +150,19 @@ const WorkExperience = () => {
             {arrow ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />}
           </Button>
         </Box>
-        {arrow && (
+        {arrow && experienceRows && (
+          <DataTable rows={experienceRows} columns={experienceColumn} />
+        )}
+        {arrow && error && (
+          <Alert
+            sx={{ width: "100%", my: 1 }}
+            severity="error"
+            onClose={() => setError(null)}
+          >
+            {error}
+          </Alert>
+        )}
+        {arrow && formOpen && (
           <Grid container gap={2} justifyContent="center" sx={{ mt: "5px" }}>
             {/* <Grid item xs={12} md={5.5}>
               <FormControl required sx={{ width: "100%" }} variant="outlined">
@@ -57,70 +186,75 @@ const WorkExperience = () => {
               </FormControl>
             </Grid> */}
             <Grid xs={12} item md={5.5}>
-              {/* <FormControl required sx={{ width: "100%" }} variant="outlined">
-                  <InputLabel htmlFor="outlined-adornment-email">
-                    University or School
-                  </InputLabel>
-                  <OutlinedInput
-                    id="outlined-adornment-email"
-                    onChange={(e) => {
-                      // setName(e.target.value)
-                      // setError(null);
-                      console.log("onchange");
-                    }}
-                    type="text"
-                    label="university or school"
-                  />
-                </FormControl> */}
-              <CustomInput label="Job Title" />
+              <CustomInput
+                setInput={(e) => {
+                  setWorkExperience((prev) => ({
+                    ...prev,
+                    [e.target.name]: e.target.value,
+                  }));
+                  setError(null);
+                }}
+                label="Job Title"
+                name={"jobTitle"}
+                value={workExperience.jobTitle}
+              />
             </Grid>
             <Grid xs={12} item md={5.5}>
-              {/* <FormControl required sx={{ width: "100%" }} variant="outlined">
-                  <InputLabel htmlFor="outlined-adornment-stream">
-                    Stream
-                  </InputLabel>
-                  <OutlinedInput
-                    id="outlined-adornment-stream"
-                    onChange={(e) => {
-                      // setName(e.target.value)
-                      // setError(null);
-                      console.log("onchange");
-                    }}
-                    type="text"
-                    label="stream"
-                  />
-                </FormControl> */}
-              <CustomInput label="Company" />
+              <CustomInput
+                setInput={(e) => {
+                  setWorkExperience((prev) => ({
+                    ...prev,
+                    [e.target.name]: e.target.value,
+                  }));
+                  setError(null);
+                }}
+                label="Company"
+                name="company"
+                value={workExperience.company}
+              />
             </Grid>
             <Grid xs={12} item md={5.5}>
-              {/* <FormControl required sx={{ width: "100%" }} variant="outlined">
-                  <InputLabel htmlFor="outlined-adornment-country">
-                    Country
-                  </InputLabel>
-                  <OutlinedInput
-                    id="outlined-adornment-country"
-                    onChange={(e) => {
-                      // setName(e.target.value)
-                      // setError(null);
-                      console.log("onchange");
-                    }}
-                    type="text"
-                    label="country"
-                  />
-                </FormControl> */}
-              <CustomInput label="Country" />
+              <CustomInput
+                setInput={(e) => {
+                  setWorkExperience((prev) => ({
+                    ...prev,
+                    [e.target.name]: e.target.value,
+                  }));
+                  setError(null);
+                }}
+                name="country"
+                label="Country"
+                value={workExperience.country}
+              />
             </Grid>
             <Grid xs={12} item md={5.5}>
-              <BasicDatePicker label="Start Date" />
+              <BasicDatePicker
+                setDate={(value) => {
+                  setWorkExperience((prev) => ({ ...prev, startDate: value }));
+                  setError(null);
+                }}
+                label="Start Date"
+              />
             </Grid>
             <Grid xs={12} item md={5.5}>
-              <BasicDatePicker label="End Date" />
+              <BasicDatePicker
+                setDate={(value) => {
+                  setWorkExperience((prev) => ({ ...prev, endDate: value }));
+                  setError(null);
+                }}
+                label="End Date"
+              />
             </Grid>
-            {/* <Grid xs={12} item md={5.5}>
-              <CustomInput label="Score in %" />
-            </Grid> */}
+            <Grid display="flex" justifyContent="center" alignItems="center" xs={12} item>
+              <Button onClick={handleSave} disabled={btnText != "save"}>
+                {btnText}
+              </Button>
+            </Grid>
           </Grid>
         )}
+        {arrow && <Box sx={{display: "flex", justifyContent: "flex-end"}}>
+          <Button startIcon={formOpen? <RemoveCircleOutlineIcon/>: <AddCircleOutlineIcon/>} onClick={() => setFormOpen((prev) => !prev)}>{formOpen? "Remove": "Add"}</Button>
+        </Box>}
       </Box>
     </Box>
   );
