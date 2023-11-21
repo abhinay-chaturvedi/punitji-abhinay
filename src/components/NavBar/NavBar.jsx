@@ -126,7 +126,7 @@ function NavBar() {
               <Button
                 key={page}
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'red', display: 'block', fontWeight: '600', fontFamily: "sans-serif" }}
+                sx={{ my: 2, color: '#1b2630', display: 'block', fontWeight: '600', fontFamily: "sans-serif" }}
               >
                 {page}
               </Button>
@@ -138,8 +138,8 @@ function NavBar() {
             (<Box>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0,"&:hover": {bgcolor: "white"} }}>
-                  <Typography sx={{fontWeight: "bold", mr: "10px"}}>{ loginUser.name.slice(0,8)}</Typography>
-                  <Avatar alt="Abhinay" src="/static/images/avatar/2.jpg" />
+                  <Typography sx={{fontWeight: "bold",color:"#223241", mr: "10px"}}>{ loginUser.name.slice(0,8)}</Typography>
+                  <Avatar alt="Abhinay" sx={{bgcolor: "white", color: "#223241", border: "2px solid #223241"}} src="/static/images/avatar/2.jpg" />
                 </IconButton>
               </Tooltip>
               <Menu

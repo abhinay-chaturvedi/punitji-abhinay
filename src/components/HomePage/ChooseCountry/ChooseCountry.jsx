@@ -13,12 +13,12 @@ const ChooseCountry = () => {
             </Box>
             <Box>
                 <Carousel>
-                    <ChooseCountryCard/>
-                    <ChooseCountryCard/>
-                    <ChooseCountryCard/>
-                    <ChooseCountryCard/>
-                    <ChooseCountryCard/>
-                    <ChooseCountryCard/>
+                    <ChooseCountryCard imgUrl={"/images/count1.jpeg"}/>
+                    <ChooseCountryCard imgUrl={"/images/count2.jpg"}/>
+                    <ChooseCountryCard imgUrl={"/images/count3.jpg"}/>
+                    <ChooseCountryCard imgUrl={"/images/count4.jpg"}/>
+                    <ChooseCountryCard imgUrl={"/images/count5.jpg"}/>
+                    <ChooseCountryCard imgUrl={"/images/count6.jpg"}/>
                 </Carousel>
             </Box>
         </Container>

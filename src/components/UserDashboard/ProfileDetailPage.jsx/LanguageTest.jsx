@@ -1,4 +1,5 @@
 import {
+  Alert,
   Box,
   Button,
   FormControl,
@@ -14,10 +15,83 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import BasicDatePicker from "@/components/Date";
 import CustomInput from "@/components/CustomInput";
-
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
+import DataTable from "@/components/DataTable";
+const LanguageTestColumn = [
+  { field: "id", headerName: "ID" },
+  { field: "exam", headerName: "Exam", width: 150 },
+  { field: "speakingBand", headerName: "Speaking Band", width: 200 },
+  {
+    field: "listeningBand",
+    headerName: "Listening Band",
+    width: 150,
+  },
+  // {
+  //   field: "country",
+  //   headerName: "Country",
+  //   description: "This column has a value getter and is not sortable.",
+  //   // sortable: false,
+  //   // valueGetter: (params) =>
+  //   //   `${params.row.firstName || ''} ${params.row.lastName || ''}`,
+  // },
+  {
+    field: "readingBand",
+    headerName: "Reading Band",
+    width: 150,
+  },
+  {
+    field: "writingBand",
+    headerName: "Writing Band",
+    width: 150,
+  },
+  {
+    field: "overallBand",
+    headerName: "Overall Band",
+    width: 150,
+  },
+];
 const LanguageTest = () => {
   const [arrow, setArrow] = useState(false);
   const [age, setAge] = useState("");
+  const [btnText, setBtnText] = useState("save");
+  const [error, setError] = useState(null);
+  const [formOpen, setFormOpen] = useState(false);
+  const [languageDetail, setLanguageDetail] = useState({
+    exam: "",
+    speakingBand: "",
+    listeningBand: "",
+    writingBand: "",
+    readingBand: "",
+    overallBand: "",
+  })
+  const handleSave = async () => {
+    try {
+      const data = {userId: "8ddda531-e273-49ac-b24c-410d04efb7e9", ...languageDetail};
+      if (!data.exam || !data.exam.length) {
+        return setError("Please fill Exam!");
+      }
+      if (!data.speakingBand || !data.speakingBand.length) {
+        return setError("Please fill Speaking Band!");
+      }
+      if (!data.listeningBand || !data.listeningBand.length) {
+        return setError("Please fill Listening Band!");
+      }
+      if (!data.readingBand || !data.readingBand.length) {
+        return setError("Please fill Reading Band!");
+      }
+      if (!data.writingBand || !data.writingBand.length) {
+        return setError("Please fill Writing Band!");
+      }
+      if (!data.overallBand || !data.overallBand.length) {
+        return setError("Please fill Overall Band!");
+      }
+      console.log("languageDetail", languageDetail);
+    } catch(err) {
+      console.log("🚀 ~ file: LanguageTest.jsx:26 ~ handleSave ~ err:", err)
+      setError(err.message);
+    }
+  }
   return (
     <Box sx={{ mt: "10px" }}>
       <Box sx={{ p: "10px", boxShadow: "2px 2px 5px 5px whitesmoke" }}>
@@ -33,7 +107,17 @@ const LanguageTest = () => {
             {arrow ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />}
           </Button>
         </Box>
-        {arrow && (
+        {arrow && (<DataTable rows={[]} columns={LanguageTestColumn} />)}
+        {arrow && error && (
+          <Alert
+            sx={{ width: "100%", my: 1 }}
+            severity="error"
+            onClose={() => setError(null)}
+          >
+            {error}
+          </Alert>
+        )}
+        {arrow && formOpen && (
           <Grid container gap={2} justifyContent="center" sx={{ mt: "5px" }}>
             <Grid item xs={12} md={2}>
               <FormControl required sx={{ width: "100%" }} variant="outlined">
@@ -41,110 +125,71 @@ const LanguageTest = () => {
                 <Select
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
-                  value={age}
+                  value={languageDetail.exam}
                   label="Exam"
-                  onChange={(e) => setAge(e.target.value)}
+                  name="exam"
+                  onChange={(e) => {
+                    setLanguageDetail((prev) => ({...prev, [e.target.name]: e.target.value}));
+                    setError(null);
+                  }}
                 >
-                  <MenuItem value={"phd"}>IELTS</MenuItem>
-                  <MenuItem value={"graduation"}>PTE</MenuItem>
-                  <MenuItem value={"diploma"}>CELPIP</MenuItem>
-                  <MenuItem value={"senior-secondary"}>
-                    FRENCH
-                  </MenuItem>
+                  <MenuItem value={"IELTS"}>IELTS</MenuItem>
+                  <MenuItem value={"PTE"}>PTE</MenuItem>
+                  <MenuItem value={"CELPIP"}>CELPIP</MenuItem>
+                  <MenuItem value={"FRENCH"}>FRENCH</MenuItem>
                 </Select>
               </FormControl>
             </Grid>
             <Grid xs={12} item md={1.7}>
-              {/* <FormControl required sx={{ width: "100%" }} variant="outlined">
-                  <InputLabel htmlFor="outlined-adornment-email">
-                    University or School
-                  </InputLabel>
-                  <OutlinedInput
-                    id="outlined-adornment-email"
-                    onChange={(e) => {
-                      // setName(e.target.value)
-                      // setError(null);
-                      console.log("onchange");
-                    }}
-                    type="text"
-                    label="university or school"
-                  />
-                </FormControl> */}
-              <CustomInput label="Speaking band" type="number" />
+              <CustomInput value={languageDetail.speakingBand} label="Speaking band" type="number" name="speakingBand" setInput={(e) => {
+                setLanguageDetail((prev) => ({...prev, [e.target.name]: e.target.value}));
+                setError(null);
+              }}/>
             </Grid>
             <Grid xs={12} item md={1.7}>
-              {/* <FormControl required sx={{ width: "100%" }} variant="outlined">
-                  <InputLabel htmlFor="outlined-adornment-stream">
-                    Stream
-                  </InputLabel>
-                  <OutlinedInput
-                    id="outlined-adornment-stream"
-                    onChange={(e) => {
-                      // setName(e.target.value)
-                      // setError(null);
-                      console.log("onchange");
-                    }}
-                    type="text"
-                    label="stream"
-                  />
-                </FormControl> */}
-              <CustomInput label="Listening band" type="number" />
+              <CustomInput value={languageDetail.listeningBand} label="Listening band" type="number" name="listeningBand" setInput={(e) => {
+                setLanguageDetail((prev) => ({...prev, [e.target.name]: e.target.value}));
+                setError(null);
+              }} />
             </Grid>
             <Grid xs={12} item md={1.7}>
-              {/* <FormControl required sx={{ width: "100%" }} variant="outlined">
-                  <InputLabel htmlFor="outlined-adornment-country">
-                    Country
-                  </InputLabel>
-                  <OutlinedInput
-                    id="outlined-adornment-country"
-                    onChange={(e) => {
-                      // setName(e.target.value)
-                      // setError(null);
-                      console.log("onchange");
-                    }}
-                    type="text"
-                    label="country"
-                  />
-                </FormControl> */}
-              <CustomInput label="Reading band" type="number" />
+              <CustomInput value={languageDetail.readingBand} label="Reading band" type="number" name="readingBand" setInput={(e) => {
+                setLanguageDetail((prev) => ({...prev, [e.target.name]: e.target.value}));
+                setError(null);
+              }} />
             </Grid>
             <Grid xs={12} item md={1.7}>
-              {/* <FormControl required sx={{ width: "100%" }} variant="outlined">
-                  <InputLabel htmlFor="outlined-adornment-country">
-                    Country
-                  </InputLabel>
-                  <OutlinedInput
-                    id="outlined-adornment-country"
-                    onChange={(e) => {
-                      // setName(e.target.value)
-                      // setError(null);
-                      console.log("onchange");
-                    }}
-                    type="text"
-                    label="country"
-                  />
-                </FormControl> */}
-              <CustomInput label="Writing band" type="number" />
+              <CustomInput value={languageDetail.writingBand} label="Writing band" type="number" name="writingBand" setInput={(e) => {
+                setLanguageDetail((prev) => ({...prev, [e.target.name]: e.target.value}));
+                setError(null);
+              }}/>
             </Grid>
             <Grid xs={12} item md={1.7}>
-              {/* <FormControl required sx={{ width: "100%" }} variant="outlined">
-                  <InputLabel htmlFor="outlined-adornment-country">
-                    Country
-                  </InputLabel>
-                  <OutlinedInput
-                    id="outlined-adornment-country"
-                    onChange={(e) => {
-                      // setName(e.target.value)
-                      // setError(null);
-                      console.log("onchange");
-                    }}
-                    type="text"
-                    label="country"
-                  />
-                </FormControl> */}
-              <CustomInput label="Overall band" type="number" />
+              <CustomInput value={languageDetail.overallBand} label="Overall band" type="number" name="overallBand" setInput={(e) => {
+                setLanguageDetail((prev) => ({...prev, [e.target.name]: e.target.value}));
+                setError(null);
+              }} />
+            </Grid>
+            <Grid display="flex" justifyContent="center" alignItems="center" xs={12} item>
+              <Button onClick={handleSave} disabled={(btnText != "save")}>{btnText}</Button>
             </Grid>
           </Grid>
+        )}
+        {arrow && (
+          <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
+            <Button
+              startIcon={
+                formOpen ? (
+                  <RemoveCircleOutlineIcon />
+                ) : (
+                  <AddCircleOutlineIcon />
+                )
+              }
+              onClick={() => setFormOpen((prev) => !prev)}
+            >
+              {formOpen ? "Remove" : "Add"}
+            </Button>
+          </Box>
         )}
       </Box>
     </Box>

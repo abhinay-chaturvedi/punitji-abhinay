@@ -17,22 +17,22 @@ const WhatWeOffer = () => {
             </Box>
             <Grid container rowGap={5} justifyContent="space-between">
                 <Grid item sm={5.7}  md={3.7}>
-                    <WhatWeOfferCard/>
+                    <WhatWeOfferCard imgUrl={"/images/2.jpg"} iconUrl={"/images/3.jpeg"}/>
                 </Grid>
                 <Grid item sm={5.7} md={3.7}>
-                    <WhatWeOfferCard/>
+                    <WhatWeOfferCard imgUrl={"/images/4 pic.jpg"} iconUrl={"/images/icon1.jpeg"}/>
                 </Grid>
                 <Grid item  sm={5.7} md={3.7}>
-                    <WhatWeOfferCard/>
+                    <WhatWeOfferCard imgUrl={"/images/3pic.jpg"} iconUrl={"/images/icon2.jpeg"}/>
                 </Grid>
                 <Grid item sm={5.7}  md={3.7}>
-                    <WhatWeOfferCard/>
+                    <WhatWeOfferCard imgUrl={"/images/6pic.jpg"} iconUrl={"/images/3.jpeg"}/>
                 </Grid>
                 <Grid item sm={5.7}  md={3.7}>
-                    <WhatWeOfferCard/>
+                    <WhatWeOfferCard imgUrl={"/images/4.jpg"} iconUrl={"/images/icon1.jpeg"}/>
                 </Grid>
                 <Grid item sm={5.7}  md={3.7}>
-                    <WhatWeOfferCard/>
+                    <WhatWeOfferCard imgUrl={"/images/canada-business-visa.jpg"} iconUrl={"/images/icon2.jpeg"}/>
                 </Grid>
             </Grid>
         </Container>

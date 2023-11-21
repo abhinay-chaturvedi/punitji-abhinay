@@ -16,8 +16,8 @@ import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import BasicDatePicker from "@/components/Date";
 import CustomInput from "@/components/CustomInput";
 import DataTable from "@/components/DataTable";
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 import {
   getWorkExperience,
   saveWorkExperience,
@@ -113,7 +113,10 @@ const WorkExperience = () => {
       // return ;
       setBtnText("saving...");
       const result = await saveWorkExperience(data);
-      console.log("🚀 ~ file: WorkExperience.jsx:113 ~ handleSave ~ result:", result)
+      console.log(
+        "🚀 ~ file: WorkExperience.jsx:113 ~ handleSave ~ result:",
+        result
+      );
       if (result.status == 200) {
         setBtnText("Successfully saved!");
         setError(null);
@@ -130,7 +133,7 @@ const WorkExperience = () => {
         setError(result.message);
       }
     } catch (err) {
-      console.log("🚀 ~ file: WorkExperience.jsx:130 ~ handleSave ~ err:", err)
+      console.log("🚀 ~ file: WorkExperience.jsx:130 ~ handleSave ~ err:", err);
       setBtnText("save");
       setError("something went wrong!");
     }
@@ -245,16 +248,35 @@ const WorkExperience = () => {
                 label="End Date"
               />
             </Grid>
-            <Grid display="flex" justifyContent="center" alignItems="center" xs={12} item>
+            <Grid
+              display="flex"
+              justifyContent="center"
+              alignItems="center"
+              xs={12}
+              item
+            >
               <Button onClick={handleSave} disabled={btnText != "save"}>
                 {btnText}
               </Button>
             </Grid>
           </Grid>
         )}
-        {arrow && <Box sx={{display: "flex", justifyContent: "flex-end"}}>
-          <Button startIcon={formOpen? <RemoveCircleOutlineIcon/>: <AddCircleOutlineIcon/>} onClick={() => setFormOpen((prev) => !prev)}>{formOpen? "Remove": "Add"}</Button>
-        </Box>}
+        {arrow && (
+          <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
+            <Button
+              startIcon={
+                formOpen ? (
+                  <RemoveCircleOutlineIcon />
+                ) : (
+                  <AddCircleOutlineIcon />
+                )
+              }
+              onClick={() => setFormOpen((prev) => !prev)}
+            >
+              {formOpen ? "Remove" : "Add"}
+            </Button>
+          </Box>
+        )}
       </Box>
     </Box>
   );

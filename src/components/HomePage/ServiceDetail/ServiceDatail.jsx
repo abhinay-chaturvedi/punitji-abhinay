@@ -7,13 +7,13 @@ const ServiceDatail = () => {
     <Container sx={{}}>
         <Grid container rowGap={5} justifyContent="space-between">
             <Grid item sm={5.6} md={3.7}>
-                <ServiceDetailCard/>
+                <ServiceDetailCard imgUrl={"/images/v1.jpeg"}/>
             </Grid>
             <Grid item sm={5.6} md={3.7}>
-                <ServiceDetailCard/>
+                <ServiceDetailCard imgUrl={"/images/v2.jpeg"}/>
             </Grid>
             <Grid item sm={5.6} md={3.7}>
-                <ServiceDetailCard/>
+                <ServiceDetailCard imgUrl={"/images/v3.jpeg"}/>
             </Grid>
         </Grid>
     </Container>

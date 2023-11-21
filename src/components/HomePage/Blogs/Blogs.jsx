@@ -17,13 +17,13 @@ const Blogs = () => {
             </Box>
             <Grid container rowGap={5} justifyContent="space-between">
                 <Grid item sm={5.7}  md={3.7}>
-                    <BlogCard/>
+                    <BlogCard imgUrl={"/images/Blog1.jpeg"}/>
                 </Grid>
                 <Grid item sm={5.7} md={3.7}>
-                    <BlogCard/>
+                    <BlogCard imgUrl={"/images/blog2.jpg"}/>
                 </Grid>
                 <Grid item  sm={5.7} md={3.7}>
-                    <BlogCard/>
+                    <BlogCard imgUrl={"/images/blog3.jpg"}/>
                 </Grid>
             </Grid>
         </Container>

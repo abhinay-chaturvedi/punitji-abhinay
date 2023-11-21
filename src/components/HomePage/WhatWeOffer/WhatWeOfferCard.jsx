@@ -2,19 +2,21 @@ import Link from 'next/link'
 import React from 'react'
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 import {Box, Stack, Typography, Button} from '@mui/material'
+import Image from 'next/image';
 
-const WhatWeOfferCard = () => {
+const WhatWeOfferCard = ({imgUrl, iconUrl}) => {
   return (
     <Box sx={{bgcolor: "#fff", p: "15px", borderRadius: "10px", boxShadow: "0 0 40px 5px rgb(0 0 0 / 5%);"}}>
         <Stack gap={2}>
-            <Box sx={{width: "100%", bgcolor: "#FF0000", height: "170px", borderRadius: "10px", mt: "-30px", mb: "20px", position: "relative"}}>
+            <Box sx={{width: "100%", height: "170px", borderRadius: "10px", mt: "-30px", mb: "20px", position: "relative"}}>
                 <Box
                  sx={{
                     bgcolor: "#FF0000", border: "4px solid white", width: "90px", height: "90px", borderRadius: "10px",
-                    transform: "skew(10deg)", position: "absolute", right:"10%", bottom: "-45px"
+                    transform: "skew(10deg)", position: "absolute", right:"10%", bottom: "-45px",zIndex: 100
                 }}>
-
+                    <Image style={{borderRadius: "4px"}} layout={'fill'} objectFit="cover" src={iconUrl}/>
                 </Box>
+                <Image style={{borderRadius: "10px"}} layout={'fill'} objectFit="cover" src={imgUrl}/>
             </Box>
             <Typography component="h3" sx={{fontWeight: "bold", color: "#031F4B", fontSize: "25px"}}>
                 Business Visa

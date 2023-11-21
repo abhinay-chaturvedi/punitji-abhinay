@@ -4,11 +4,13 @@ import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 import {Box, Stack, Typography, Button} from '@mui/material'
 import SupervisedUserCircleIcon from '@mui/icons-material/SupervisedUserCircle';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
-const BlogCard = () => {
+import Image from 'next/image';
+const BlogCard = ({imgUrl}) => {
   return (
     <Box sx={{bgcolor: "#fff", p: "15px", borderRadius: "10px", boxShadow: "0 0 40px 5px rgb(0 0 0 / 5%);"}}>
         <Stack gap={2}>
             <Box sx={{width: "100%", bgcolor: "#FF0000", height: "170px", borderRadius: "10px", mb: "20px", position: "relative"}}>
+            <Image style={{borderRadius: "10px"}} layout={'fill'} objectFit="cover" src={imgUrl}/>
             </Box>
             <Box sx={{display: 'flex', justifyContent: "space-between"}}>
                 <Box sx={{display: "flex", justifyContent: "space-between", alignItems: "center", gap: "3px"}}>
