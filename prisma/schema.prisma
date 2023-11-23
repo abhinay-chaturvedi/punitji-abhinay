@@ -9,27 +9,55 @@ datasource db {
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model User {
-  createdAt      DateTime?        @default(now()) @db.Timestamptz(6)
-  email          String           @unique
-  password       String
-  phone          String?
-  id             String           @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  profilePic     String?
-  role           Role             @default(USER)
-  documents      Json[]
-  steps          ProcessSteps?
-  partnerId      String?          @db.Uuid()
-  regis          Regis?
-  education      Education[]
-  workExperience WorkExperience[]
-  languageTest   LanguageTest[]
-
-  // @@map("user")
+  id     String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name   String
+  email  String  @unique
+  role   Role    @default(USER)
+  client Client?
+  partner Partner?
 }
 
+model Client {
+  id             String           @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  user           User             @relation(fields: [userId], references: [id])
+  userId         String           @unique @db.Uuid
+  name           String
+  email          String
+  phone          String?
+  profilePic     String?
+  address        String?
+  dob            DateTime?
+  visaCountry    String?
+  partnerId      String?          @db.Uuid
+  documents      Json[]
+  steps          ProcessSteps?
+  education      UserEducation[]
+  workExperience WorkExperience[]
+  languageTest   LanguageTest[]
+  createdAt      DateTime?        @default(now()) @db.Timestamptz(6)
+
+  @@map("client")
+}
+model Partner {
+  id String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  user User @relation(fields: [userId], references: [id])
+  userId String @unique @db.Uuid
+  email String
+  phone String?
+  company String?
+  dealIn String?
+  occupation String?
+  address String?
+  faxNumber String?
+  joiningDate DateTime?
+  isVerified Boolean @default(false)
+  casesSolved BigInt @default(0)
+  casesAssigned BigInt @default(0)
+  @@map("partner")
+}
 model ProcessSteps {
   id             String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  user           User    @relation(fields: [userId], references: [id])
+  user           Client  @relation(fields: [userId], references: [id])
   userId         String  @unique @db.Uuid
   assessment     Boolean @default(false)
   visaSelection  Boolean @default(false)
@@ -44,22 +72,9 @@ model ProcessSteps {
   @@map("process_steps")
 }
 
-model Regis {
-  id          String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  user        User     @relation(fields: [userId], references: [id])
-  userId      String   @unique @db.Uuid
-  name        String
-  email       String
-  address     String
-  dob         DateTime
-  visaCountry String
-
-  @@map("regis")
-}
-
-model Education {
+model UserEducation {
   id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  user      User     @relation(fields: [userId], references: [id])
+  user      Client   @relation(fields: [userId], references: [id])
   userId    String   @db.Uuid
   college   String
   stream    String
@@ -69,12 +84,12 @@ model Education {
   endDate   DateTime
   score     String
 
-  @@map("education")
+  @@map("user_education")
 }
 
 model WorkExperience {
   id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  user      User     @relation(fields: [userId], references: [id])
+  user      Client   @relation(fields: [userId], references: [id])
   userId    String   @db.Uuid
   jobTitle  String
   company   String
@@ -87,7 +102,7 @@ model WorkExperience {
 
 model LanguageTest {
   id            String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  user          User    @relation(fields: [userId], references: [id])
+  user          Client  @relation(fields: [userId], references: [id])
   userId        String  @db.Uuid
   exam          String
   speakingBand  Decimal

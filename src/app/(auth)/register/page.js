@@ -11,15 +11,9 @@ const Register = () => {
     const [btnText, setBtnText] = useState("Sign Up");
     const [isClicked, setIsClicked] = useState(false);
     const [name, setName] = useState("");
-    const [phone, setPhone] = useState("");
+    const [role, setRole] = useState("USER");
     const [email, setEmail] = useState("");
     const [password, setPassword]  = useState("");
-    const [address, setAddress] = useState({
-        pincode: "",
-        district: "",
-        state: "",
-        country: ""
-    })
     const [error, setError] = useState(null);
     console.log(password)
     const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -38,7 +32,7 @@ const Register = () => {
             setIsClicked(false);
             return;
         }
-        const res = await register({name, phone, email, password, address});
+        const res = await register({name, email, password, role});
         // await new Promise((resolve, reject) => {
         //   setTimeout(() => {
         //     resolve()
