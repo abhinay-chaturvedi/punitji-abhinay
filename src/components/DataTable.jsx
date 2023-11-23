@@ -1,24 +1,24 @@
 import * as React from 'react';
 import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
 
-// const columns = [
-//   { field: 'id', headerName: 'ID', },
-//   { field: 'firstName', headerName: 'First name' },
-//   { field: 'lastName', headerName: 'Last name'},
-//   {
-//     field: 'age',
-//     headerName: 'Age',
-//     type: 'number',
-//   },
-//   {
-//     field: 'fullName',
-//     headerName: 'Full name',
-//     description: 'This column has a value getter and is not sortable.',
-//     sortable: false,
-//     valueGetter: (params) =>
-//       `${params.row.firstName || ''} ${params.row.lastName || ''}`,
-//   },
-// ];
+const columns = [
+  { field: 'id', headerName: 'ID', },
+  { field: 'firstName', headerName: 'First name' },
+  { field: 'lastName', headerName: 'Last name'},
+  {
+    field: 'age',
+    headerName: 'Age',
+    type: 'number',
+  },
+  {
+    field: 'fullName',
+    headerName: 'Full name',
+    description: 'This column has a value getter and is not sortable.',
+    sortable: false,
+    valueGetter: (params) =>
+      `${params.row.firstName || ''} ${params.row.lastName || ''}`,
+  },
+];
 
 // const rows = [
 //   { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35 },
@@ -32,7 +32,7 @@ import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
 //   { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
 // ];
 
-export default function DataTable({rows=[], columns}) {
+export default function DataTable({rows=[], columns=[]}) {
   return (
     <div style={{ maxHeight: "100vh", width: '100%' }}>
       <DataGrid

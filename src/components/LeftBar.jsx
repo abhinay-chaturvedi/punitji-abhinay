@@ -23,7 +23,7 @@ const LeftBar = ({ userDetail }) => {
       <Box>
           <Box sx={{display: "flex", flexDirection: "column", alignItems: "center"}}>
               <Avatar sx={{width: 70, height: 70}} src="/broken-image.jpg" />
-              <Typography component="span" sx={{color: "black", fontWeight: "bold"}}>{userDetail.name}</Typography>
+              <Typography component="span" sx={{color: "black", fontWeight: "bold"}}></Typography>
               <Typography component="span" sx={{color: "gray"}}>{userDetail.email}</Typography>
           </Box>
           <Divider />

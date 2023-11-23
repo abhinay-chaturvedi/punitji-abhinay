@@ -10,7 +10,7 @@ import {
   Select,
   Typography,
 } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import BasicDatePicker from "@/components/Date";
@@ -18,6 +18,7 @@ import CustomInput from "@/components/CustomInput";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 import DataTable from "@/components/DataTable";
+import { getLanguageTest, saveLanguageTest } from "@/services/user/languageTest";
 const LanguageTestColumn = [
   { field: "id", headerName: "ID" },
   { field: "exam", headerName: "Exam", width: 150 },
@@ -57,6 +58,7 @@ const LanguageTest = () => {
   const [btnText, setBtnText] = useState("save");
   const [error, setError] = useState(null);
   const [formOpen, setFormOpen] = useState(false);
+  const [languageRows, setLanguageRows] = useState(null);
   const [languageDetail, setLanguageDetail] = useState({
     exam: "",
     speakingBand: "",
@@ -87,11 +89,35 @@ const LanguageTest = () => {
         return setError("Please fill Overall Band!");
       }
       console.log("languageDetail", languageDetail);
+      setBtnText("saving...");
+      const result = await saveLanguageTest(data);
+      console.log("🚀 ~ file: LanguageTest.jsx:93 ~ handleSave ~ result:", result)
+      if(result.status == 200) {
+        setBtnText("successfully created!");
+        setFormOpen(false);
+        setLanguageRows((prev) => ([result.data, ...prev]))
+      }
     } catch(err) {
       console.log("🚀 ~ file: LanguageTest.jsx:26 ~ handleSave ~ err:", err)
       setError(err.message);
+      setBtnText("save");
     }
   }
+  const fetchLanguageTest = async () => {
+    try {
+      const userId = "8ddda531-e273-49ac-b24c-410d04efb7e9";
+      const result = await getLanguageTest(userId);
+      console.log("🚀 ~ file: LanguageTest.jsx:110 ~ fetchLanguageTest ~ result:", result)
+      if(result.status == 200) {
+        setLanguageRows(result.data);
+      }
+    } catch(err) {
+      console.log("🚀 ~ file: LanguageTest.jsx:115 ~ fetchLanguageTest ~ err:", err)
+    }
+  }
+  useEffect(() => {
+    fetchLanguageTest();
+  }, []);
   return (
     <Box sx={{ mt: "10px" }}>
       <Box sx={{ p: "10px", boxShadow: "2px 2px 5px 5px whitesmoke" }}>
@@ -107,7 +133,7 @@ const LanguageTest = () => {
             {arrow ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />}
           </Button>
         </Box>
-        {arrow && (<DataTable rows={[]} columns={LanguageTestColumn} />)}
+        {arrow && languageRows && (<DataTable rows={languageRows} columns={LanguageTestColumn} />)}
         {arrow && error && (
           <Alert
             sx={{ width: "100%", my: 1 }}

@@ -53,7 +53,7 @@ const Page = () => {
         <Grid container>
             <Grid item sx={sideBarStyle} md={2.5}>
               <Box sx={{minHeight: "100vh", borderRight: "1px solid black"}}>
-                <LeftBar/>
+                <LeftBar userDetail={User}/>
               </Box>
               {
               mdDown && (!isOpened? 

@@ -138,7 +138,7 @@ function NavBar() {
             (<Box>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0,"&:hover": {bgcolor: "white"} }}>
-                  <Typography sx={{fontWeight: "bold",color:"#223241", mr: "10px"}}>{ loginUser.name.slice(0,8)}</Typography>
+                  <Typography sx={{fontWeight: "bold",color:"#223241", mr: "10px"}}>{ loginUser.email.slice(0,8)}</Typography>
                   <Avatar alt="Abhinay" sx={{bgcolor: "white", color: "#223241", border: "2px solid #223241"}} src="/static/images/avatar/2.jpg" />
                 </IconButton>
               </Tooltip>

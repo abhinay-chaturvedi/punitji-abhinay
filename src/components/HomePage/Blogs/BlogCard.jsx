@@ -15,7 +15,7 @@ const BlogCard = ({imgUrl}) => {
             <Box sx={{display: 'flex', justifyContent: "space-between"}}>
                 <Box sx={{display: "flex", justifyContent: "space-between", alignItems: "center", gap: "3px"}}>
                     <SupervisedUserCircleIcon/>
-                    <Typography>By Punit Ji</Typography>
+                    <Typography>By Some one</Typography>
                 </Box>
                 <Box sx={{display: "flex", justifyContent: "space-between", alignItems: "center", gap: "3px"}}>
                     <CalendarMonthIcon/>
