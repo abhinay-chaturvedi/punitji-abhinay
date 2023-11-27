@@ -22,10 +22,10 @@ const POST = async (req) => {
             return NextResponse.json({message: "Incorrect password!", status: 400}, {status: 400});
         }
         const token = jwt.sign({_id: prismaResult.id, email: prismaResult.email, role: prismaResult.role}, process.env.JWT_SECRET);
-        const {id, password, ...rest} = prismaResult;
-        return  NextResponse.json({data: rest, message: "success", status: 200}, {status: 200, headers: {'Set-Cookie': `token=${token}; Max-Age=${60*60*24};HttpOnly;path=/`}});
+        const { password, ...rest} = prismaResult;
+        return  NextResponse.json({data: rest, message: "success", status: 200}, {status: 200, headers: {'Set-Cookie': `token=${token}; Max-Age=${60*60*24*7};HttpOnly;path=/`}});
     } catch(err) {
-        return NextResponse.json({err: err, message: "Something went wrong!", status: 200}, {status: 500});
+        return NextResponse.json({err: err, message: "Something went wrong!", status: 500}, {status: 500});
     }
 }
 export { POST }

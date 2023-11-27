@@ -1,5 +1,5 @@
 'use client'
-import { Alert, Box, Button, Container, FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput } from '@mui/material';
+import { Alert, Box, Button, Container, FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput, Typography } from '@mui/material';
 import React, { useState } from 'react'
 import Visibility from '@mui/icons-material/Visibility';
 import EmailIcon from '@mui/icons-material/Email';
@@ -8,6 +8,7 @@ import login from '@/services/auth/login';
 import { setLogin, useLogin } from '../../../hooks/auth';
 const emailPattern = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
 import { useRouter } from 'next/navigation'
+import Link from 'next/link';
 
 
 const Login = () => {
@@ -28,8 +29,7 @@ const Login = () => {
   };
   const handleLogin  = async () => {
       // first need to validate the email and password
-      setIsClicked(true)
-      setBtnText("Please Wait...");
+      
       console.log(email, password);
       if(!email.match(emailPattern)) {
           setError("Email is not valid!");
@@ -37,6 +37,8 @@ const Login = () => {
           setIsClicked(false);
           return;
       }
+      setIsClicked(true)
+      setBtnText("Please Wait...");
       const res = await login({email, password});
       if(res.status !== 200) {
         setError(res.message);
@@ -45,11 +47,13 @@ const Login = () => {
         return ;
       }
       console.log("result while login is!", JSON.stringify(res));
-      setLogin(res.data);
+      // setLogin(res.data);
+      localStorage.setItem("user", JSON.stringify(res.data));
       router.push("/")
       setIsClicked(false);
       setBtnText("Login");
   }
+  
   return (
     <Box sx={{bgcolor: "whitesmoke", minHeight: ""}}>
         <Container sx={{minHeight: "100vh", display: "flex", alignItems: "center"}}>
@@ -120,6 +124,24 @@ const Login = () => {
                  >
                     {btnText}
                 </Button>
+                <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              width: "100%",
+              mt: "5px",
+            }}
+          >
+            <Box sx={{ display: "flex", alignItems: "center", gap: "5px" }}>
+              <Typography sx={{ fontWeight: "bold", color: "gray" }}>
+                Not Sign up?
+              </Typography>
+              <Button component={Link} href="/register">
+                Sign Up
+              </Button>
+            </Box>
+            <Box></Box>
+          </Box>
             </Box>
         </Container>
     </Box>

@@ -4,9 +4,9 @@ import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 import {Box, Stack, Typography, Button} from '@mui/material'
 import Image from 'next/image';
 
-const WhatWeOfferCard = ({imgUrl, iconUrl}) => {
+const WhatWeOfferCard = ({imgUrl, iconUrl, title, desc}) => {
   return (
-    <Box sx={{bgcolor: "#fff", p: "15px", borderRadius: "10px", boxShadow: "0 0 40px 5px rgb(0 0 0 / 5%);"}}>
+    <Box sx={{bgcolor: "#fff", p: "15px", height: "100%", borderRadius: "10px", boxShadow: "0 0 40px 5px rgb(0 0 0 / 5%);"}}>
         <Stack gap={2}>
             <Box sx={{width: "100%", height: "170px", borderRadius: "10px", mt: "-30px", mb: "20px", position: "relative"}}>
                 <Box
@@ -19,10 +19,10 @@ const WhatWeOfferCard = ({imgUrl, iconUrl}) => {
                 <Image style={{borderRadius: "10px"}} layout={'fill'} objectFit="cover" src={imgUrl}/>
             </Box>
             <Typography component="h3" sx={{fontWeight: "bold", color: "#031F4B", fontSize: "25px"}}>
-                Business Visa
+                {title}
             </Typography>
             <Typography component="p" sx={{color: "gray"}}>
-                There are many variations of passages available but the majority have suffered to the alteration in some form by injected.
+                {desc}
             </Typography>
             <Button component={Link} href="#"
              sx={{

@@ -1,86 +1,141 @@
-'use client'
-import React, { useContext, useEffect, useState } from 'react'
-import {Box, Grid, Avatar, useTheme, useMediaQuery, Button, IconButton} from "@mui/material"
-import LeftBar from '@/components/LeftBar';
-import { useRouter, useSearchParams } from 'next/navigation';
-import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
-import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowLeft';
-import DocumentPage from '@/components/UserDashboard/Document/DocumentPage';
-import UserContextProvider, { UserContext } from '@/contexts/user/context';
-import ProcessPage from '@/components/UserDashboard/ProcessPage/ProcessPage';
-import getUser from '@/services/user/getUser';
-import { setUser } from '@/contexts/user/action';
-import { useLogin } from '@/hooks/auth';
-import AssignedClient from '@/components/PartnerDashboard/AssignedClients/AssignedClient';
+"use client";
+import React, { useContext, useEffect, useState } from "react";
+import {
+  Box,
+  Grid,
+  Avatar,
+  useTheme,
+  useMediaQuery,
+  Button,
+  IconButton,
+} from "@mui/material";
+import LeftBar from "@/components/LeftBar";
+import { useRouter, useSearchParams } from "next/navigation";
+import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
+import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
+import DocumentPage from "@/components/UserDashboard/Document/DocumentPage";
+import UserContextProvider, { UserContext } from "@/contexts/user/context";
+import ProcessPage from "@/components/UserDashboard/ProcessPage/ProcessPage";
+import getUser from "@/services/user/getUser";
+import { setUser } from "@/contexts/user/action";
+import { useLogin } from "@/hooks/auth";
+import AssignedClient from "@/components/PartnerDashboard/AssignedClients/AssignedClient";
+import Profile from "@/components/PartnerDashboard/Profile/Profile";
+import Loader from "@/components/Loader";
+import WithUserContext from "@/hocs/WithUserContext";
 
 const Page = () => {
-
   const router = useRouter();
   console.log("router object", router);
   const theme = useTheme();
-  const mdDown = useMediaQuery(theme.breakpoints.down('md'));
+  const mdDown = useMediaQuery(theme.breakpoints.down("md"));
   const [isOpened, setIsOpened] = useState(false);
-  const User = useLogin();
+  const [loginUser, setLoginUser] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  // const User = useLogin();
   const sideBarStyle = {
-    [theme.breakpoints.down('md')]: {
-      position: 'fixed', 
-      width: 240, 
+    [theme.breakpoints.down("md")]: {
+      position: "fixed",
+      width: 240,
       top: 0,
-      transform: isOpened? "translateX(0)": "translateX(-240px)",
+      transform: isOpened ? "translateX(0)" : "translateX(-240px)",
       transition: "transform .5s linear",
-      zIndex: 10
+      zIndex: 10,
     },
     backgroundColor: "whitesmoke",
-  }
+  };
   const searchParams = useSearchParams();
-  const q = searchParams.get('page');
+  const q = searchParams.get("page");
   useEffect(() => {
     setIsOpened(false);
   }, [q]);
-  const user = useContext(UserContext)
-  const getDocuments = async (email, role) => {
-    const res = await getUser(email, role);
-    console.log("🚀 ~ file: DocumentPage.jsx:35 ~ getDocuments ~ res:", res)
-    user.dispatch(setUser(res.data));
-  }
+
   React.useEffect(() => {
-    if(User && User.email){
-      getDocuments(User.email, User.role);
+    const userData = localStorage.getItem("user");
+    const user = userData ? JSON.parse(userData) : null;
+    if (user) {
+      setLoginUser(user);
+      setIsLoading(false);
+    } else {
+      router.push("/login");
     }
   }, []);
+
+  const { state: userState, dispatch: dispatchUserAction } =
+    useContext(UserContext);
+  React.useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (!userState.email) {
+      dispatchUserAction(setUser(user));
+    }
+  }, []);
+
+  if (isLoading) {
+    return (
+      <Box sx={{ width: "100%", height: "80vh" }}>
+        <Loader />
+      </Box>
+    );
+  }
   return (
     <Box>
-        <Grid container>
-            <Grid item sx={sideBarStyle} md={2.5}>
-              <Box sx={{minHeight: "100vh", borderRight: "1px solid black"}}>
-                <LeftBar userDetail={User}/>
-              </Box>
-              {
-              mdDown && (!isOpened? 
-              <IconButton onClick={() => setIsOpened(true)} sx={{position: "absolute",right: "-25%",cursor: "pointer", top: "50%",}}>
-                <KeyboardDoubleArrowRightIcon sx={{fontSize: 50, ...animation}}>open</KeyboardDoubleArrowRightIcon>
-              </IconButton>:
-              <IconButton onClick={() => setIsOpened(false)} sx={{position: "absolute",right: "-25%",cursor: "pointer", top: "50%",}}>
-                <KeyboardDoubleArrowLeftIcon sx={{fontSize: 50, ...animation}}>open</KeyboardDoubleArrowLeftIcon>
+      <Grid container>
+        <Grid item sx={sideBarStyle} md={2.5}>
+          <Box sx={{ minHeight: "100vh", borderRight: "1px solid black" }}>
+            <LeftBar userDetail={loginUser} />
+          </Box>
+          {mdDown &&
+            (!isOpened ? (
+              <IconButton
+                onClick={() => setIsOpened(true)}
+                sx={{
+                  position: "absolute",
+                  right: "-25%",
+                  cursor: "pointer",
+                  top: "50%",
+                }}
+              >
+                <KeyboardDoubleArrowRightIcon
+                  sx={{ fontSize: 50, ...animation }}
+                >
+                  open
+                </KeyboardDoubleArrowRightIcon>
               </IconButton>
-               )}
-            </Grid>
-            <Grid item xs= {12} md={9.5}>
-              <Box sx={{minHeight: "100vh"}}>
-                {q==="documents"? <DocumentPage/>: null}
-                {q==="process"? <ProcessPage/>: null}
-                {q==="aclients"? <AssignedClient/>: null}
-                {/* {q==="process"? <ProcessPage/>: null} */}
-              </Box>
-            </Grid>
+            ) : (
+              <IconButton
+                onClick={() => setIsOpened(false)}
+                sx={{
+                  position: "absolute",
+                  right: "-25%",
+                  cursor: "pointer",
+                  top: "50%",
+                }}
+              >
+                <KeyboardDoubleArrowLeftIcon
+                  sx={{ fontSize: 50, ...animation }}
+                >
+                  open
+                </KeyboardDoubleArrowLeftIcon>
+              </IconButton>
+            ))}
         </Grid>
+        <Grid item xs={12} md={9.5}>
+          <Box sx={{ minHeight: "100vh" }}>
+            {!q && <Profile />}
+            {q === "documents" ? <DocumentPage /> : null}
+            {q === "process" ? <ProcessPage /> : null}
+            {q === "aclients" ? <AssignedClient /> : null}
+            {/* {q==="process"? <ProcessPage/>: null} */}
+          </Box>
+        </Grid>
+      </Grid>
     </Box>
-  )
-}
+  );
+};
 
-export default Page
-const animation= {
-  animation: 'animeBtn 2s linear infinite alternate',
+export default WithUserContext(Page);
+const animation = {
+  animation: "animeBtn 2s linear infinite alternate",
   "@keyframes animeBtn": {
     "0%": {
       // fontSize:40,\
@@ -100,7 +155,7 @@ const animation= {
       color: "gray",
       backgroundColor: "black",
       borderRadius: "50%",
-      opacity: .5,
-    }
-  }
-}
+      opacity: 0.5,
+    },
+  },
+};

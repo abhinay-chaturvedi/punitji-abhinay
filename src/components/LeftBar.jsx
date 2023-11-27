@@ -16,22 +16,20 @@ const LeftBar = ({ userDetail }) => {
     // console.log("--------------------", searchParams)
     const q = searchParams.get('page');
     console.log("query", q);
-    const user = useContext(UserContext);
-    console.log(user)
 
     return (
       <Box>
           <Box sx={{display: "flex", flexDirection: "column", alignItems: "center"}}>
               <Avatar sx={{width: 70, height: 70}} src="/broken-image.jpg" />
               <Typography component="span" sx={{color: "black", fontWeight: "bold"}}></Typography>
-              <Typography component="span" sx={{color: "gray"}}>{userDetail.email}</Typography>
+              <Typography component="span" sx={{color: "gray"}}>{userDetail?.name}</Typography>
           </Box>
           <Divider />
           <Box>
               <Stack>
                   <Box component={Link} href={`/${userDetail.role === "USER"? "user": "partner"}`} sx={{display: "flex",color: "#520670", bgcolor: !q?"white":"", gap: 2,alignItems: "center", p: "10px"}}>
                       <DashboardIcon/>
-                      <Typography component="span" sx={{color: "black", fontWeight: "bold"}}>Dashboard</Typography>
+                      <Typography component="span" sx={{color: "black", fontWeight: "bold"}}>Profile</Typography>
                   </Box>
                   {
                     userDetail.role === "USER" &&

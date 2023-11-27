@@ -3,12 +3,9 @@ const { default: userReducer } = require("./reducer");
 
 const intialState = {
     email: null,
-    phone: null,
+    name: null,
     role: null,
-    id: null,
-    profilePic: null,
-    address: null,
-    documents: []
+    id: null
 }
 export const UserContext = createContext(intialState);
 

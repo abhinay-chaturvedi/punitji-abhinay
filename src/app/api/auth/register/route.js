@@ -6,7 +6,6 @@ const POST = async (req) => {
     try {
         const regData = await req.json();
         console.log("Req body for the register api", regData);
-        const password = await bcrypt.hash(regData.password, 10);
         const check = await prisma.user.findUnique({
             where: {
                 email: regData.email
@@ -15,20 +14,37 @@ const POST = async (req) => {
         if(check) {
             return NextResponse.json({message: "This email already in use. Try different one😒", status: 409}, {status: 409})
         }
+        const password = await bcrypt.hash(regData.password, 10);
         const prismaResult = await prisma.user.create({
             data: {
                 email: regData.email,
                 password: password,
-                phone: regData.phone,
                 name: regData.name,
-                address: {
-                    create: {
-                        ...regData.address
-                    }
-                }
+                role: regData.role
             }
         })
+        if(!prismaResult) {
+            return NextResponse.json({message: "error occured!", status: 400}, {status: 400});
+        }
         console.log("prisma result", prismaResult);
+        // need to create to create the client or partner in their respective table
+        if(regData.role === "CLIENT") {
+            const client = await prisma.client.create({
+                data: {
+                    name: regData.name,
+                    userId: prismaResult.id,
+                    email: regData.email,
+                }
+            })
+        } else if(regData.role === "PARTNER") {
+            const partner = await prisma.partner.create({
+                data: {
+                    name: regData.name,
+                    userId: prismaResult.id,
+                    email: regData.email
+                }
+            })
+        }
         return NextResponse.json({message: "User Created Successfully!", status: 200, data: prismaResult}, {status: 200});
     } catch(err) {
         console.log("error in register api", err);
