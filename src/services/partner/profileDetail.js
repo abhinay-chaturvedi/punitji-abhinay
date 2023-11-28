@@ -13,3 +13,20 @@ export const getPartnerDetail = async (userId) => {
         return err;
     }
 }
+export const updatePartnerDetail = async (data) => {
+    try {
+        const res = await fetch("/api/partner/profileDetail", {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            body: JSON.stringify(data)
+        })
+        const result = await res.json();
+        return result;
+    } catch(err) {
+        console.log("🚀 ~ file: profileDetail.js:20 ~ updatePartnerDetail ~ err:", err)
+        return err;
+    }
+}

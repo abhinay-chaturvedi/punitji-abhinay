@@ -20,4 +20,28 @@ const GET = async (req) => {
         return NextResponse.json({status: 500, message: "something went wrong!", err: err}, {status: 500});
     }
 }
-export { GET };
+const PATCH = async (req) => {
+    try {
+        const {userId, ...rest} = await req.json();
+        console.log("🚀 ~ file: route.js:26 ~ PATCH ~ rest:", rest)
+        console.log("🚀 ~ file: route.js:26 ~ PATCH ~ userId:", userId)
+// return NextResponse.json({status: 200, message: "success", data: rest}, {status: 200});;
+        const prismaResult = await prisma.partner.update({
+            where: {
+                userId: userId
+            },
+            data: {
+                ...rest
+            }
+        })
+        console.log("🚀 ~ file: route.js:35 ~ PATCH ~ prismaResult:", prismaResult)
+        if(!prismaResult) {
+            return NextResponse.json({status: 400, message: "error occured"}, {status: 400});
+        }
+        return NextResponse.json({status: 200, message: "success", data: prismaResult}, {status: 200});
+        
+    } catch(err) {
+        return NextResponse.json({status: 500, message: "something went wrong!", err}, {status: 500});
+    }
+}
+export { GET , PATCH };
