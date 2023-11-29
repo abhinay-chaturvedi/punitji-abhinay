@@ -17,7 +17,7 @@ import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import BasicDatePicker from "@/components/Date";
 import CustomInput from "@/components/CustomInput";
 import DataTable from "@/components/DataTable";
-import { getEducationDetail, saveEducationDetail } from "@/services/user/education";
+import { getEducationDetail, saveEducationDetail } from "@/services/client/education";
 import { useEffect } from "react";
 
 const educationColumn = [
@@ -47,7 +47,7 @@ const educationColumn = [
     width: 150
   },
 ];
-const Education = () => {
+const Education = ({userState, mainApplicationDetail}) => {
   const [arrow, setArrow] = useState(false);
   const [age, setAge] = useState("");
   const [educationRows, setEducationRows] = useState(null);
@@ -93,7 +93,7 @@ const Education = () => {
   };
   const handleSave = async () => {
     try {
-      const userId = "8ddda531-e273-49ac-b24c-410d04efb7e9";
+      const userId = mainApplicationDetail.id;
       const data = { ...education, userId };
       const text = handleValidate(data);
       if (text != "success") {
@@ -104,7 +104,7 @@ const Education = () => {
       const result = await saveEducationDetail(data);
       console.log("🚀 ~ file: Education.jsx:65 ~ handleSave ~ result:", result);
       if(result.status === 200) {
-        setBtnText("successfully saved");
+        setBtnText("save");
         setEducationRows([...educationRows, result.data]);
         setEducation({
           degree: null,
@@ -118,6 +118,7 @@ const Education = () => {
       } else {
         setBtnText("save");
       }
+      setFormOpen(false)
     } catch (err) {
       console.log("🚀 ~ file: Education.jsx:63 ~ handleSave ~ err:", err);
       setBtnText("save");
@@ -125,7 +126,7 @@ const Education = () => {
   };
   const geteducationDetail = async () => {
     try {
-      const userId = "8ddda531-e273-49ac-b24c-410d04efb7e9"
+      const userId = mainApplicationDetail.id;
       const result = await getEducationDetail(userId);
       console.log("🚀 ~ file: Education.jsx:120 ~ geteducationDetail ~ result:", result)
       setEducationRows(result.data);

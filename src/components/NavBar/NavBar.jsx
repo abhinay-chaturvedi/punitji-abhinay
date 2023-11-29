@@ -179,7 +179,7 @@ function NavBar() {
                     <Typography
                       sx={{ fontWeight: "bold", color: "#223241", mr: "10px" }}
                     >
-                      {loginUser.name.slice(0, 8)}
+                      {userState?.name?.slice(0, 8)}
                     </Typography>
                     <Avatar
                       alt="Abhinay"

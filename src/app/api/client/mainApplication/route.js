@@ -8,7 +8,7 @@ const GET = async (req) => {
         if(!userId) {
             return NextResponse.json({status: 400, message: "userId does not exist!"}, {status: 400});
         }
-        const prismaResult = await prisma.regis.findUnique({
+        const prismaResult = await prisma.client.findUnique({
             where: {
                 userId: userId
             }
@@ -19,17 +19,17 @@ const GET = async (req) => {
         
     }
 }
-const POST = async (req) => {
+const PATCH = async (req) => {
     try {
         const body = await req.json();
         console.log("🚀 ~ file: rout.js:15 ~ POST ~ body:", body)
         // return NextResponse.json({status: 200});
-        const { email, userId, name, address, dob, visaCountry } = body;
-        const prismaResult = await prisma.regis.create({
+        const { userId, address, dob, visaCountry } = body;
+        const prismaResult = await prisma.client.update({
+            where: {
+                userId: userId
+            },
             data: {
-                email,
-                name,
-                userId,
                 address,
                 dob,
                 visaCountry
@@ -44,4 +44,4 @@ const POST = async (req) => {
         return NextResponse.json({status: 500, message: "something went wrong!", err: err}, {status: 500});
     }
 }
-export { GET, POST };
+export { GET, PATCH };

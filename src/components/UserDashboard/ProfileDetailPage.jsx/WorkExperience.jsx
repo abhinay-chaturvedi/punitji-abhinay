@@ -21,7 +21,7 @@ import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 import {
   getWorkExperience,
   saveWorkExperience,
-} from "@/services/user/workExperience";
+} from "@/services/client/workExperience";
 const experienceColumn = [
   { field: "id", headerName: "ID" },
   { field: "jobTitle", headerName: "Job Title", width: 200 },

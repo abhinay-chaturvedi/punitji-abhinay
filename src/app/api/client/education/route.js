@@ -12,7 +12,7 @@ const GET = async (req) => {
         { status: 400 }
       );
     }
-    const prismaResult = await prisma.education.findMany({
+    const prismaResult = await prisma.userEducation.findMany({
         where: {
             userId: userId
         }
@@ -31,7 +31,7 @@ const POST = async (req) => {
         const body = await req.json();
         console.log("🚀 ~ file: route.js:31 ~ POST ~ body:", body)
         // return NextResponse.json({status: 200});
-        const prismaResult = await prisma.education.create({
+        const prismaResult = await prisma.userEducation.create({
             data: {
                 ...body
             }

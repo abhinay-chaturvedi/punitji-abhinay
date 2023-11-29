@@ -15,7 +15,7 @@ import Blogs from '@/components/HomePage/Blogs/Blogs'
 import Analytics from '@/components/HomePage/Anayltics/Analytics'
 import { useLogin } from '@/hooks/auth'
 import { cookies } from 'next/headers'
-import getUser from '@/services/user/getUser'
+import getUser from '@/services/client/getUser'
 export default async function Home() {
   // console.log("server//////////////////////////////////////////////////////////")
   const token = cookies().get("token");

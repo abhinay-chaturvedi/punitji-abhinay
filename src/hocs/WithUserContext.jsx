@@ -1,12 +1,13 @@
-import UserContextProvider from "@/contexts/user/context";
-import React, { useEffect } from "react";
 
-const WithUserContext = (NavBar) => {
+import UserContextProvider from "@/contexts/user/context";
+import React from "react";
+
+const WithUserContext = (Component) => {
   return function HOC(props) {
-    useEffect(() => {}, []);
+    // useEffect(() => {}, []);
     return (
       <UserContextProvider>
-        <NavBar {...props} />
+        <Component {...props} />
       </UserContextProvider>
     );
   };

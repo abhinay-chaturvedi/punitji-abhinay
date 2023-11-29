@@ -1,23 +1,23 @@
-const saveEducationDetail = async (data) => {
+const saveApplication = async (data) => {
     try {
-        const res = await fetch("api/user/education", {
-            method: "POST",
+        const res = await fetch("/api/client/mainApplication", {
+            method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
-                "Accept": "applicaton/json"
+                "Accept": "application/json"
             },
             body: JSON.stringify(data)
         })
         const result = await res.json();
         return result;
     } catch(err) {
-        console.log("🚀 ~ file: education.js:5 ~ saveEducationDetail ~ err:", err)
+        console.log("🚀 ~ file: mainApplication.js:5 ~ saveApplication ~ err:", err)
         return err;
     }
 }
-const getEducationDetail = async (userId) => {
+const getApplicationDetail = async (userId) => {
     try {
-        const res = await fetch(`api/user/education?userId=${userId}`, {
+        const res = await fetch(`/api/client/mainApplication?userId=${userId}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -27,8 +27,8 @@ const getEducationDetail = async (userId) => {
         const result = await res.json();
         return result;
     } catch(err) {
-        console.log("🚀 ~ file: education.js:20 ~ getEducationDetail ~ err:", err)
+        console.log("🚀 ~ file: mainApplication.js:22 ~ getApplicationDetail ~ err:", err)
         return err;
     }
 }
-export {saveEducationDetail, getEducationDetail}
+export {saveApplication, getApplicationDetail};

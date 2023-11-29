@@ -18,7 +18,7 @@ import CustomInput from "@/components/CustomInput";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 import DataTable from "@/components/DataTable";
-import { getLanguageTest, saveLanguageTest } from "@/services/user/languageTest";
+import { getLanguageTest, saveLanguageTest } from "@/services/client/languageTest";
 const LanguageTestColumn = [
   { field: "id", headerName: "ID" },
   { field: "exam", headerName: "Exam", width: 150 },

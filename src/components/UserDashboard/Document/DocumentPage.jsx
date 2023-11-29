@@ -20,7 +20,7 @@ import CustomListItem from './CustomListItem';
 import { Divider } from '@mui/material';
 import { useLogin } from '@/hooks/auth';
 import { useRouter } from 'next/navigation';
-import getUser from '@/services/user/getUser';
+import getUser from '@/services/client/getUser';
 import { UserContext } from "@/contexts/user/context"
 import { useContext } from "react"
 import { setUser } from '@/contexts/user/action';

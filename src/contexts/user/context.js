@@ -1,5 +1,9 @@
-const { createContext, useReducer } = require("react");
-const { default: userReducer } = require("./reducer");
+// const { createContext, useReducer } = require("react");
+"use client"
+import { createContext, useReducer } from "react";
+import userReducer from "./reducer";
+// const { default: userReducer } = require("./reducer");
+
 
 const intialState = {
     email: null,

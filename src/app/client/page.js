@@ -19,20 +19,20 @@ import ProcessPage from "@/components/UserDashboard/ProcessPage/ProcessPage";
 import getUser from "@/services/client/getUser";
 import { setUser } from "@/contexts/user/action";
 import { useLogin } from "@/hooks/auth";
-import AssignedClient from "@/components/PartnerDashboard/AssignedClients/AssignedClient";
-import Profile from "@/components/PartnerDashboard/Profile/Profile";
-import Loader from "@/components/Loader";
+import ProfileDetailPage from "@/components/UserDashboard/ProfileDetailPage.jsx/ProfileDetailPage";
 import WithUserContext from "@/hocs/WithUserContext";
+import Loader from "@/components/Loader";
 
 const Page = () => {
+  // console.log("here is server component in user layourt----------------------------------")
+
   const router = useRouter();
-  console.log("router object", router);
+  // console.log("router object", router);
   const theme = useTheme();
   const mdDown = useMediaQuery(theme.breakpoints.down("md"));
   const [isOpened, setIsOpened] = useState(false);
-  const [loginUser, setLoginUser] = useState(null);
+  const [userDetail, setUserDetail] = useState({});
   const [isLoading, setIsLoading] = useState(true);
-  // const User = useLogin();
   const sideBarStyle = {
     [theme.breakpoints.down("md")]: {
       position: "fixed",
@@ -49,30 +49,31 @@ const Page = () => {
   useEffect(() => {
     setIsOpened(false);
   }, [q]);
-
+  const { state: userState, dispatch: dispatchUserAction } =
+    useContext(UserContext);
+  console.log("🚀 ~ file: page.js:45 ~ Page ~ userState:", userState);
+  // const getUserDetail = async (id) => {
+  //   const res = await getUser(email, role);
+  //   console.log("🚀 ~ file: DocumentPage.jsx:35 ~ getDocuments ~ res:", res)
+  //   setUserDetail(res.data);
+  // }
   React.useEffect(() => {
-    const userData = localStorage.getItem("user");
-    const user = userData ? JSON.parse(userData) : null;
+    // if(User && User.email){
+    // getUserDetail(User.email, User.role);
+    // }
+    const user = JSON.parse(localStorage.getItem("user"));
+    console.log("🚀 ~ file: page.js:55 ~ React.useEffect ~ user:", user);
     if (user) {
-      setLoginUser(user);
-      setIsLoading(false);
+      // getUserDetail(user.id);
+      dispatchUserAction(setUser(user));
     } else {
       router.push("/login");
     }
+    setIsLoading(false);
   }, []);
-
-  const { state: userState, dispatch: dispatchUserAction } =
-    useContext(UserContext);
-  React.useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("user"));
-    if (!userState.email) {
-      dispatchUserAction(setUser(user));
-    }
-  }, []);
-
   if (isLoading) {
     return (
-      <Box sx={{ width: "100%", height: "80vh" }}>
+      <Box sx={{ width: "100%", height: "100vh" }}>
         <Loader />
       </Box>
     );
@@ -82,7 +83,7 @@ const Page = () => {
       <Grid container>
         <Grid item sx={sideBarStyle} md={2.5}>
           <Box sx={{ minHeight: "100vh", borderRight: "1px solid black" }}>
-            <LeftBar userDetail={loginUser} />
+            <LeftBar userDetail={userState} />
           </Box>
           {mdDown &&
             (!isOpened ? (
@@ -121,11 +122,11 @@ const Page = () => {
         </Grid>
         <Grid item xs={12} md={9.5}>
           <Box sx={{ minHeight: "100vh" }}>
-            {!q && <Profile />}
-            {q === "documents" ? <DocumentPage /> : null}
+            {!q && <ProfileDetailPage />}
+            {q === "documents" ? (
+              <DocumentPage documents={userDetail?.documents} />
+            ) : null}
             {q === "process" ? <ProcessPage /> : null}
-            {q === "aclients" ? <AssignedClient /> : null}
-            {/* {q==="process"? <ProcessPage/>: null} */}
           </Box>
         </Grid>
       </Grid>

@@ -9,14 +9,16 @@ datasource db {
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model User {
-  id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  name      String
-  email     String   @unique
-  role      Role     @default(CLIENT)
-  password  String
-  client    Client?
-  partner   Partner?
-  createdAt DateTime @default(now())
+  id         String        @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name       String
+  email      String        @unique
+  role       Role          @default(CLIENT)
+  password   String
+  profilePic String?
+  client     Client?
+  partner    Partner?
+  steps      ProcessSteps?
+  createdAt  DateTime      @default(now())
 
   @@map("user")
 }
@@ -28,13 +30,11 @@ model Client {
   name           String
   email          String
   phone          String?
-  profilePic     String?
   address        String?
   dob            DateTime?
   visaCountry    String?
   partnerId      String?          @db.Uuid
   documents      Json[]
-  steps          ProcessSteps?
   education      UserEducation[]
   workExperience WorkExperience[]
   languageTest   LanguageTest[]
@@ -57,15 +57,15 @@ model Partner {
   faxNumber     String?
   joiningDate   DateTime?
   isVerified    Boolean   @default(false)
-  casesSolved   Int    @default(0)
-  casesAssigned Int    @default(0)
+  casesSolved   Int       @default(0)
+  casesAssigned Int       @default(0)
 
   @@map("partner")
 }
 
 model ProcessSteps {
   id             String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  user           Client  @relation(fields: [userId], references: [id])
+  user           User    @relation(fields: [userId], references: [id])
   userId         String  @unique @db.Uuid
   assessment     Boolean @default(false)
   visaSelection  Boolean @default(false)

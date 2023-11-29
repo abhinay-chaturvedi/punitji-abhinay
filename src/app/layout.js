@@ -1,3 +1,4 @@
+import UserContextProvider from '@/contexts/user/context'
 import './globals.css'
 import { Inter } from 'next/font/google'
 
