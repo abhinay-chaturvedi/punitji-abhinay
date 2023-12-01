@@ -1,6 +1,6 @@
 const saveLanguageTest = async (data) => {
     try {
-        const res = await fetch("/api/user/languageTest", {
+        const res = await fetch("/api/client/languageTest", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -16,7 +16,7 @@ const saveLanguageTest = async (data) => {
 }
 const getLanguageTest = async (userId) => {
     try {
-        const res = await fetch(`/api/user/languageTest?userId=${userId}`,{
+        const res = await fetch(`/api/client/languageTest?userId=${userId}`,{
             method: "GET",
             headers: {
                 "Content-Type": "application/json",

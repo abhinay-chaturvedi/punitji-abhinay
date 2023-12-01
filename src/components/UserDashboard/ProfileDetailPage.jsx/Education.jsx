@@ -93,7 +93,7 @@ const Education = ({userState, mainApplicationDetail}) => {
   };
   const handleSave = async () => {
     try {
-      const userId = mainApplicationDetail.id;
+      const userId = userState.id;
       const data = { ...education, userId };
       const text = handleValidate(data);
       if (text != "success") {
@@ -126,7 +126,7 @@ const Education = ({userState, mainApplicationDetail}) => {
   };
   const geteducationDetail = async () => {
     try {
-      const userId = mainApplicationDetail.id;
+      const userId = userState.id;
       const result = await getEducationDetail(userId);
       console.log("🚀 ~ file: Education.jsx:120 ~ geteducationDetail ~ result:", result)
       setEducationRows(result.data);

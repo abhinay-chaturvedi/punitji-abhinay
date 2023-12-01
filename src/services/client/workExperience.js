@@ -1,6 +1,6 @@
 const getWorkExperience = async (userId) => {
     try {
-        const res = await fetch(`/api/user/workExperience?userId=${userId}`, {
+        const res = await fetch(`/api/client/workExperience?userId=${userId}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -16,7 +16,7 @@ const getWorkExperience = async (userId) => {
 
 const saveWorkExperience = async (data) => {
     try {
-        const res = await fetch("/api/user/workExperience", {
+        const res = await fetch("/api/client/workExperience", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

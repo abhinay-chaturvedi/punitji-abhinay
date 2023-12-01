@@ -52,13 +52,13 @@ const LanguageTestColumn = [
     width: 150,
   },
 ];
-const LanguageTest = () => {
+const LanguageTest = ({ userState }) => {
   const [arrow, setArrow] = useState(false);
   const [age, setAge] = useState("");
   const [btnText, setBtnText] = useState("save");
   const [error, setError] = useState(null);
   const [formOpen, setFormOpen] = useState(false);
-  const [languageRows, setLanguageRows] = useState(null);
+  const [languageRows, setLanguageRows] = useState([]);
   const [languageDetail, setLanguageDetail] = useState({
     exam: "",
     speakingBand: "",
@@ -69,7 +69,7 @@ const LanguageTest = () => {
   })
   const handleSave = async () => {
     try {
-      const data = {userId: "8ddda531-e273-49ac-b24c-410d04efb7e9", ...languageDetail};
+      const data = {userId: userState.id, ...languageDetail};
       if (!data.exam || !data.exam.length) {
         return setError("Please fill Exam!");
       }
@@ -93,10 +93,11 @@ const LanguageTest = () => {
       const result = await saveLanguageTest(data);
       console.log("🚀 ~ file: LanguageTest.jsx:93 ~ handleSave ~ result:", result)
       if(result.status == 200) {
-        setBtnText("successfully created!");
+        
         setFormOpen(false);
         setLanguageRows((prev) => ([result.data, ...prev]))
       }
+      setBtnText("save");
     } catch(err) {
       console.log("🚀 ~ file: LanguageTest.jsx:26 ~ handleSave ~ err:", err)
       setError(err.message);
@@ -105,7 +106,7 @@ const LanguageTest = () => {
   }
   const fetchLanguageTest = async () => {
     try {
-      const userId = "8ddda531-e273-49ac-b24c-410d04efb7e9";
+      const userId = userState.id;
       const result = await getLanguageTest(userId);
       console.log("🚀 ~ file: LanguageTest.jsx:110 ~ fetchLanguageTest ~ result:", result)
       if(result.status == 200) {

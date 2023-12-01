@@ -21,7 +21,7 @@ import WithUserContext from "@/hocs/WithUserContext";
 import { UserContext } from "@/contexts/user/context";
 import { clearUser, setUser } from "@/contexts/user/action";
 
-const pages = ["Home", "About", "Services", "Blog", "Visa", "Contact"];
+const pages = [{page:"Home", url: "/"}, {page: "About", url: "/about"}, {page: "Services", url: "/services"}, {page: "Blog", url: "/blog"}, {page: "Visa", url: "/visa"}, {page: "Contact", url: "/contact-us"}];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 function NavBar() {
@@ -80,7 +80,7 @@ function NavBar() {
               textDecoration: "none",
             }}
           >
-            <Image width={70} height={70} src="/images/logo.jpeg" />
+            <Image width={80} height={70} style={{borderRadius: "10px"}} src="/images/logo.jpeg" />
           </Box>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -112,8 +112,8 @@ function NavBar() {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                <MenuItem key={page.page} onClick={() => router.push(`${page.url}`)}>
+                  <Typography textAlign="center">{page.page}</Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -138,6 +138,7 @@ function NavBar() {
               onClick={() => router.push("/")}
               width={70}
               height={70}
+              objectFit="cover"
               src="/images/logo.jpeg"
             />
           </Box>
@@ -153,8 +154,8 @@ function NavBar() {
           >
             {pages.map((page) => (
               <Button
-                key={page}
-                onClick={() => router.push(`/${page.toLowerCase()}`)}
+                key={page.page}
+                onClick={() => router.push(`${page.url}`)}
                 sx={{
                   my: 2,
                   color: "#1b2630",
@@ -163,7 +164,7 @@ function NavBar() {
                   fontFamily: "sans-serif",
                 }}
               >
-                {page}
+                {page.page}
               </Button>
             ))}
           </Box>

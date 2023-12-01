@@ -5,7 +5,7 @@ import ChooseCountryCard from "./ChooseCountryCard";
 
 const ChooseCountry = () => {
   return (
-    <Box sx={{ bgcolor: "#EFF2F5", width: "100%" }}>
+    <Box sx={{ bgcolor: "#EFF2F5", paddingY: "30px", width: "100%" }}>
       <Container>
         <Box sx={{ textAlign: "center" }}>
           <Typography
@@ -37,7 +37,7 @@ const ChooseCountry = () => {
             <ChooseCountryCard
               country="London"
               desc="Embark on your London adventure effortlessly with our visa services! Whether it's for business or leisure, our skilled team guarantees a smooth and stress-free visa application process. Entrust us with the paperwork, and get ready to explore London without any worries. Your gateway to London begins with our expert visa assistance!"
-              imgUrl={"/images/count1.jpeg"}
+              imgUrl={"/images/count5.jpg"}
             />
             <ChooseCountryCard
               country="Canada"

@@ -50,7 +50,7 @@ const experienceColumn = [
     width: 150,
   },
 ];
-const WorkExperience = () => {
+const WorkExperience = ({ userState }) => {
   const [arrow, setArrow] = useState(false);
   const [age, setAge] = useState("");
   const [experienceRows, setExperienceRows] = useState(null);
@@ -66,7 +66,7 @@ const WorkExperience = () => {
   });
   const fetchExperieceDetail = async () => {
     try {
-      const userId = "8ddda531-e273-49ac-b24c-410d04efb7e9";
+      const userId = userState.id;
       const result = await getWorkExperience(userId);
       console.log(
         "🚀 ~ file: WorkExperience.jsx:55 ~ fetchExperieceDetail ~ result:",
@@ -88,7 +88,7 @@ const WorkExperience = () => {
   const handleSave = async () => {
     try {
       const data = {
-        userId: "8ddda531-e273-49ac-b24c-410d04efb7e9",
+        userId: userState.id,
         ...workExperience,
       };
       console.log(
@@ -118,7 +118,7 @@ const WorkExperience = () => {
         result
       );
       if (result.status == 200) {
-        setBtnText("Successfully saved!");
+        setBtnText("save");
         setError(null);
         setExperienceRows((prev) => [result.data, ...prev]);
         setWorkExperience({
@@ -128,6 +128,7 @@ const WorkExperience = () => {
           startDate: "",
           endDate: "",
         });
+        setFormOpen(false)
       } else {
         setBtnText("save");
         setError(result.message);

@@ -9,7 +9,7 @@ const Blogs = () => {
     const theme = useTheme();
     const matches = useMediaQuery(theme.breakpoints.up('md'));
   return (
-    <Box sx={{bgcolor: "#EFF2F5", width: "100%"}}>
+    <Box sx={{bgcolor: "#EFF2F5", paddingY: "30px", width: "100%"}}>
         <Container >
             <Box sx={{mb:"30px", textAlign: "center"}}>
                 <Typography component="span" sx={{color: "#FF0000", fontWeight: "bold", fontSize: "18px", textTransform: "uppercase"}}>Our Blog</Typography>

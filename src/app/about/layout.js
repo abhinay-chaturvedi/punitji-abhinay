@@ -1,4 +1,5 @@
 // "use client"
+import Footer from "@/components/Footer"
 import NavBar from "@/components/NavBar/NavBar"
 import { Box } from "@mui/material"
 
@@ -15,6 +16,7 @@ export default function Layout({ children }) {
         <div>
         {children}
         </div>
+        <Footer/>
     </Box>
   )
 }

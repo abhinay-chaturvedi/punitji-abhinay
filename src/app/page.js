@@ -16,6 +16,7 @@ import Analytics from '@/components/HomePage/Anayltics/Analytics'
 import { useLogin } from '@/hooks/auth'
 import { cookies } from 'next/headers'
 import getUser from '@/services/client/getUser'
+import Footer from '@/components/Footer'
 export default async function Home() {
   // console.log("server//////////////////////////////////////////////////////////")
   const token = cookies().get("token");
@@ -35,6 +36,7 @@ export default async function Home() {
         <ClientSays/>
         <ContactForm/>
         <Blogs/>
+        <Footer/>
       </Stack>
     </Box>
   )
