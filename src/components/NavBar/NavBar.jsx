@@ -20,6 +20,8 @@ import { useRouter } from "next/navigation";
 import WithUserContext from "@/hocs/WithUserContext";
 import { UserContext } from "@/contexts/user/context";
 import { clearUser, setUser } from "@/contexts/user/action";
+import CloseIcon from '@mui/icons-material/Close';
+import { useMediaQuery, useTheme } from "@mui/material";
 
 const pages = [{page:"Home", url: "/"}, {page: "About", url: "/about"}, {page: "Services", url: "/services"}, {page: "Blog", url: "/blog"}, {page: "Visa", url: "/visa"}, {page: "Contact", url: "/contact-us"}];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
@@ -27,10 +29,12 @@ const settings = ["Profile", "Account", "Dashboard", "Logout"];
 function NavBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-
+  const [isMobileMenuOpen, setIsMobileMenuOpen]= React.useState(false);
   const [loginUser, setLoginUser] = React.useState(null);
   const logout = useLogout();
   const router = useRouter();
+  const theme = useTheme();
+  const mdDown = useMediaQuery(theme.breakpoints.down("md"));
   // router.refresh()
   // const [isLogin, setIsLogin] = React.useState(loginUser);
   const handleOpenNavMenu = (event) => {
@@ -78,9 +82,12 @@ function NavBar() {
               letterSpacing: ".3rem",
               color: "gray",
               textDecoration: "none",
+              position: "relative",
+              width: "120px",
+              height: "100%"
             }}
           >
-            <Image width={80} height={70} style={{borderRadius: "10px"}} src="/images/logo.jpeg" />
+            <Image layout="fill" objectFit="contain" style={{borderRadius: "20px"}} src="/images/logo.jpeg" />
           </Box>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -89,11 +96,12 @@ function NavBar() {
               aria-label="account of current user"
               aria-controls="menu-appbar"
               aria-haspopup="true"
-              onClick={handleOpenNavMenu}
+              onClick={() => setIsMobileMenuOpen((prev) =>!prev)}
             >
-              <MenuIcon />
+              {!isMobileMenuOpen?<MenuIcon />:
+              <CloseIcon />}
             </IconButton>
-            <Menu
+            {/* <Menu
               id="menu-appbar"
               anchorEl={anchorElNav}
               anchorOrigin={{
@@ -116,14 +124,14 @@ function NavBar() {
                   <Typography textAlign="center">{page.page}</Typography>
                 </MenuItem>
               ))}
-            </Menu>
+            </Menu> */}
           </Box>
           {/* <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} /> */}
           <Box
             variant="div"
             component="div"
             sx={{
-              mr: 2,
+              mr: 4,
               display: { xs: "flex", md: "none" },
               flexGrow: 1,
               fontFamily: "monospace",
@@ -131,15 +139,18 @@ function NavBar() {
               letterSpacing: ".3rem",
               color: "blue",
               textDecoration: "none",
-              width: "max-content",
+              // width: "max-content",
+              position: "relative",
+              width: "40px",
+              height: "100%"
             }}
           >
             <Image
               onClick={() => router.push("/")}
-              width={70}
-              height={70}
-              objectFit="cover"
+              layout="fill"
+              objectFit="contain"
               src="/images/logo.jpeg"
+              style={{borderRadius: "25px"}}
             />
           </Box>
           <Box
@@ -251,8 +262,71 @@ function NavBar() {
             )}
           </Box>
         </Toolbar>
+        {isMobileMenuOpen && mdDown &&  <Box
+            sx={{
+              flexGrow: 1,
+              alignItems: "center",
+              gap: 3,
+              justifyContent: "flex-end",
+              // marginRight: "80px",
+              // display: { xs: "none", md: "flex" },
+              // ...animationIn
+            }}
+          >
+            {pages.map((page) => (
+              <Button
+                key={page.page}
+                onClick={() => router.push(`${page.url}`)}
+                sx={{
+                  my: 2,
+                  color: "#1b2630",
+                  display: "block",
+                  fontWeight: "600",
+                  fontFamily: "sans-serif",
+                  
+                }}
+              >
+                {page.page}
+              </Button>
+            ))}
+          </Box>}
       </Container>
     </AppBar>
   );
 }
 export default WithUserContext(NavBar);
+// {"@keyframes inAnimation": {
+//   "0%": {
+//     opacity: 0,
+//     visibility: hidden;
+//   },
+//   "100%": {
+//     opacity: 1,
+//     visibility: visible;
+//   }
+// }
+// }
+// @keyframes outAnimation {
+//   0% {
+//     opacity: 1;
+//   }
+//   100% {
+//     opacity: 0;
+//     visibility: hidden;
+//   }
+// }
+// const animationIn = {
+//   animation: "inAnimation 1s linear",
+//   "@keyframes inAnimation": {
+//     "0%": {
+//       height: "0px",
+//       opacity: 0,
+//       visibility: "hidden"
+//     },
+//     "100%": {
+//       opacity: 1,
+//     visibility: "visible",
+//     height: "300px"
+//     },
+//   },
+// };
