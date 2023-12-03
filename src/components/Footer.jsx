@@ -15,17 +15,15 @@ const Footer = () => {
     <Box >
       <Container>
       <Divider sx={{height: 3, width: "100%", mb: "20px", mt: "20px"}}/>
-        <Box sx={{ display: "flex", gap: "5px" }}>
-          <Box sx={{ flex: 1 }}>
+        <Box sx={{ display: "flex", flexWrap: "wrap", gap: "10px" }}>
+          <Box sx={{ flex: "100%", mb: "10px" }}>
             <Box sx={{ display: "flex", alignItems: "center", gap: "20px", mb: "20px" }}>
               <Image
                 style={{ borderRadius: "20px" }}
-                src="/images/logo.jpeg"
-                width={80}
-                height={70}
+                src="/images/logo.png"
+                width={250}
+                height={60}
               />
-
-              <Typography sx={{ fontSize: 25 }}>HHH</Typography>
             </Box>
             <Typography sx={{color: "gray", mb: "20px"}}>
               HHH Immigration provides expert visa assistance for the USA,

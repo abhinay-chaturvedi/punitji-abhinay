@@ -83,11 +83,11 @@ function NavBar() {
               color: "gray",
               textDecoration: "none",
               position: "relative",
-              width: "120px",
+              width: "200px",
               height: "100%"
             }}
           >
-            <Image layout="fill" objectFit="contain" style={{borderRadius: "20px"}} src="/images/logo.jpeg" />
+            <Image layout="fill" objectFit="contain"  src="/images/logo.png" />
           </Box>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -141,7 +141,7 @@ function NavBar() {
               textDecoration: "none",
               // width: "max-content",
               position: "relative",
-              width: "40px",
+              width: "100px",
               height: "100%"
             }}
           >
@@ -149,7 +149,7 @@ function NavBar() {
               onClick={() => router.push("/")}
               layout="fill"
               objectFit="contain"
-              src="/images/logo.jpeg"
+              src="/images/logo.png"
               style={{borderRadius: "25px"}}
             />
           </Box>

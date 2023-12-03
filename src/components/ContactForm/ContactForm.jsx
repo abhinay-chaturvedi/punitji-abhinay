@@ -42,11 +42,11 @@ export default function ContactForm() {
   };
 
   return (
-    <Box sx={{ maxWidth: {xs: 350, md: 400}, margin: '5px auto', bgcolor: '#white', p: 3, boxShadow: "1px 1px 5px 5px #d8e1f0" }}>
+    <Box sx={{ maxWidth: {xs: 350, md: 400}, margin: '5px auto', bgcolor: 'white', color: "black", opacity: 1, p: 3, boxShadow: "1px 1px 5px 5px #d8e1f0" }}>
       <Typography variant="h4" fontWeight="bold" gutterBottom>
         Anytime Consulting
       </Typography>
-      <Typography variant="p" gutterBottom>
+      <Typography sx={{color: "black"}} variant="p" gutterBottom>
         Our team can assist you in transforming Your business through.
       </Typography>
       <form onSubmit={handleSubmit}>
@@ -58,6 +58,8 @@ export default function ContactForm() {
           value={formData.name}
           onChange={handleChange}
           margin="normal"
+          // color='black'
+          // sx={{color: "black", fontWeight: "bold"}}
         />
         <TextField
           fullWidth
@@ -87,7 +89,7 @@ export default function ContactForm() {
           onChange={handleChange}
           margin="normal"
         />
-        <Button type="submit" variant="contained" color="primary" fullWidth>
+        <Button type="submit" variant="contained" color="primary" fontWeight="bold" fullWidth>
           Submit
         </Button>
       </form>
