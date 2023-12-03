@@ -37,7 +37,7 @@ const HeroSectionItem = ({ color, imgUrl }) => {
         }}
       >
         <Container>
-          <Box sx={{display: "flex", alignItems: "center", justifyContent: "space-between"}}>
+          <Box sx={{display: {md: "flex"}, alignItems: "center", justifyContent: "space-between"}}>
             <Box sx={{maxWidth: "500px", display: "flex", flexDirection: "column", alignItems: "center"}}>
               <Typography sx={{ fontWeight: "bold", letterSpacing: "5px", fontSize: "35px" }}>
                 HHH
@@ -45,12 +45,12 @@ const HeroSectionItem = ({ color, imgUrl }) => {
               <Typography sx={{ fontWeight: "bold",letterSpacing: "5px", fontSize: "35px" }}>
                 IMMIGRATION
               </Typography>
-              <Typography sx={{ fontSize: "15px" }}>
+              <Typography sx={{ fontSize: "15px", textAlign: "center" }}>
                 HHH LAW SERVICES CAN HELP TURN YOUR DREAM INTO REALITY
               </Typography>
               
             </Box>
-            <Box>
+            <Box sx={{display: {xs: "none", md: "block"}}}>
               <ContactForm/>
             </Box>
           </Box>

@@ -6,6 +6,7 @@ import RemoveIcon from '@mui/icons-material/Remove';
 const visas = [
   {
     visa: "Express Entry",
+    id: "ea9b8535-4ba4-4aa8-a8e7-d1c0b171101b",
     title:
       "The Canada Express Entry system is an immigration management system introduced by the Canadian government to facilitate the selection and processing of skilled immigrants who wish to become permanent residents of Canada. It's a points-based system designed to assess and rank candidates based on various factors, such as age, education, language proficiency, work experience, and other criteria.",
     pointsTitle: "The Express Entry system is the primary pathway for economic immigration to Canada and includes three main federal immigration programs:",
@@ -27,6 +28,7 @@ const visas = [
   },
   {
     visa: "Provincial Nominee Program (PNP)",
+    id: "bce4b3b1-2b43-4736-8166-ef744a034780",
     title:
       "A Canada Provincial Nominee Program (PNP) is an immigration program operated by individual provinces and territories in Canada. These programs allow provinces and territories to nominate individuals who wish to immigrate to Canada and settle in a specific province or territory. The Provincial Nominee Programs are an essential component of Canada's overall immigration system and are designed to address regional labor market needs and economic priorities.",
     pointsTitle:
@@ -62,6 +64,7 @@ const visas = [
   },
   {
     visa: "Work Visa (LMIA)",
+    id: "add82ce5-9d8f-4c77-bdfc-98b4d18264a6",
     title:
       "A Canada Work Permit, also known as a Labour Market Impact Assessment (LMIA) Work Permit, is a document issued by the Canadian government that allows foreign nationals to work in Canada for a specified employer. The LMIA is a crucial component of the work permit application process, and it is an assessment conducted by the Employment and Social Development Canada (ESDC) to ensure that hiring a foreign worker will not have a negative impact on the Canadian labor market.",
     pointsTitle: "Key points about the Canada Work Permit (LMIA):",
@@ -91,6 +94,7 @@ const visas = [
   },
   {
     visa: "Visitor Visa",
+    id: "90ed807b-06dd-4bd0-bf04-0e6db6177346",
     title:
       "A Canada Visitor Visa, also known as a Temporary Resident Visa (TRV), is an official document issued by the Canadian government that allows foreign nationals to enter Canada temporarily for tourism, visiting family or friends, attending conferences, or conducting business. It is a form of authorization that is stamped or affixed into the passport or travel document of the visitor.",
     pointsTitle: "Key points about the Canada Visitor Visa:",
@@ -128,6 +132,7 @@ const visas = [
   },
   {
     visa: "Student Visa",
+    id: "ffa852e7-507b-48aa-ab48-b13c9da306b1",
     title:
       "The Canada Student Visa, officially known as a Canadian Study Permit, is a document issued by the Canadian government that allows foreign nationals to study at designated learning institutions in Canada. This permit is a crucial requirement for international students planning to pursue academic, vocational, or professional programs in the country.",
     pointsTitle: "Key points about the Canada Student Visa (Study Permit):",
@@ -145,7 +150,7 @@ const visas = [
         desc: "With a valid study permit, international students in Canada are generally allowed to work part-time during the academic session and full-time during scheduled breaks. Additionally, some programs may include co-op or internship components that allow students to gain practical work experience.",
       },
       {
-        title: "Post-Graduation Work Permit (PGWP",
+        title: "Post-Graduation Work Permit (PGWP)",
         desc: "After completing their studies, eligible students may apply for a Post-Graduation Work Permit, allowing them to work in Canada for a period equal to the length of their study program, up to a maximum of three years.",
       },
       {
@@ -166,6 +171,7 @@ const visas = [
   },
   {
     visa: "Business or Investment Visa",
+    id: "78080c2a-fb23-4e8b-9cbf-18fb4fcddf9e",
     title:
       "Canada does offer immigration pathways for individuals interested in conducting business activities or investing in the country. ",
     pointsTitle: "The relevant programs include:",
@@ -195,6 +201,7 @@ const visas = [
   },
   {
     visa: "Family / Dependent Visa",
+    id: "4a58f58e-7868-4589-be7f-0136a850da84",
     title:
       "Family members of individuals who are in Canada on various visas or permits may be eligible to accompany or join them through specific sponsorship programs or as dependents.",
     pointsTitle:
