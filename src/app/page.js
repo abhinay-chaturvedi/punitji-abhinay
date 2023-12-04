@@ -35,7 +35,6 @@ export default async function Home() {
         <Analytics />
         <WhatWeOffer />
         <WhyChooseUs />
-        <ChooseCountry />
         <ClientSays />
         <Blogs />
         <Footer />

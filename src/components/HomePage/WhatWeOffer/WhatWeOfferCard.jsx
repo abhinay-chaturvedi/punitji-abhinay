@@ -1,52 +1,57 @@
-import Link from 'next/link'
-import React from 'react'
-import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
-import {Box, Stack, Typography, Button} from '@mui/material'
-import Image from 'next/image';
+import Link from "next/link";
+import React from "react";
+import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
+import { Box, Stack, Card, Typography, Button } from "@mui/material";
+import Image from "next/image";
+import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 
-const WhatWeOfferCard = ({imgUrl, iconUrl, title, desc}) => {
+const tableContent = [
+  {
+    link: "/visa/country/visatype",
+    name: "PR Visa",
+  },
+];
+const WhatWeOfferCard = ({ country, cardContent = [] }) => {
   return (
-    <Box sx={{bgcolor: "#fff", p: "15px", height: "100%", borderRadius: "10px", boxShadow: "0 0 40px 5px rgb(0 0 0 / 5%);"}}>
-        <Stack gap={2}>
-            <Box sx={{width: "100%", height: "170px", borderRadius: "10px", mt: "-30px", mb: "20px", position: "relative"}}>
-                <Box
-                 sx={{
-                    bgcolor: "#FF0000", border: "4px solid white", width: "90px", height: "90px", borderRadius: "10px",
-                    transform: "skew(10deg)", position: "absolute", right:"10%", bottom: "-45px",zIndex: 100
-                }}>
-                    <Image style={{borderRadius: "4px"}} layout={'fill'} objectFit="cover" src={iconUrl}/>
-                </Box>
-                <Image style={{borderRadius: "10px"}} layout={'fill'} objectFit="cover" src={imgUrl}/>
-            </Box>
-            <Typography component="h3" sx={{fontWeight: "bold", color: "#031F4B", fontSize: "25px"}}>
-                {title}
-            </Typography>
-            <Typography component="p" sx={{color: "gray"}}>
-                {desc}
-            </Typography>
-            <Button component={Link} href="#"
-             sx={{
-                display: "flex",
-                border: "2px solid #FF0000",
-                width: "max-content",
-                borderRadius: "10px",
-                padding: "8px 17px",
-                gap: "5px",
-                color: "#FF0000",
-                textTransform: "capitalize",
-                "&:hover": {
-                    background: "#FF0000",
-                    color: "#fff"
-                },
-                
-             }}
+    <Box
+      sx={{
+        bgcolor: "#fff",
+        p: "25px",
+        height: "100%",
+        width: "100%",
+        borderRadius: "10px",
+        boxShadow: "0 0 40px 5px rgb(0 0 0 / 5%);",
+      }}
+    >
+      <Box>
+        <Typography
+          sx={{
+            fontWeight: "bold",
+            textTransform: "uppercase",
+            color: "gray",
+            mb: "10px",
+          }}
+        >
+          {country}
+        </Typography>
+      </Box>
+      <Box sx={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+        {cardContent.map((item, i) => {
+          return (
+            <Box
+              key={i}
+              component={Link}
+              href={item.link}
+              sx={{ display: "flex", gap: "5px" }}
             >
-                <Typography component="p" sx={{fontWeight: "bold"}}>Learn More</Typography>
-                <ArrowRightAltIcon/>
-            </Button>
-        </Stack>
+              <KeyboardArrowRightIcon />
+              <Typography>{item.name}</Typography>
+            </Box>
+          );
+        })}
+      </Box>
     </Box>
-  )
-}
+  );
+};
 
-export default WhatWeOfferCard
+export default WhatWeOfferCard;

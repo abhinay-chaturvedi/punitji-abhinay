@@ -1,34 +1,36 @@
+// "use client"
 import React from "react";
+import { australiaVisaList } from "../HomePage/WhatWeOffer/data";
+import Link from "next/link";
+import { Box, IconButton, Typography } from "@mui/material";
 
+import AddIcon from "@mui/icons-material/Add";
 
 const Australia = () => {
   return (
     <Box>
-      <Box></Box>
-    </Box>
-  );
-};
-const Visa = (props) => {
-    const [isOpen, setIsOpen] = useState(false)
-  return (
-    <Box sx={{mt: "10px"}}>
-      <Box sx={{ display: "flex", bgcolor: "whitesmoke", p: "3px 8px",alignItems: "center",borderRadius: "4px", justifyContent: "space-between" }}>
-        <Typography sx={{fontWeight: "bold"}}>{"props.visa"}</Typography>
-        <IconButton onClick={() => setIsOpen((prev) => !prev)}>
-          {!isOpen?<AddIcon />: <RemoveIcon/>}
-        </IconButton>
+      <Box sx={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+        {australiaVisaList.map((item, index) => {
+          return (
+            <Box
+              component={Link}
+              href={item.link}
+              sx={{
+                display: "flex",
+                bgcolor: "whitesmoke",
+                p: "10px",
+                alignItems: "center",
+                borderRadius: "4px",
+                justifyContent: "space-between",
+                // gap: "5px"
+              }}
+            >
+              <Typography sx={{ fontWeight: "bold" }}>{item.name}</Typography>
+              <AddIcon />
+            </Box>
+          );
+        })}
       </Box>
-      {isOpen && <Box sx={{display: "flex", flexDirection: "column", gap: "10px", mt: "5px"}}>
-        <Typography>{"props.title"}</Typography>
-        <Typography>{"props.pointsTitle"}</Typography>
-        <Box sx={{ml: "30px"}} component="ul">
-              <Box component="li" key={index}>
-                <Typography>
-                  <b>{"item.title"} </b>{"item.desc"} 
-                </Typography>
-              </Box>
-        </Box>
-      </Box>}
     </Box>
   );
 };

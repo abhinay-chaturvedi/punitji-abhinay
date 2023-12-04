@@ -190,7 +190,7 @@ export const canadaVisa = {
     summury: "",
   },
   "family-dep-visa": {
-    heading: "4a58f58e-7868-4589-be7f-0136a850da84",
+    heading: "Family / Dependent Visa",
     title:
       "Family members of individuals who are in Canada on various visas or permits may be eligible to accompany or join them through specific sponsorship programs or as dependents.",
     pointsTitle:
@@ -1100,3 +1100,506 @@ export const ukVisa = {
     ]
   }
 };
+export const uaeVisa = {
+  "visitor-visa": {
+    heading: "Tourist Visa",
+    title: "United Arab Emirates (UAE) offers several types of tourist visas to facilitate the entry of visitors for leisure and tourism purposes. The specific requirements, processing times, and fees may vary depending on the type of tourist visa and the traveler's nationality. ",
+    pointsTitle: "Here are some common types of UAE tourist visas:",
+    points: [
+      {
+        title: "Visit Visa (Tourist):",
+        desc: "",
+        subPoints: [
+          {
+            title: "",
+            desc: "The Visit Visa is a common type of tourist visa for individuals planning to visit the UAE for leisure, tourism, or to meet friends and family."
+          },
+          {
+            title: "",
+            desc: "It is usually valid for 30 days, but extensions may be possible in some cases."
+          },
+          {
+            title: "",
+            desc: "Visitors may need a sponsor, such as a hotel, travel agency, or a UAE resident, to apply for the visa on their behalf."
+          },
+        ]
+      },
+      {
+        title: "Tourist Visa (Short-Term):",
+        desc: "",
+        subPoints: [
+          {
+            title: "",
+            desc: "The UAE offers short-term tourist visas, often with a validity period ranging from 14 to 30 days."
+          },
+          {
+            title: "",
+            desc: "These visas are suitable for individuals planning a short visit for tourism or business purposes."
+          },
+        ]
+      },
+      {
+        title: "Long-Term Tourist Visa:",
+        desc: "",
+        subPoints: [
+          {
+            title: "",
+            desc: "In recent years, the UAE has introduced long-term tourist visas to encourage extended stays. These visas may be valid for 90 days to multiple years, allowing visitors to explore the country for an extended period."
+          },
+          {
+            title: "",
+            desc: "Long-term tourist visas often require certain eligibility criteria, such as proof of financial means and health insurance."
+          },
+
+        ]
+      },
+      {
+        title: "Transit Visa:",
+        desc: "",
+        subPoints: [
+          {
+            title: "",
+            desc: "Transit visas are designed for travelers transiting through the UAE on their way to a final destination."
+          },
+          {
+            title: "",
+            desc: "They are typically valid for a short duration, allowing the traveler to stay in the country for a specific period while awaiting their connecting flight."
+          },
+        ]
+      }
+    ]
+  },
+  "student-visa": {
+    heading: "Student Visa",
+    title: "United Arab Emirates (UAE) offers student visas for international students who wish to pursue higher education in the country. The specific requirements and processes may vary based on the emirate in which the educational institution is located. ",
+    pointsTitle: " Here are some general features of the UAE student visa:",
+    points: [
+      {
+        title: "Sponsorship:",
+        desc: "International students typically need a sponsor, which is often the educational institution where they have been accepted."
+      },
+      {
+        title: "Eligibility Criteria:",
+        desc: "Students must be admitted to a recognized educational institution in the UAE to be eligible for a student visa."
+      },
+      {
+        title: "Application Process:",
+        desc: "The application process for a student visa in the UAE usually involves submitting necessary documents, such as the acceptance letter from the educational institution, a valid passport, passport-sized photographs, and proof of financial means."
+      },
+      {
+        title: "Medical Examination:",
+        desc: "In some cases, students may be required to undergo a medical examination as part of the visa application process."
+      },
+      {
+        title: "Duration of Visa:",
+        desc: "The duration of the student visa is typically linked to the length of the academic program."
+      },
+      {
+        title: "Renewal:",
+        desc: "Student visas can often be renewed for the subsequent academic years as long as the student remains enrolled in the educational institution."
+      },
+      {
+        title: "Working During Studies:",
+        desc: "Some student visas may allow students to work part-time during their studies, depending on the policies of the respective emirate."
+      },
+      {
+        title: "Post-Graduation Stay:",
+        desc: "Some countries offer a post-graduation stay period, allowing students to stay in the country for a certain duration after completing their studies. The policies on post-graduation stay can vary."
+      },
+    ]
+  },
+  "bus-inv-visa": {
+    heading: "Investor Visa",
+    title: "United Arab Emirates (UAE) offers investor visas to individuals who wish to make substantial investments in the country. The specific requirements and criteria for obtaining an investor visa can vary depending on the emirate in which the investment is made. ",
+    pointsTitle: "Here are some general features of the UAE investor visa:",
+    points: [
+      {
+        title: "Types of Investor Visas:",
+        desc: "Different emirates in the UAE may have their own investor visa programs with specific criteria and requirements. For example, Dubai and Abu Dhabi are known for their investor visa programs."
+      },
+      {
+        title: "Minimum Investment Amount:",
+        desc: "Investor visas are typically granted to individuals who make a significant financial investment in the country. The minimum investment amount can vary based on the emirate and the specific investment program."
+      },
+      {
+        title: "Types of Investments:",
+        desc: "Investments that may qualify for an investor visa can include real estate, business ownership, or other forms of investment that contribute to the economic development of the emirate."
+      },
+      {
+        title: "Eligibility Criteria:",
+        desc: "Investors are usually required to meet certain eligibility criteria, which may include a minimum age, good conduct, and a clear source of funds for the investment."
+      },
+      {
+        title: "Application Process:",
+        desc: "The application process for an investor visa typically involves submitting detailed documentation about the investment, personal information, and meeting the specific requirements set by the immigration authorities of the emirate."
+      },
+      {
+        title: "Duration of Visa:",
+        desc: "The duration of the investor visa can vary, and it is often linked to the duration of the investment or the type of investment made."
+      },
+      {
+        title: "Visa for Dependents:",
+        desc: "Some investor visa programs may allow the investor to sponsor family members for dependent visas."
+      },
+      {
+        title: "Business Ownership:",
+        desc: "In some cases, investors may need to own a certain percentage of a business or establish a new business in the emirate to qualify for an investor visa."
+      },
+      {
+        title: "Renewal:",
+        desc: "Investor visas are often subject to renewal based on the continued presence of the investment and the fulfillment of any additional requirements."
+      },
+    ]
+  },
+  "work-visa": {
+    heading: "",
+    title: "",
+    pointsTitle: "",
+    points: [
+      {
+        title: "Employment Contract:",
+        desc: "To obtain a work visa in the UAE, individuals typically need to have a valid employment offer from a company in the UAE. The employer plays a crucial role in the visa application process.",
+      },
+      {
+        title: "Types of Work Visas:",
+        desc: "Different emirates in the UAE may have their own work visa programs, and there are various types of work visas based on factors such as skill level, profession, and sector. Common types include:",
+        subPoints: [
+          {
+            title: "",
+            desc: "Employment Visa"
+          },
+          {
+            title: "",
+            desc: "Mission Visa"
+          },
+          {
+            title: "",
+            desc: "Investor Visa"
+          },
+          {
+            title: "",
+            desc: "Domestic Worker Visa"
+          },
+          {
+            title: "",
+            desc: "Freelancer Permit (for certain professions)"
+          },
+        ]
+      },
+      {
+        title: "Application Process:",
+        desc: "The application process for a work visa involves submitting the necessary documents to the relevant immigration authorities. This often includes a copy of the employment contract, passport, passport-sized photographs, educational and professional certificates, and other supporting documents.",
+      },
+      {
+        title: "Medical Examination:",
+        desc: "Some individuals applying for a work visa may be required to undergo a medical examination to ensure they meet health standards.",
+      },
+      {
+        title: "Labor Card and Emirates ID:",
+        desc: "Once the work visa is approved, employees typically receive a Labor Card and Emirates ID, which are important identification documents in the UAE.",
+      },
+      {
+        title: "Sponsorship:",
+        desc: "Work visas in the UAE are often tied to sponsorship by the employer. The employer acts as the sponsor and is responsible for the employee during their stay in the country.",
+      },
+      {
+        title: "Duration of Visa:",
+        desc: "The duration of a work visa can vary based on the type of visa and the employment contract. Work visas are often valid for a specific period, after which they may be renewed.",
+      },
+      {
+        title: "Dependents:",
+        desc: "In certain cases, individuals holding a work visa in the UAE may be eligible to sponsor their family members for dependent visas.",
+      },
+      {
+        title: "Free Zones:",
+        desc: "Certain free zones in the UAE have their own regulations for work visas. Companies operating within these free zones may have specific requirements and procedures for obtaining work visas.",
+      },
+    ]
+  },
+  "golden-visa": {
+    heading: "Golden Visa",
+    title: ' "Golden Visa" is often associated with a special type of visa or residency program that allows individuals to live, work, or invest in a particular country. Many countries around the world, including the United Arab Emirates (UAE), have introduced Golden Visa programs to attract foreign investors, entrepreneurs, and skilled professionals.',
+    pointsTitle: "In the context of the UAE, the Golden Visa is known for granting long-term residency to certain categories of individuals. The program aims to encourage investors, entrepreneurs, and talented individuals to contribute to the economic development of the UAE. The specific criteria and benefits of the Golden Visa program in the UAE can vary, but it often includes the following:",
+    points: [
+      {
+        title: "Investor Visa:",
+        desc: "Investors meeting certain financial criteria, such as property investment or business investment, may qualify for the Golden Visa.",
+      },
+      {
+        title: "Entrepreneur Visa:",
+        desc: "Entrepreneurs with a successful track record of establishing and running businesses may be eligible for the Golden Visa.",
+      },
+      {
+        title: "Skilled Professionals Visa:",
+        desc: "Highly skilled professionals, including scientists, doctors, researchers, and others, may be eligible for the Golden Visa based on their expertise and contributions to their respective fields.",
+      },
+      {
+        title: "Outstanding Students Visa:",
+        desc: "Exceptional students with outstanding academic achievements may be considered for the Golden Visa.",
+      },
+      {
+        title: "Benefits:",
+        desc: "",
+        subPoints: [
+          {
+            title: "",
+            desc: "Golden Visa holders often enjoy extended residency in the UAE, typically ranging from 5 to 10 years or more."
+          },
+          {
+            title: "",
+            desc: "The visa may cover the visa holder's spouse and dependents."
+          },
+          {
+            title: "",
+            desc: "It may grant the right to live, work, and study in the UAE without the need for a national sponsor."
+          },
+        ]
+      },
+    ]
+  }
+}
+export const germanyVisa = {
+  "student-visa": {
+    heading: "Student visa",
+    title: 'Germany student visa is a type of visa that allows international students to pursue higher education in Germany. The specific visa category for students is called the "German National Visa for Study Purposes" (Visum zu Studienzwecken).',
+    pointsTitle: "Here are key features of the Germany student visa:",
+    points: [
+      {
+        title: "Purpose:",
+        desc: "The primary purpose of the Germany student visa is to enable international students to study at a German university or other recognized educational institution."
+      },
+      {
+        title: "Types of Student Visas:",
+        desc: "There are two main types of student visas:",
+        subPoints: [
+          {
+            title: "Student Applicant Visa: ",
+            desc: "For individuals who are in Germany to apply for university admission.",
+          },
+          {
+            title: "Student Visa: ",
+            desc: "For individuals who have been accepted into a German university or college.",
+          },
+        ]
+      },
+      {
+        title: "Duration of Stay:",
+        desc: "The student visa is typically issued for the duration of the intended course of study. It can be extended if the student continues their studies."
+      },
+      {
+        title: "Application Process:",
+        desc: "",
+        subPoints: [
+          {
+            title: "",
+            desc: "Students need to apply for the visa from their home country or the country of their legal residence before traveling to Germany.",
+          },
+          {
+            title: "",
+            desc: "The application process includes submitting required documents, such as an acceptance letter from a German university, proof of financial means, health insurance, and a valid passport.",
+          },
+        ]
+      },
+      {
+        title: "Health Insurance:",
+        desc: "Health insurance coverage is a mandatory requirement for obtaining a student visa in Germany. Students must have health insurance that is valid in Germany."
+      },
+      {
+        title: "Financial Means:",
+        desc: "Students are required to provide evidence of financial means to cover their living expenses in Germany. This can include a blocked bank account or a formal letter of financial guarantee."
+      },
+      {
+        title: "Language Proficiency:",
+        desc: "Depending on the language of instruction of the chosen program, students may need to demonstrate proficiency in either German or English."
+      },
+      {
+        title: "Part-Time Work:",
+        desc: "Student visa holders are generally allowed to work part-time during their studies to supplement their finances."
+      },
+      {
+        title: "Post-Graduation Stay:",
+        desc: "Germany offers a post-graduation residence permit (Aufenthaltserlaubnis) that allows international graduates to stay in Germany for up to 18 months to seek employment related to their field of study."
+      },
+    ]
+  },
+  "visitor-visa": {
+    heading: "Tourist visa ",
+    title: "Germany tourist visa, officially known as the 'Schengen Visa,' allows individuals to visit Germany for tourism, business, or family visits, along with other Schengen Area countries. The Schengen Visa is a short-stay visa that allows entry into the Schengen Zone for up to 90 days within a 180-day period.",
+    pointsTitle: "Here are key features of the Germany tourist visa (Schengen Visa):",
+    points: [
+      {
+        title: "Purpose:",
+        desc: "The Schengen Visa is designed for short-term stays in Germany and other Schengen countries for purposes such as tourism, visiting friends or family, attending business meetings, or participating in short-term courses."
+      },
+      {
+        title: "Schengen Area:",
+        desc: "Germany is part of the Schengen Area, which is a group of European countries that have abolished passport control at their mutual borders. A Schengen Visa allows entry to all countries within the Schengen Zone."
+      },
+      {
+        title: "Duration of Stay:",
+        desc: "•	The tourist visa allows a stay of up to 90 days within a 180-day period. It is valid for both single and multiple entries during its validity."
+      },
+      {
+        title: "Application Process:",
+        desc: "Travelers planning to visit Germany and other Schengen countries must apply for a Schengen Visa at the embassy or consulate of the Schengen country they intend to visit first or the main destination of their trip."
+      },
+      {
+        title: "Application Requirements:",
+        desc: "The application process involves submitting various documents, including a completed application form, a valid passport, passport-sized photographs, travel itinerary, proof of accommodation, travel insurance, proof of financial means, and, if applicable, a letter of invitation."
+      },
+      {
+        title: "Travel Insurance:",
+        desc: "Travel insurance that covers medical expenses and repatriation is a mandatory requirement for obtaining a Schengen Visa."
+      },
+      {
+        title: "Proof of Financial Means:",
+        desc: "Travelers need to provide evidence that they have sufficient funds to cover their stay in the Schengen Area."
+      },
+      {
+        title: "Visa Validity:",
+        desc: "The validity of the Schengen Visa depends on the duration and purpose of the planned stay. It can range from a few days to several months."
+      },
+      {
+        title: "Biometric Data:",
+        desc: "As part of the application process, travelers may be required to provide biometric data, including fingerprints."
+      },
+    ]
+  },
+  "researcher-visa": {
+    heading: "Researcher Visa",
+    title: "Germany offers a specific visa for researchers, known as the 'German National Visa for Research Purposes' or 'Researcher Visa.' This visa is designed for individuals who plan to conduct research in Germany, whether as part of an academic institution, a research organization, or as an independent researcher.",
+    pointsTitle: "Here are key features of the Germany researcher visa:",
+    points: [
+      {
+        title: "Purpose:",
+        desc: "The researcher visa is intended for individuals who are engaged in research activities in Germany. This could include academic researchers, scientists, scholars, and professionals involved in research projects."
+      },
+      {
+        title: "Duration of Stay:",
+        desc: "The researcher visa allows for a longer stay compared to a standard tourist visa. It is usually granted for the duration of the research project."
+      },
+      {
+        title: "Application Process:",
+        desc: "The application process for a researcher visa involves submitting necessary documents to the German embassy or consulate in the applicant's home country. Required documents may include an invitation letter from the German host institution, proof of qualifications, a detailed research plan, and evidence of financial means."
+      },
+      {
+        title: "Host Institution:",
+        desc: "Researchers are often required to have a formal invitation or confirmation from a German host institution or research organization supporting their research activities."
+      },
+      {
+        title: "Health Insurance:",
+        desc: "Health insurance coverage is a mandatory requirement for obtaining a researcher visa in Germany. Researchers must have health insurance that is valid in Germany."
+      },
+      {
+        title: "Financial Means:",
+        desc: "Researchers need to demonstrate that they have sufficient financial means to cover their living expenses during their stay in Germany."
+      },
+      {
+        title: "Work Authorization:",
+        desc: "The researcher visa generally grants the holder the right to work in Germany for the purpose of their research activities. It may also allow for limited additional activities, such as teaching or attending conferences."
+      },
+      {
+        title: "Family Members:",
+        desc: "In certain cases, researchers may be allowed to bring their family members with them, and family members can apply for dependent visas."
+      },
+      {
+        title: "Renewal:",
+        desc: "If the research project extends beyond the initial visa period, researchers can usually apply for a visa extension."
+      },
+    ]
+  },
+  "bus-inv-visa": {
+    heading: "Business Visa",
+    title: "Germany offers a business visa for individuals who wish to travel to the country for business-related activities. The German business visa is part of the Schengen visa system, allowing entry not only into Germany but also into other Schengen Area countries.",
+    pointsTitle: "Here are key features of the Germany business visa:",
+    points: [
+      {
+        title: "Purpose:",
+        desc: "The business visa is intended for individuals traveling to Germany for short-term business-related activities. This can include attending meetings, conferences, negotiations, trade fairs, or other professional events."
+      },
+      {
+        title: "Schengen Area:",
+        desc: "The business visa allows entry into all countries within the Schengen Zone, making it suitable for individuals planning to travel to multiple Schengen countries for business purposes."
+      },
+      {
+        title: "Duration of Stay:",
+        desc: "The business visa is typically issued for short stays, allowing the holder to stay in the Schengen Area for up to 90 days within a 180-day period."
+      },
+      {
+        title: "Application Process:",
+        desc: "Travelers must apply for a business visa at the German embassy or consulate in their country of residence or the main destination of their business trip."
+      },
+      {
+        title: "Application Requirements:",
+        desc: "The application process involves submitting various documents, including a completed application form, a valid passport, passport-sized photographs, a letter from the employer, proof of business activities, travel itinerary, and proof of financial means."
+      },
+      {
+        title: "Business Activities Proof:",
+        desc: "Applicants may need to provide documentation demonstrating the purpose of their visit, such as an invitation from a German business partner or confirmation of participation in a specific event."
+      },
+      {
+        title: "Health Insurance:",
+        desc: "Travel insurance covering medical expenses and repatriation is a mandatory requirement for obtaining a business visa."
+      },
+      {
+        title: "Financial Means:",
+        desc: "Travelers are required to provide evidence of sufficient funds to cover their stay in the Schengen Area."
+      },
+      {
+        title: "Multiple Entries:",
+        desc: "Business visas can be issued for single or multiple entries, depending on the needs of the traveler."
+      },
+      {
+        title: "Work Authorization:",
+        desc: "While the primary purpose of the business visa is for business-related activities, some limited work-related activities may be allowed."
+      },
+    ]
+  },
+  "schengen-visa": {
+    heading: "Schengen Visa",
+    title: "The Schengen Visa is a type of visa that allows individuals to travel freely within the Schengen Area, which is a zone comprising 27 European countries that have agreed to abolish internal borders for the free movement of people. This visa facilitates travel for short stays, such as tourism, business, or family visits, within the Schengen member states. The Schengen Area is named after the 1985 Schengen Agreement, which was signed in the village of Schengen in Luxembourg.",
+    pointsTitle: "Here are key features of the Schengen Visa:",
+    points: [
+      {
+        title: "Participating Countries:",
+        desc: "The Schengen Area includes 27 European countries, most of which are members of the European Union (EU). Some non-EU countries, such as Norway, Iceland, Switzerland, and Liechtenstein, are also part of the Schengen Agreement."
+      },
+      {
+        title: "Visa Type:",
+        desc: "The Schengen Visa is a short-stay visa, allowing travelers to stay in the Schengen Area for up to 90 days within a 180-day period."
+      },
+      {
+        title: "Single or Multiple Entries:",
+        desc: "Schengen Visas can be issued for either single or multiple entries, depending on the traveler's needs."
+      },
+      {
+        title: "Common Application Process:",
+        desc: "Travelers must apply for the Schengen Visa at the embassy or consulate of the Schengen country they plan to visit first or the main destination of their trip."
+      },
+      {
+        title: "Uniform Visa Code:",
+        desc: "The Schengen Visa operates under the Uniform Visa Code, which sets common rules and procedures for issuing visas within the Schengen Area."
+      },
+      {
+        title: "Application Requirements:",
+        desc: "The application process involves submitting various documents, including a completed application form, a valid passport, passport-sized photographs, proof of travel itinerary, proof of accommodation, travel insurance, and proof of financial means."
+      },
+      {
+        title: "Travel Insurance:",
+        desc: "Travel insurance covering medical expenses and repatriation is a mandatory requirement for obtaining a Schengen Visa."
+      },
+      {
+        title: "Financial Means:",
+        desc: "Travelers are required to provide evidence of sufficient funds to cover their stay in the Schengen Area."
+      },
+      {
+        title: "Purpose of Visit:",
+        desc: "The Schengen Visa is issued for various purposes, including tourism, business meetings, family visits, conferences, and cultural or sporting events."
+      },
+      {
+        title: "Schengen Information System (SIS):",
+        desc: "The Schengen Information System is a shared database that allows member states to exchange information about individuals, ensuring border security and preventing individuals with entry bans from entering the Schengen Area."
+      },
+    ]
+  }
+}
