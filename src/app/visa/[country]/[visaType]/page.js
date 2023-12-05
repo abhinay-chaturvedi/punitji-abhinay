@@ -1,6 +1,13 @@
 // const { Container } = require("@mui/material")
 import { Box, Container, Typography } from "@mui/material";
-import { australiaVisa, canadaVisa, germanyVisa, uaeVisa, ukVisa, usaVisa } from "./data";
+import {
+  australiaVisa,
+  canadaVisa,
+  germanyVisa,
+  uaeVisa,
+  ukVisa,
+  usaVisa,
+} from "./data";
 
 const Page = ({ params }) => {
   console.log("🚀 ~ file: page.js:6 ~ Page ~ params:", params);
@@ -18,6 +25,16 @@ const Page = ({ params }) => {
                 mt: "5px",
               }}
             >
+              <Typography
+                sx={{
+                  fontWeight: "bold",
+                  textAlign: "center",
+                  fontSize: "25px",
+                  marginY: "10px",
+                }}
+              >
+                {canada.heading}
+              </Typography>
               <Typography>{canada.title}</Typography>
               <Typography>{canada.pointsTitle}</Typography>
               <Box sx={{ ml: "30px" }} component="ul">
@@ -51,6 +68,17 @@ const Page = ({ params }) => {
                 mt: "5px",
               }}
             >
+              <Typography
+                sx={{
+                  fontWeight: "bold",
+                  textAlign: "center",
+                  fontSize: "25px",
+                  marginY: "10px",
+                }}
+              >
+                {australia.heading}
+              </Typography>
+
               <Typography>{australia.title}</Typography>
               <Typography>{australia.pointsTitle}</Typography>
               <Box sx={{ ml: "30px" }} component="ul">
@@ -96,6 +124,17 @@ const Page = ({ params }) => {
                 mt: "5px",
               }}
             >
+              <Typography
+                sx={{
+                  fontWeight: "bold",
+                  textAlign: "center",
+                  fontSize: "25px",
+                  marginY: "10px",
+                }}
+              >
+                {germany.heading}
+              </Typography>
+
               <Typography>{germany.title}</Typography>
               <Typography>{germany.pointsTitle}</Typography>
               <Box sx={{ ml: "30px" }} component="ul">
@@ -141,6 +180,17 @@ const Page = ({ params }) => {
                 mt: "5px",
               }}
             >
+              <Typography
+                sx={{
+                  fontWeight: "bold",
+                  textAlign: "center",
+                  fontSize: "25px",
+                  marginY: "10px",
+                }}
+              >
+                {usa.heading}
+              </Typography>
+
               <Typography>{usa.title}</Typography>
               <Typography>{usa.pointsTitle}</Typography>
               <Box sx={{ ml: "30px" }} component="ul">
@@ -186,6 +236,17 @@ const Page = ({ params }) => {
                 mt: "5px",
               }}
             >
+              <Typography
+                sx={{
+                  fontWeight: "bold",
+                  textAlign: "center",
+                  fontSize: "25px",
+                  marginY: "10px",
+                }}
+              >
+                {uk.heading}
+              </Typography>
+
               <Typography>{uk.title}</Typography>
               <Typography>{uk.pointsTitle}</Typography>
               <Box sx={{ ml: "30px" }} component="ul">
@@ -231,6 +292,17 @@ const Page = ({ params }) => {
                 mt: "5px",
               }}
             >
+              <Typography
+                sx={{
+                  fontWeight: "bold",
+                  textAlign: "center",
+                  fontSize: "25px",
+                  marginY: "10px",
+                }}
+              >
+                {uae.heading}
+              </Typography>
+
               <Typography>{uae.title}</Typography>
               <Typography>{uae.pointsTitle}</Typography>
               <Box sx={{ ml: "30px" }} component="ul">
