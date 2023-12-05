@@ -1,45 +1,46 @@
-import MediaCard from '@/components/Media/Media'
-import styles from './page.module.css'
-import NavBar from '@/components/NavBar/NavBar'
-import PartnerCompanies from '@/components/PartnerCompanies/PartnerCompanies'
-import ContactForm from '@/components/ContactForm/ContactForm'
-import ServiceDatail from '@/components/HomePage/ServiceDetail/ServiceDatail'
-import AboutUs from '@/components/HomePage/AboutUs/AboutUs'
-import WhatWeOffer from '@/components/HomePage/WhatWeOffer/WhatWeOffer'
-import {Box, Stack} from "@mui/material"
-import WhyChooseUs from '@/components/HomePage/WhyChooseUs/WhyChooseUs'
-import HeroSection from '@/components/HomePage/HeroSection/HeroSection'
-import ChooseCountry from '@/components/HomePage/ChooseCountry/ChooseCountry'
-import ClientSays from '@/components/HomePage/ClientSays/ClientSays'
-import Blogs from '@/components/HomePage/Blogs/Blogs'
-import Analytics from '@/components/HomePage/Anayltics/Analytics'
-import { useLogin } from '@/hooks/auth'
-import { cookies } from 'next/headers'
-import getUser from '@/services/client/getUser'
-import Footer from '@/components/Footer'
+import MediaCard from "@/components/Media/Media";
+import styles from "./page.module.css";
+import NavBar from "@/components/NavBar/NavBar";
+import PartnerCompanies from "@/components/PartnerCompanies/PartnerCompanies";
+import ContactForm from "@/components/ContactForm/ContactForm";
+import ServiceDatail from "@/components/HomePage/ServiceDetail/ServiceDatail";
+import AboutUs from "@/components/HomePage/AboutUs/AboutUs";
+import WhatWeOffer from "@/components/HomePage/WhatWeOffer/WhatWeOffer";
+import { Box, Stack } from "@mui/material";
+import WhyChooseUs from "@/components/HomePage/WhyChooseUs/WhyChooseUs";
+import HeroSection from "@/components/HomePage/HeroSection/HeroSection";
+import ChooseCountry from "@/components/HomePage/ChooseCountry/ChooseCountry";
+import ClientSays from "@/components/HomePage/ClientSays/ClientSays";
+import Blogs from "@/components/HomePage/Blogs/Blogs";
+import Analytics from "@/components/HomePage/Anayltics/Analytics";
+import { useLogin } from "@/hooks/auth";
+import { cookies } from "next/headers";
+import getUser from "@/services/client/getUser";
+import Footer from "@/components/Footer";
 export default async function Home() {
   // console.log("server//////////////////////////////////////////////////////////")
   const token = cookies().get("token");
-  console.log("hello from the this side", token)
+  console.log("hello from the this side", token);
   // const user = await getUser();
   return (
     <Box>
-      <NavBar/>
+      <NavBar />
       <Stack gap={5}>
-        <HeroSection/>
-        <ServiceDatail/>
-        <AboutUs/>
-        <Analytics/>
-        <WhatWeOffer/>
-        <WhyChooseUs/>
-        <ChooseCountry/>
-        <ClientSays/>
-        <ContactForm/>
-        <Blogs/>
-        <Footer/>
+        <HeroSection />
+        <Box sx={{display: {md: "none"}}}>
+          <ContactForm />
+        </Box>
+        <ServiceDatail />
+        <AboutUs />
+        <Analytics />
+        <WhatWeOffer />
+        <WhyChooseUs />
+        <ClientSays />
+        <Blogs />
+        <Footer />
       </Stack>
     </Box>
-  )
+  );
 }
 // "@keyframes ripple-wave": {
 //   "0%": {

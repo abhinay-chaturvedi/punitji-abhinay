@@ -18,9 +18,9 @@ const HeroSection = () => {
             </Box>
         </Box> */}
         <Carousel>
-          <HeroSectionItem color="gray" imgUrl={"/images/main1.jpeg"}/>
-          <HeroSectionItem color="green" imgUrl={"/images/main2.jpeg"}/>
-          <HeroSectionItem color="Yellow" imgUrl={"/images/main3.jpeg"}/>
+          <HeroSectionItem color="gray" imgUrl={"/images/hero1.jpg"}/>
+          <HeroSectionItem color="green" imgUrl={"/images/hero2.jpg"}/>
+          <HeroSectionItem color="Yellow" imgUrl={"/images/hero3.jpg"}/>
         </Carousel>
     </Box>
   )
