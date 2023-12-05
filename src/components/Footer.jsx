@@ -21,8 +21,8 @@ const Footer = () => {
               <Image
                 style={{ borderRadius: "20px" }}
                 src="/images/logo.png"
-                width={250}
-                height={60}
+                width={200}
+                height={50}
               />
             </Box>
             <Typography sx={{color: "gray", mb: "20px"}}>

@@ -42,7 +42,7 @@ export default function ContactForm() {
   };
 
   return (
-    <Box sx={{ maxWidth: {xs: 350, md: 400}, margin: '5px auto', bgcolor: 'white', color: "black", opacity: 1, p: 3, boxShadow: "1px 1px 5px 5px #d8e1f0" }}>
+    <Box sx={{ maxWidth: {xs: 350, md: 400}, margin: '5px auto', bgcolor: 'whitesmoke', color: "black", opacity: 1, p: 3,  }}>
       <Typography variant="h4" fontWeight="bold" gutterBottom>
         Anytime Consulting
       </Typography>
@@ -59,7 +59,7 @@ export default function ContactForm() {
           onChange={handleChange}
           margin="normal"
           // color='black'
-          // sx={{color: "black", fontWeight: "bold"}}
+          sx={{input: {color: "black", fontWeight: "600"},"&::placeholder": {color: "black", fontWeight: "600"}}}
         />
         <TextField
           fullWidth

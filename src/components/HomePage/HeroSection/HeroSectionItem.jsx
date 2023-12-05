@@ -21,13 +21,13 @@ const HeroSectionItem = ({ color, imgUrl }) => {
       <Image
         objectFit="cover"
         layout="fill"
-        style={{ animation: "updown 3s ease-in-out infinite alternate" }}
+        style={{ animation: "updown 3s ease-in-out infinite alternate", filter: "grayscale(100%)"}}
         src={imgUrl}
       />
       <Box
         sx={{
           position: "absolute",
-          bgcolor: "whitesmoke",
+          // bgcolor: "whitesmoke",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
