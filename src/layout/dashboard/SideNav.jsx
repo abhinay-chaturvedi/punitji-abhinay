@@ -16,6 +16,8 @@ import { useTheme } from '@mui/material/styles';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 // import { Logo } from 'src/components/logo';
 import { Scrollbar } from '@/components/scrollbar';
+import Image from 'next/image';
+import Link from 'next/link';
 // import { items } from './config';
 // import { SideNavItem } from './side-nav-item';
 
@@ -36,7 +38,7 @@ export const SideNav = (props) => {
         '& .simplebar-scrollbar:before': {
           background: 'neutral.400'
         },
-        bgcolor: "rgb(28, 37, 54)"
+        bgcolor: "gray"
       }}
     >
       <Box
@@ -51,15 +53,17 @@ export const SideNav = (props) => {
             component={NextLink}
             href="/"
             sx={{
-              display: 'inline-flex',
-              height: 32,
-              width: 32
+              display: 'flex',
+              alignItems: "center",
+              justifyContent: "center"
             }}
           >
             {/* <Logo /> */}
-            logo
+            <Image height={50} width={200} src={"/images/logo.png"}/>
           </Box>
           <Box
+          component={Link}
+          href={"/admin"}
             sx={{
               alignItems: 'center',
               backgroundColor: 'rgba(255, 255, 255, 0.04)',
@@ -99,83 +103,26 @@ export const SideNav = (props) => {
         >
           <Stack
             component="ul"
-            spacing={0.5}
+            spacing={1}
             sx={{
               listStyle: 'none',
               p: 0,
-              m: 0
+              m: 0,
+              // display: "flex",
+              // flex
             }}
           >
-            {/* {items.map((item) => {
-              const active = item.path ? (pathname === item.path) : false;
-
-              return (
-                <SideNavItem
-                  active={active}
-                  disabled={item.disabled}
-                  external={item.external}
-                  icon={item.icon}
-                  key={item.title}
-                  path={item.path}
-                  title={item.title}
-                />
-              );
-            })} */}
-            items
+            <Stack component={Link} href={"/admin/client"} sx={{display: "flex",borderRadius: "5px", p: "10px", bgcolor: "rgba(255, 255, 255, 0.07)"}}>
+              Clients
+            </Stack>
+            <Stack component={Link} href={"/admin/partner"} sx={{display: "flex",borderRadius: "5px", p: "10px", bgcolor: "rgba(255, 255, 255, 0.07)"}}>
+              Partners
+            </Stack>
+            
           </Stack>
         </Box>
         <Divider sx={{ borderColor: 'neutral.700' }} />
-        <Box
-          sx={{
-            px: 2,
-            py: 3
-          }}
-        >
-          <Typography
-            color="neutral.100"
-            variant="subtitle2"
-          >
-            Need more features?
-          </Typography>
-          <Typography
-            color="neutral.500"
-            variant="body2"
-          >
-            Check out our Pro solution template.
-          </Typography>
-          <Box
-            sx={{
-              display: 'flex',
-              mt: 2,
-              mx: 'auto',
-              width: '160px',
-              '& img': {
-                width: '100%'
-              }
-            }}
-          >
-            <img
-              alt="Go to pro"
-              src="/assets/devias-kit-pro.png"
-            />
-          </Box>
-          <Button
-            component="a"
-            endIcon={(
-              <SvgIcon fontSize="small">
-                {/* <ArrowTopRightOnSquareIcon /> */}
-                arrow icon
-              </SvgIcon>
-            )}
-            fullWidth
-            href="https://material-kit-pro-react.devias.io/"
-            sx={{ mt: 2 }}
-            target="_blank"
-            variant="contained"
-          >
-            Pro Live Preview
-          </Button>
-        </Box>
+        
       </Box>
     </Scrollbar>
   );

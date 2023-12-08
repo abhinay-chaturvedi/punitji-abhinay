@@ -25,13 +25,13 @@ export default async function Home() {
   // const user = await getUser();
   return (
     <Box>
-      <Box
+      {/* <Box
         sx={{ position: "fixed", bgcolor: "whitesmoke",opacity: .9, display: "flex", justifyContent: "center", alignItems: "center", zIndex: 100, width: "100%", height: "100%" }}
       >
         <Box sx={{height: "70%", position: "relative", width: "70%"}}>
           <Image layout="fill" src={"/images/banner.png"} />
         </Box>
-      </Box>
+      </Box> */}
       <NavBar />
       <Stack gap={5}>
         <HeroSection />
