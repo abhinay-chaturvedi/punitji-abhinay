@@ -7,6 +7,7 @@ import { useCallback } from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import PartnerInfo from "./PartnerInfo";
+import Steps from "./steps";
 
 const Page = ({ params }) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -309,11 +310,7 @@ const Page = ({ params }) => {
                 Process Status
               </Typography>
             </Box>
-            {client.steps == null ? (
-              <Typography>Process Not started Please have a look.</Typography>
-            ) : (
-              <Box>hello</Box>
-            )}
+            <Steps client={client}/>
           </Box>
         </Box>
       </Container>

@@ -41,10 +41,10 @@ export default function DataTable({rows=[], columns=[]}) {
         columns={columns}
         initialState={{
           pagination: {
-            paginationModel: { page: 0, pageSize: 10 },
+            paginationModel: { page: 0, pageSize: 15 },
           },
         }}
-        pageSizeOptions={[5, 10]}
+        pageSizeOptions={[5, 10, 15]}
         // checkboxSelection
         onRowClick={(params, event, details) => console.log(params, event, details)}
       />
