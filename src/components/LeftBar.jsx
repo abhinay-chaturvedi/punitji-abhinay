@@ -81,10 +81,10 @@ const LeftBar = ({ userDetail }) => {
           {userDetail.role === "PARTNER" && (
             <Box
               component={Link}
-              href={`/partner/?page=pclients`}
+              href={`/partner/?page=cases`}
               sx={{
                 color: "#520670",
-                bgcolor: q === "pclients" ? "white" : "",
+                bgcolor: q === "cases" ? "white" : "",
                 display: "flex",
                 gap: 2,
                 alignItems: "center",
@@ -96,7 +96,7 @@ const LeftBar = ({ userDetail }) => {
                 component="span"
                 sx={{ color: "black", fontWeight: "bold" }}
               >
-                Processed Clients
+                My Cases
               </Typography>
             </Box>
           )}

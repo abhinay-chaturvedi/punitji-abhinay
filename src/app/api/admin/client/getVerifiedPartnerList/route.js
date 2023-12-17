@@ -6,7 +6,7 @@ const GET = async (req) => {
     try {
         const prismaResult = await prisma.partner.findMany({
             where: {
-                isVerified: false
+                isVerified: true
             }
         })
         return NextResponse.json({status: 200, message: "success", data: prismaResult}, {status: 200});

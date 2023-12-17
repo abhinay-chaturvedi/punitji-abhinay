@@ -23,6 +23,8 @@ import AssignedClient from "@/components/PartnerDashboard/AssignedClients/Assign
 import Profile from "@/components/PartnerDashboard/Profile/Profile";
 import Loader from "@/components/Loader";
 import WithUserContext from "@/hocs/WithUserContext";
+import ClientList from "./ClientList";
+import Client from "./Client";
 
 const Page = () => {
   const router = useRouter();
@@ -46,6 +48,7 @@ const Page = () => {
   };
   const searchParams = useSearchParams();
   const q = searchParams.get("page");
+  const ClientId = searchParams.get("clientId");
   useEffect(() => {
     setIsOpened(false);
   }, [q]);
@@ -123,7 +126,8 @@ const Page = () => {
           <Box sx={{ minHeight: "100vh" }}>
             {!q && <Profile />}
             {q === "documents" ? <DocumentPage /> : null}
-            {q === "process" ? <ProcessPage /> : null}
+            {q === "cases" && !ClientId ? <ClientList /> : null}
+            {q === "cases" && !!ClientId ? <Client params={{clientId: ClientId}} /> : null}
             {q === "aclients" ? <AssignedClient /> : null}
             {/* {q==="process"? <ProcessPage/>: null} */}
           </Box>

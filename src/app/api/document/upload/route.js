@@ -1,6 +1,6 @@
 import prisma from "@/prisma/connect";
 
-const { NextResponse } = require("next/server")
+const { NextResponse, NextRequest } = require("next/server")
 
 const POST = async (req) => {
     try {
@@ -45,4 +45,12 @@ const POST = async (req) => {
         return NextResponse.json({status: 500, err: err, message: "something went wrong!"}, {status: 500});
     }
 }
-export { POST }
+const GET = async (req) => {
+    try {
+        const prismaResult = await prisma.document.findMany();
+        return NextResponse.json({status: 200, message: "success", data: prismaResult}, {status: 200});
+    } catch(err) {
+        return NextResponse.json({status: 500, message: "something went wrong!", err: err}, {status: 500})
+    }
+}
+export { POST, GET }

@@ -59,7 +59,7 @@ const PartnerInfo = ({ client }) => {
             }
         })
         const result = await res.json();
-        // console.log("🚀 ~ file: PartnerInfo.js:59 ~ getVerifiedPartnerList ~ result:", result)
+        console.log("🚀 ~ file: PartnerInfo.js:59 ~ getVerifiedPartnerList ~ result:", result)
         if(result.status == 200) {
             setPartnerList(result.data);
         }
