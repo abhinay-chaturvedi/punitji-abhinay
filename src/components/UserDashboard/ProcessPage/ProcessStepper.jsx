@@ -6,7 +6,32 @@ import ForwardIcon from '@mui/icons-material/Forward';
 // import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import UnpublishedIcon from '@mui/icons-material/Unpublished';
 import VerifiedIcon from '@mui/icons-material/Verified';
-const DocumentStepper = () => {
+const DocumentStepper = ({userDetail}) => {
+    console.log("🚀 ~ file: ProcessStepper.jsx:10 ~ DocumentStepper ~ userDetail:", userDetail)
+    const [isLoadingSteps, setIsLoadingSteps] = useState(true);
+    const [steps, setSteps] = useState(null);
+    const getProcessSteps = async () => {
+        try {
+            const userId = userDetail.id || "";
+            const res = await fetch(`/api/client/steps?userId=${userId}`, {
+                method: "GET",
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            })
+            const result = await res.json();
+            console.log("🚀 ~ file: ProcessStepper.jsx:22 ~ getProcessSteps ~ result:", result)
+            if(result.status == 200) {
+                setSteps(result.data);
+            }
+            setIsLoadingSteps(false);
+        } catch(err) {
+            console.log("🚀 ~ file: ProcessStepper.jsx:15 ~ getProcessSteps ~ err:", err) 
+            setIsLoadingSteps(false);
+        }
+    }
+    useEffect(() => {
+        getProcessSteps();
+    }, [])
   return (
     <Box>
         <Stack>

@@ -19,7 +19,7 @@ import ProcessPage from "@/components/UserDashboard/ProcessPage/ProcessPage";
 import getUser from "@/services/client/getUser";
 import { setUser } from "@/contexts/user/action";
 import { useLogin } from "@/hooks/auth";
-import AssignedClient from "@/components/PartnerDashboard/AssignedClients/AssignedClient";
+import MyDocuments from "@/components/PartnerDashboard/MyDocuments/MyDocuments";
 import Profile from "@/components/PartnerDashboard/Profile/Profile";
 import Loader from "@/components/Loader";
 import WithUserContext from "@/hocs/WithUserContext";
@@ -128,7 +128,7 @@ const Page = () => {
             {q === "documents" ? <DocumentPage /> : null}
             {q === "cases" && !ClientId ? <ClientList /> : null}
             {q === "cases" && !!ClientId ? <Client params={{clientId: ClientId}} /> : null}
-            {q === "aclients" ? <AssignedClient /> : null}
+            {q === "aclients" ? <MyDocuments /> : null}
             {/* {q==="process"? <ProcessPage/>: null} */}
           </Box>
         </Grid>

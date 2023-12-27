@@ -143,7 +143,7 @@ const LeftBar = ({ userDetail }) => {
                 component="span"
                 sx={{ color: "black", fontWeight: "bold" }}
               >
-                Assigned Clients
+                My Documents
               </Typography>
             </Box>
           )}

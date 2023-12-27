@@ -232,6 +232,7 @@ function NavBar() {
                     onClick={() => {
                       handleLogout();
                       window.location.reload();
+                      window.location.href = "/"
                       handleCloseUserMenu();
                     }}
                   >

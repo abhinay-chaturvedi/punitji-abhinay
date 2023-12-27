@@ -126,7 +126,7 @@ const Page = () => {
             {q === "documents" ? (
               <DocumentPage documents={userDetail?.documents} />
             ) : null}
-            {q === "process" ? <ProcessPage /> : null}
+            {q === "process" ? <ProcessPage userDetail={userState} /> : null}
           </Box>
         </Grid>
       </Grid>
