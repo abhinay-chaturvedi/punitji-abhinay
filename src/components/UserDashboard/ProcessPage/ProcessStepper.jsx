@@ -6,6 +6,7 @@ import ForwardIcon from '@mui/icons-material/Forward';
 // import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import UnpublishedIcon from '@mui/icons-material/Unpublished';
 import VerifiedIcon from '@mui/icons-material/Verified';
+import Loader from '@/components/Loader';
 const DocumentStepper = ({userDetail}) => {
     console.log("🚀 ~ file: ProcessStepper.jsx:10 ~ DocumentStepper ~ userDetail:", userDetail)
     const [isLoadingSteps, setIsLoadingSteps] = useState(true);
@@ -32,16 +33,40 @@ const DocumentStepper = ({userDetail}) => {
     useEffect(() => {
         getProcessSteps();
     }, [])
+    if(isLoadingSteps) {
+        return (
+            <Box sx={{display: "flex", width: "100%", height: "90vh"}}>
+                <Loader/>
+            </Box>
+        )
+    }
+    if(!steps) {
+        return (
+            <Box>
+                <Typography>Process has not started yet</Typography>
+            </Box>
+        )
+    }
   return (
     <Box>
         <Stack>
-            <Row marked={true}/>
+            <Row step={"Assessment"} marked={steps.assessment}/>
             <Divider  flexItem />
-            <Row marked={true}/>
+            <Row step={"Visa Selection"} marked={steps.visaSelection}/>
             <Divider  flexItem />
-            <Row marked={false}/>
+            <Row step={"Sign Contract"} marked={steps.signContract}/>
             <Divider  flexItem />
-            <Row marked={false}/>
+            <Row step={"Documents"} marked={steps.documents}/>
+            <Divider  flexItem />
+            <Row step={"File Processing"} marked={steps.fileProcessing}/>
+            <Divider  flexItem />
+            <Row step={"File Review"} marked={steps.fileReview}/>
+            <Divider  flexItem />
+            <Row step={"File Submitted"} marked={steps.fileSubmitted}/>
+            <Divider  flexItem />
+            <Row step={"Update"} marked={steps.update}/>
+            <Divider  flexItem />
+            <Row step={"Final Result"} marked={steps.finalResult}/>
             <Divider  flexItem />
         </Stack>
     </Box>
@@ -50,18 +75,18 @@ const DocumentStepper = ({userDetail}) => {
 
 export default DocumentStepper
 
-const Row = ({marked}) => {
+const Row = ({marked, step}) => {
     
-    const [completedDate, setCompletedDate] = useState("");
-    useEffect(() => {
-        const date = new Date();
-        const string = date.toLocaleString();
-        setCompletedDate(string);
-    })
+    // const [completedDate, setCompletedDate] = useState("");
+    // useEffect(() => {
+    //     const date = new Date();
+    //     const string = date.toLocaleString();
+    //     setCompletedDate(string);
+    // })
     return (
         <Stack direction="row" alignItems="center">
                 <Box flex={1} sx={{display: "flex", flexDirection: "column", alignItems: "center"}}>
-                    <Box sx={{width: 3, height: 20, bgcolor: "#eae1ca"}}></Box>
+                    <Box sx={{width: 3, height: 5, bgcolor: "#eae1ca"}}></Box>
                     <Box
                      sx={{border: "3px solid #eae1ca", bgcolor: "white", borderRadius: "50%", padding: "2px", width: 40, height: 40, display: "flex", justifyContent: "center", alignItems: "center"}}>
                         {marked? <VerifiedIcon/>: <UnpublishedIcon/>}
@@ -73,8 +98,8 @@ const Row = ({marked}) => {
                 </Box>
                 <Box  flex={10} sx={{display: "flex", justifyContent: "space-between",alignItems: "center"}}>
                 <Box>
-                    <Typography>Passport</Typography>
-                    <Typography>{completedDate}</Typography>
+                    <Typography>{step}</Typography>
+                    {/* <Typography>{completedDate}</Typography> */}
                 </Box>
                 <Typography sx={{mr: "10px", color: marked? "green": "gray", fontWeight: "bold"}}>{marked? "Completed": "Under Process"}</Typography>
                 </Box>

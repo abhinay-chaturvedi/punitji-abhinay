@@ -124,7 +124,7 @@ const Page = () => {
           <Box sx={{ minHeight: "100vh" }}>
             {!q && <ProfileDetailPage />}
             {q === "documents" ? (
-              <DocumentPage documents={userDetail?.documents} />
+              <DocumentPage />
             ) : null}
             {q === "process" ? <ProcessPage userDetail={userState} /> : null}
           </Box>

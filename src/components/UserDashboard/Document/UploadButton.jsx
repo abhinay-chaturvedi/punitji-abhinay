@@ -24,8 +24,8 @@ export default function InputFileUpload({doc_id, setFileName, fileName}) {
     
     const [uploadText, setUploadText] = React.useState("upload");
     const [file, setFile] = React.useState(null);
-    const User = useLogin();
-    console.log(User);
+    // const User = useLogin();
+    // console.log(User);
     const user = React.useContext(UserContext);
     const handleChange = async (e) => {
         try {
@@ -40,8 +40,8 @@ export default function InputFileUpload({doc_id, setFileName, fileName}) {
             console.log("🚀 ~ file: UploadButton.jsx:31 ~ handleChange ~ file:", file_0)
             setFileName(file_0.name);
             setFile(file_0);
-            console.log(User.role.toLowerCase(), User.email);
-            console.log("🚀 ~ file: UploadButton.jsx:35 ~ handleChange ~ formData:", formData)
+            // console.log(User.role.toLowerCase(), User.email);
+            // console.log("🚀 ~ file: UploadButton.jsx:35 ~ handleChange ~ formData:", formData)
              
         } catch(err) {
             console.log("🚀 ~ file: UploadButton.jsx:34 ~ handleChange ~ err:", err)
@@ -53,17 +53,17 @@ export default function InputFileUpload({doc_id, setFileName, fileName}) {
         setUploadText("uploading...")
         try {
             const formData = new FormData();
-            formData.append("role", User.role.toLowerCase());
+            formData.append("role", user.state.role.toLowerCase());
             formData.append("file", file);
-            formData.append('email', User.email);
+            formData.append('userId', user.state.id);
             formData.append('doc_id', doc_id);
             const res = await uploadfile(formData);
             console.log("🚀 ~ file: UploadButton.jsx:35 ~ handleChange ~ res:", res);
-            setFileName(null);
-            if(res && res.prismaData && res.prismaData.documents){
-                user.dispatch(setUserDocuments(res.prismaData.documents));
-            }
-            console.log(res.prismaData.documents)
+            // setFileName(null);
+            // if(res && res.prismaData && res.prismaData.documents){
+            //     user.dispatch(setUserDocuments(res.prismaData.documents));
+            // }
+            console.log(res.data.documents)
             if(res.status === 200)
             setUploadText("uploaded")
             else setUploadText("upload");

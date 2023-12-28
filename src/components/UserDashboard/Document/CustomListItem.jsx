@@ -38,7 +38,7 @@ const CustomListItem = ({ item }) => {
           <Box sx={{display: "flex", flexDirection: "column", alignItems: "center"}}>
             {
                 item.url? (
-                        <Button target='_blank' href={item.url} component="a" sx={{textTransform: "capitalize"}} startIcon={<VisibilityIcon />}>
+                        <Button target='_blank' href={item.url}  component="a" sx={{textTransform: "capitalize"}} startIcon={<VisibilityIcon />} download>
                             <Typography>view</Typography>
                         </Button>
                 ): (

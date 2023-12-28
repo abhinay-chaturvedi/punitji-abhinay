@@ -1,4 +1,4 @@
-import { Box } from '@mui/material'
+import { Box, CardMedia } from '@mui/material'
 import React from 'react'
 import useEmblaCarousel from 'embla-carousel-react'
 import HeroSectionItem from './HeroSectionItem'
@@ -17,11 +17,17 @@ const HeroSection = () => {
                 <HeroSectionItem color="Yellow"/>
             </Box>
         </Box> */}
-        <Carousel>
+        {/* <Carousel>
           <HeroSectionItem color="gray" imgUrl={"/images/hero1.jpg"}/>
           <HeroSectionItem color="green" imgUrl={"/images/hero2.jpg"}/>
           <HeroSectionItem color="Yellow" imgUrl={"/images/hero3.jpg"}/>
-        </Carousel>
+        </Carousel> */}
+        <CardMedia
+            component='video'
+            // className={classes.media}
+            image={"http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"}
+            autoPlay
+        />
     </Box>
   )
 }
