@@ -11,16 +11,18 @@ const tableContent = [
     name: "PR Visa",
   },
 ];
-const WhatWeOfferCard = ({ country, cardContent = [] }) => {
+const WhatWeOfferCard = ({ country, imgUrl, cardContent = [] }) => {
   return (
     <Box
       sx={{
         bgcolor: "#fff",
         p: "25px",
         height: "100%",
+        minHeight: "300px",
         width: "100%",
         borderRadius: "10px",
         boxShadow: "0 0 40px 5px rgb(0 0 0 / 5%);",
+        position: "relative",
       }}
     >
       <Box>
@@ -49,6 +51,24 @@ const WhatWeOfferCard = ({ country, cardContent = [] }) => {
             </Box>
           );
         })}
+      </Box>
+      <Box
+        sx={{
+          position: "absolute",
+          "&:hover": { display: "none" },
+          height: "100%",
+          top: 0,
+          left: 0,
+          width: "100%",
+          bgcolor: "whitesmoke",
+        }}
+      >
+        <Image
+          style={{ borderRadius: "10px" }}
+          layout={"fill"}
+          // objectFit="contain"
+          src={imgUrl}
+        />
       </Box>
     </Box>
   );

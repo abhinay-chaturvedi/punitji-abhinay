@@ -69,7 +69,7 @@ function NavBar() {
     localStorage.removeItem('user');
   }
   return (
-    <AppBar sx={{ background: "white", top: 0 }} position="static">
+    <AppBar sx={{ background: "white", top: 0 }} position="sticky">
       <Container sx={{ bgcolor: "white" }}>
         <Toolbar disableGutters sx={{ height: "85px" }}>
           <Box
@@ -295,7 +295,7 @@ function NavBar() {
     </AppBar>
   );
 }
-export default WithUserContext(NavBar);
+export default NavBar;
 // {"@keyframes inAnimation": {
 //   "0%": {
 //     opacity: 0,

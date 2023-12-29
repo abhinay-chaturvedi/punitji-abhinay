@@ -22,6 +22,8 @@ export default async function Home() {
   // console.log("server//////////////////////////////////////////////////////////")
   const token = cookies().get("token");
   console.log("hello from the this side", token);
+  console.log("server or client?--------------------------------------------000000000000")
+
   // const user = await getUser();
   return (
     <Box>
@@ -38,13 +40,13 @@ export default async function Home() {
         <Box sx={{ display: { md: "none" } }}>
           <ContactForm />
         </Box>
-        <ServiceDatail />
-        <AboutUs />
-        <Analytics />
+        {/* <ServiceDatail /> */}
+        {/* <AboutUs /> */}
+        {/* <Analytics /> */}
         <WhatWeOffer />
         <WhyChooseUs />
         <ClientSays />
-        <Blogs />
+        {/* <Blogs /> */}
         <Footer />
       </Stack>
     </Box>

@@ -23,7 +23,7 @@ const WhatWeOffer = () => {
           <Typography
             component="span"
             sx={{
-              color: "#FF0000",
+              color: "#808080",
               fontWeight: "bold",
               fontSize: "18px",
               textTransform: "uppercase",
@@ -34,7 +34,7 @@ const WhatWeOffer = () => {
           <Typography
             component="h2"
             sx={{
-              color: "#031F4B",
+              color: "",
               fontWeight: "bold",
               textTransform: "capitalize",
               fontSize: matches ? "45px" : "35px",
@@ -45,26 +45,28 @@ const WhatWeOffer = () => {
         </Box>
         <Grid container rowGap={5} justifyContent="space-between">
           <Grid item xs={12} sm={5.7} md={3.7}>
-            <WhatWeOfferCard country="canada" cardContent={canadaVisaList} />
+            <WhatWeOfferCard country="canada" imgUrl={"/images/Canada.png"} cardContent={canadaVisaList} />
           </Grid>
           <Grid item xs={12} sm={5.7} md={3.7}>
             <WhatWeOfferCard
               country={"australia"}
+              imgUrl={"/images/Australia.png"}
               cardContent={australiaVisaList}
             />
           </Grid>
           <Grid item xs={12} sm={5.7} md={3.7}>
-            <WhatWeOfferCard country={"usa"} cardContent={usaVisaList} />
+            <WhatWeOfferCard country={"usa"} imgUrl={"/images/USA.png"} cardContent={usaVisaList} />
           </Grid>
           <Grid item xs={12} sm={5.7} md={3.7}>
-            <WhatWeOfferCard country={"uk"} cardContent={ukVisaList} />
+            <WhatWeOfferCard country={"uk"} imgUrl={"/images/UK.png"} cardContent={ukVisaList} />
           </Grid>
           <Grid item xs={12} sm={5.7} md={3.7}>
-            <WhatWeOfferCard country={"uae"} cardContent={uaeVisaList} />
+            <WhatWeOfferCard country={"uae"} imgUrl={"/images/UAE.png"} cardContent={uaeVisaList} />
           </Grid>
           <Grid item xs={12} sm={5.7} md={3.7}>
             <WhatWeOfferCard
               country={"germany"}
+              imgUrl={"/images/Germany.png"}
               cardContent={germanyVisaList}
             />
           </Grid>
