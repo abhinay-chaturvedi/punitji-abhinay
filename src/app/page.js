@@ -22,7 +22,7 @@ export default async function Home() {
   // console.log("server//////////////////////////////////////////////////////////")
   const token = cookies().get("token");
   console.log("hello from the this side", token);
-  console.log("server or client?--------------------------------------------000000000000")
+  // console.log("server or client?--------------------------------------------000000000000")
 
   // const user = await getUser();
   return (

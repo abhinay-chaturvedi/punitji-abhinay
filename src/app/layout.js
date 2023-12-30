@@ -1,6 +1,7 @@
-import UserContextProvider from "@/contexts/user/context";
+// import UserContextProvider from "@/contexts/user/context";
 import "./globals.css";
 import { Inter } from "next/font/google";
+import UserContextWithAuthGaurd from "@/contexts/user";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -13,7 +14,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <UserContextProvider>{children}</UserContextProvider>
+        {/* <UserContextProvider>{children}</UserContextProvider> */}
+        <UserContextWithAuthGaurd>{children}</UserContextWithAuthGaurd>
+        {/* {children} */}
       </body>
     </html>
   );

@@ -59,7 +59,7 @@ function NavBar() {
     const user = JSON.parse(localStorage.getItem("user"));
     setLoginUser(user);
     if (!userState.email) {
-      dispatchUserAction(setUser(user));
+      // dispatchUserAction(setUser(user));
     }
   }, []);
 

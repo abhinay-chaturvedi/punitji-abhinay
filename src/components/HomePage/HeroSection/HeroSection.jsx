@@ -32,10 +32,12 @@ const HeroSection = () => {
         sx={{ height: "100%", width: "100%", objectFit: "fill" }}
         component="video"
         // className={classes.media}
-        image={"http://localhost:5000/uploads/admin/1703866877212-30.mp4"}
         autoPlay
         loop
         // controls
+        muted
+        image={"https://upload.hhhimmigration.com/uploads/admin/1703922090069-30.mp4"}
+        
       />
     </Box>
   );

@@ -67,10 +67,10 @@ const Page = () => {
   const { state: userState, dispatch: dispatchUserAction } =
     useContext(UserContext);
   React.useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("user"));
-    if (!userState.email) {
-      dispatchUserAction(setUser(user));
-    }
+    // const user = JSON.parse(localStorage.getItem("user"));
+    // if (!userState.email) {
+      // dispatchUserAction(setUser(user));
+    // }
   }, []);
 
   if (isLoading) {
@@ -85,7 +85,7 @@ const Page = () => {
       <Grid container>
         <Grid item sx={sideBarStyle} md={2.5}>
           <Box sx={{ minHeight: "100vh", borderRight: "1px solid black" }}>
-            <LeftBar userDetail={loginUser} />
+            <LeftBar userDetail={userState} />
           </Box>
           {mdDown &&
             (!isOpened ? (
@@ -137,7 +137,7 @@ const Page = () => {
   );
 };
 
-export default WithUserContext(Page);
+export default Page;
 const animation = {
   animation: "animeBtn 2s linear infinite alternate",
   "@keyframes animeBtn": {

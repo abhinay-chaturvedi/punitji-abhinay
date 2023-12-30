@@ -61,14 +61,14 @@ const Page = () => {
     // if(User && User.email){
     // getUserDetail(User.email, User.role);
     // }
-    // const user = JSON.parse(localStorage.getItem("user"));
-    // console.log("🚀 ~ file: page.js:55 ~ React.useEffect ~ user:", user);
-    // if (user) {
+    const user = JSON.parse(localStorage.getItem("user"));
+    console.log("🚀 ~ file: page.js:55 ~ React.useEffect ~ user:", user);
+    if (user) {
       // getUserDetail(user.id);
       // dispatchUserAction(setUser(user));
-    // } else {
-    //   router.push("/login");
-    // }
+    } else {
+      router.push("/login");
+    }
     setIsLoading(false);
   }, []);
   if (isLoading) {
@@ -134,7 +134,7 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default WithUserContext(Page);
 const animation = {
   animation: "animeBtn 2s linear infinite alternate",
   "@keyframes animeBtn": {

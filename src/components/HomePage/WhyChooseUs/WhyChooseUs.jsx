@@ -23,12 +23,14 @@ const WhyChooseUs = () => {
                 sx={{ height: "100%", width: "100%", objectFit: "fill" }}
                 component="video"
                 // className={classes.media}
-                image={
-                  "http://localhost:5000/uploads/admin/1703875651600-Final%20Comp%20(1).mp4"
-                }
                 autoPlay
                 loop
                 // controls
+                muted
+                image={
+                  "https://upload.hhhimmigration.com/uploads/admin/1703922279234-Final%20Comp%20(1).mp4"
+                }
+                
               />
             </Box>
           </Grid>
