@@ -1,6 +1,6 @@
 'use client'
 import { Alert, Box, Button, Container, FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput, Typography } from '@mui/material';
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import Visibility from '@mui/icons-material/Visibility';
 import EmailIcon from '@mui/icons-material/Email';
 import VisibilityOff from '@mui/icons-material/VisibilityOff'
@@ -9,6 +9,8 @@ import { setLogin, useLogin } from '../../../hooks/auth';
 const emailPattern = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
 import { useRouter } from 'next/navigation'
 import Link from 'next/link';
+import { UserContext } from '@/contexts/user/context';
+import { setUser } from '@/contexts/user/action';
 
 
 const Login = () => {
@@ -21,6 +23,7 @@ const Login = () => {
   const [password, setPassword]  = useState("");
   const [error, setError] = useState(null);
   const router = useRouter()
+  const {state: userState, dispatch: dispatchUser} = useContext(UserContext);
   console.log(password)
   const handleClickShowPassword = () => setShowPassword((show) => !show);
   const handleMouseDownPassword = (event) => {
@@ -49,6 +52,7 @@ const Login = () => {
       console.log("result while login is!", JSON.stringify(res));
       // setLogin(res.data);
       localStorage.setItem("user", JSON.stringify(res.data));
+      dispatchUser(setUser(res.data));
       router.push("/")
       setIsClicked(false);
       setBtnText("Login");

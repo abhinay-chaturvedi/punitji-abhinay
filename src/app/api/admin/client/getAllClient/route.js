@@ -1,7 +1,7 @@
 // const { NextRequest } = require("next/server");
 import prisma from "@/prisma/connect";
 import { NextRequest, NextResponse } from "next/server";
-
+export const dynamic = "force-dynamic";
 const GET = async (req) => {
   try {
     const prismaResult = await prisma.user.findMany({
