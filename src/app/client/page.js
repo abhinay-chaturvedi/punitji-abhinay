@@ -127,6 +127,8 @@ const Page = () => {
               <DocumentPage />
             ) : null}
             {q === "process" ? <ProcessPage userDetail={userState} /> : null}
+            {q === "refer" ? <ProcessPage userDetail={userState} /> : null}
+            {q === "query" ? <ProcessPage userDetail={userState} /> : null}
           </Box>
         </Grid>
       </Grid>

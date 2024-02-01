@@ -10,7 +10,8 @@ import PeopleIcon from "@mui/icons-material/People";
 import AccessibilityNewIcon from "@mui/icons-material/AccessibilityNew";
 import { useSearchParams } from "next/navigation";
 import { UserContext } from "@/contexts/user/context";
-
+import SettingsInputAntennaIcon from '@mui/icons-material/SettingsInputAntenna';
+import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
 const LeftBar = ({ userDetail }) => {
   const searchParams = useSearchParams();
   // console.log("--------------------", searchParams)
@@ -122,6 +123,100 @@ const LeftBar = ({ userDetail }) => {
                 sx={{ color: "black", fontWeight: "bold" }}
               >
                 Documents
+              </Typography>
+            </Box>
+          )}
+          {userDetail.role === "PARTNER" && (
+            <Box
+              component={Link}
+              href={`/partner/?page=aclients`}
+              sx={{
+                color: "#520670",
+                bgcolor: q === "aclients" ? "white" : "",
+                display: "flex",
+                gap: 2,
+                alignItems: "center",
+                p: "10px",
+              }}
+            >
+              <PeopleIcon />
+              <Typography
+                component="span"
+                sx={{ color: "black", fontWeight: "bold" }}
+              >
+                My Documents
+              </Typography>
+            </Box>
+          )}
+          <Divider sx={{ width: "100%" }} />
+          {userDetail.role === "CLIENT" && (
+            <Box
+              component={Link}
+              href={`/${
+                userDetail.role === "CLIENT" ? "client" : "partner"
+              }/?page=refer`}
+              sx={{
+                color: "#520670",
+                bgcolor: q === "refer" ? "white" : "",
+                display: "flex",
+                gap: 2,
+                alignItems: "center",
+                p: "10px",
+              }}
+            >
+              <SettingsInputAntennaIcon />
+              <Typography
+                component="span"
+                sx={{ color: "black", fontWeight: "bold" }}
+              >
+                Reference
+              </Typography>
+            </Box>
+          )}
+          {/* {userDetail.role === "PARTNER" && (
+            <Box
+              component={Link}
+              href={`/partner/?page=aclients`}
+              sx={{
+                color: "#520670",
+                bgcolor: q === "aclients" ? "white" : "",
+                display: "flex",
+                gap: 2,
+                alignItems: "center",
+                p: "10px",
+              }}
+            >
+              <PeopleIcon />
+              <Typography
+                component="span"
+                sx={{ color: "black", fontWeight: "bold" }}
+              >
+                My Documents
+              </Typography>
+            </Box>
+          )} */}
+          <Divider sx={{ width: "100%" }} />
+          {userDetail.role === "CLIENT" && (
+            <Box
+              component={Link}
+              href={`/${
+                userDetail.role === "CLIENT" ? "client" : "partner"
+              }/?page=query`}
+              sx={{
+                color: "#520670",
+                bgcolor: q === "query" ? "white" : "",
+                display: "flex",
+                gap: 2,
+                alignItems: "center",
+                p: "10px",
+              }}
+            >
+              <QuestionMarkIcon />
+              <Typography
+                component="span"
+                sx={{ color: "black", fontWeight: "bold" }}
+              >
+                Query
               </Typography>
             </Box>
           )}

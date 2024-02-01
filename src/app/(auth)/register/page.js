@@ -24,7 +24,7 @@ import register from "@/services/auth/register";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 const emailPattern = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
-const adminRefId = "admin"
+const adminRefId = "admin";
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [btnText, setBtnText] = useState("Sign Up");
@@ -35,6 +35,10 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
   const [refId, setRefId] = useState(null);
+  const [enterCode, setEnterCode] = useState(null);
+  const [sentCode, setSentCode] = useState(null);
+  const [isRegistering, setIsRegistering] = useState(false);
+  const [isEmailSent, setIsEmailSent] = useState(false);
   const router = useRouter();
   console.log(password);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -42,9 +46,48 @@ const Register = () => {
     event.preventDefault();
     console.log("hi i am mouse down!");
   };
+  const HandleVerification = async () => {
+    try {
+      if(!enterCode) {
+        setError("Please enter verification code😉");
+        return null;
+      }
+      if(enterCode != sentCode) {
+        setError("Pleas enter valid code!🙁")
+        return ;
+      }
+      setIsRegistering(true);
+      const res = await register({ name, email, password, role });
+      if(res.status == 200){
+      console.log("successfully registered");
+      router.push("/login")
+      }
+      setIsRegistering(false);
+    } catch(err) {
+      console.log(err);
+      setIsRegistering(false);
+    }
+  }
+  const sendEmail = async () => {
+    try {
+      const res = await fetch("/api/sendEmail", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({ email: email }),
+      });
+      const result = await res.json();
+      return result;
+    } catch (err) {
+      console.log("error got in the sendemail", err);
+      return err;
+    }
+  };
   const handleRegister = async () => {
     // first need to validate the email and password
-    
+
     console.log(email, password);
     if (!email.match(emailPattern)) {
       setError("Email is not valid!");
@@ -52,26 +95,31 @@ const Register = () => {
       setIsClicked(false);
       return;
     }
-    if(role === "PARTNER") {
-      if(!refId) {
+    if (role === "PARTNER") {
+      if (!refId) {
         setError("Please enter reference id!");
-        return ;
+        return;
       }
-      if(refId !== adminRefId) {
+      if (refId !== adminRefId) {
         return setError("Invalid reference id!");
       }
     }
     // return setError("success")
     setIsClicked(true);
     setBtnText("Please Wait...");
-    const res = await register({ name, email, password, role });
+
+    // const res = await register({ name, email, password, role });
+    const res = await sendEmail();
     if (res.status !== 200) {
       setError(res.message);
+    } else {
+      setIsEmailSent(true);
+      setSentCode(res.code);
     }
-    console.log("result while login is!", JSON.stringify(res));
+    console.log("result while sending email to user!", JSON.stringify(res));
     setIsClicked(false);
     setBtnText("Sign Up");
-    router.push("/login");
+    // router.push("/login");
   };
   return (
     <Box sx={{ bgcolor: "whitesmoke", minHeight: "" }}>
@@ -160,7 +208,15 @@ const Register = () => {
               label="Password"
             />
           </FormControl>
-          <FormControl sx={{width: "100%", gap: "5px", display: "flex",flexDirection: {md: "row"}, alignItems: {md:"center"}}}>
+          <FormControl
+            sx={{
+              width: "100%",
+              gap: "5px",
+              display: "flex",
+              flexDirection: { md: "row" },
+              alignItems: { md: "center" },
+            }}
+          >
             <FormLabel id="demo-row-radio-buttons-group-label">
               Are You Client or Partner?
             </FormLabel>
@@ -170,52 +226,103 @@ const Register = () => {
               name="row-radio-buttons-group"
               defaultValue={role}
             >
-              <FormControlLabel onChange={(e) => setRole(e.target.value)} value="CLIENT" control={<Radio />} label="Client" />
+              <FormControlLabel
+                onChange={(e) => setRole(e.target.value)}
+                value="CLIENT"
+                control={<Radio />}
+                label="Client"
+              />
               <FormControlLabel
                 value="PARTNER"
                 control={<Radio />}
                 label="Partner"
                 onChange={(e) => setRole(e.target.value)}
               />
-              
             </RadioGroup>
           </FormControl>
-          {role === "PARTNER"? <FormControl required sx={{ m: 1, width: "100%" }} variant="outlined">
-            <InputLabel htmlFor="outlined-adornment-name">Enter Reference Id</InputLabel>
-            <OutlinedInput
-              id="outlined-adornment-name"
-              onChange={(e) => {
-                setRefId(e.target.value);
-                setError(null);
+          {role === "PARTNER" ? (
+            <FormControl
+              required
+              sx={{ m: 1, width: "100%" }}
+              variant="outlined"
+            >
+              <InputLabel htmlFor="outlined-adornment-name">
+                Enter Reference Id
+              </InputLabel>
+              <OutlinedInput
+                id="outlined-adornment-name"
+                onChange={(e) => {
+                  setRefId(e.target.value);
+                  setError(null);
+                }}
+                type="text"
+                label="Enter Reference Id"
+              />
+            </FormControl>
+          ) : null}
+          {isEmailSent && (
+            <FormControl
+              required
+              sx={{ m: 1, width: "100%" }}
+              variant="outlined"
+            >
+              <InputLabel htmlFor="outlined-adornment-name">
+                Email Verification Code
+              </InputLabel>
+              <OutlinedInput
+                id="outlined-adornment-name"
+                onChange={(e) => {
+                  setEnterCode(e.target.value);
+                  // setError(null);
+                }}
+                type="number"
+                label="email verifcation code"
+              />
+            </FormControl>
+          )}
+          {!isEmailSent ? (
+            <Button
+              onClick={handleRegister}
+              disabled={
+                !email.length || !password.length || !name.length || isClicked
+              }
+              sx={{
+                background: "#fff",
+                color: "#0d172a",
+                fontWeight: 600,
+                boxShadow: "1px 1px 10px rgba(166, 175, 195, .25)",
+                p: " 10px 15px",
+                border: "0px solid #e2e8f0",
+                "&:hover": {
+                  backgroundColor: "#1e293b",
+                  color: "#fff",
+                },
+                textTransform: "capitalize",
               }}
-              type="text"
-              label="Enter Reference Id"
-            />
-          </FormControl>: null}
-          <Button
-            onClick={handleRegister}
-            disabled={
-              !email.length ||
-              !password.length ||
-              !name.length ||
-              isClicked
-            }
-            sx={{
-              background: "#fff",
-              color: "#0d172a",
-              fontWeight: 600,
-              boxShadow: "1px 1px 10px rgba(166, 175, 195, .25)",
-              p: " 10px 15px",
-              border: "0px solid #e2e8f0",
-              "&:hover": {
-                backgroundColor: "#1e293b",
-                color: "#fff",
-              },
-              textTransform: "capitalize",
-            }}
-          >
-            {btnText}
-          </Button>
+            >
+              {btnText}
+            </Button>
+          ) : (
+            <Button
+              onClick={HandleVerification}
+              disabled={isRegistering}
+              sx={{
+                background: "#fff",
+                color: "#0d172a",
+                fontWeight: 600,
+                boxShadow: "1px 1px 10px rgba(166, 175, 195, .25)",
+                p: " 10px 15px",
+                border: "0px solid #e2e8f0",
+                "&:hover": {
+                  backgroundColor: "#1e293b",
+                  color: "#fff",
+                },
+                textTransform: "capitalize",
+              }}
+            >
+              {isRegistering? "Please wait...": "Continue"}
+            </Button>
+          )}
           <Box
             sx={{
               display: "flex",

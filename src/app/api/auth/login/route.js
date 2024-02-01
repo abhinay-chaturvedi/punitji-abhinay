@@ -1,5 +1,5 @@
 import prisma from "@/prisma/connect";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import bcrypt from "bcrypt"
 import jwt from "jsonwebtoken"
 
@@ -28,4 +28,17 @@ const POST = async (req) => {
         return NextResponse.json({err: err, message: "Something went wrong!", status: 500}, {status: 500});
     }
 }
-export { POST }
+const GET = async (req) => {
+    try {
+        // const body = await req.json();
+        // const {token} = body;
+        const token = req.nextUrl.searchParams.get("token");
+        const jsonObject = jwt.verify(token, process.env.JWT_SECRET);
+        if(!jsonObject) {
+            return NextResponse.json({status: 400, message: "error occured"}, {status: 400});
+        } return NextResponse.json({status: 200, message: "success", data: jsonObject}, {status: 200});
+    } catch(err) {
+        return NextResponse.json({status: 500, message: "something went wrong!"}, {status: 500});
+    }
+}
+export { POST, GET }

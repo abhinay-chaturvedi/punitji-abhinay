@@ -9,8 +9,8 @@ const HeroSection = () => {
     <Box
       sx={{
         width: "100%",
-        height: { lg: "80vh", md: "70vh", sm: "60vh", xs: "45vh" },
-        bgcolor: "blue",
+        // height: { lg: "80vh", md: "70vh", sm: "60vh", xs: "45vh" },
+        // bgcolor: "blue",
       }}
     >
       {/* <Box
@@ -29,7 +29,7 @@ const HeroSection = () => {
           <HeroSectionItem color="Yellow" imgUrl={"/images/hero3.jpg"}/>
         </Carousel> */}
       <CardMedia
-        sx={{ height: "100%", width: "100%", objectFit: "fill" }}
+        sx={{ width: "100%", heigth: "auto", objectFit: "cover" }}
         component="video"
         // className={classes.media}
         autoPlay

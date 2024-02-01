@@ -20,7 +20,7 @@ const WhyChooseUs = () => {
               {/* <Image src={"/images/director.png"} layout="fill"/>
                */}
               <CardMedia
-                sx={{ height: "100%", width: "100%", objectFit: "fill" }}
+                sx={{ height: "100%", width: "100%", objectFit: "cover" }}
                 component="video"
                 // className={classes.media}
                 autoPlay
