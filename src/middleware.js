@@ -1,10 +1,12 @@
 import { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 // import { cookies } from "next/headers";
+import prisma from "./prisma/connect";
 import jwt from "jsonwebtoken";
 export const middleware = async (req) => {
   try {
     console.log("middlewares ", req.nextUrl.pathname, req.url);
+    // const result = await prisma.
 
     const token = req.cookies.get("token") || "invalid";
 

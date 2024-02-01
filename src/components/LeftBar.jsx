@@ -12,6 +12,8 @@ import { useSearchParams } from "next/navigation";
 import { UserContext } from "@/contexts/user/context";
 import SettingsInputAntennaIcon from '@mui/icons-material/SettingsInputAntenna';
 import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
+// import SettingsInputAntennaIcon from '@mui/icons-material/SettingsInputAntenna';
+import PsychologyAltIcon from '@mui/icons-material/PsychologyAlt';
 const LeftBar = ({ userDetail }) => {
   const searchParams = useSearchParams();
   // console.log("--------------------", searchParams)
@@ -173,28 +175,28 @@ const LeftBar = ({ userDetail }) => {
               </Typography>
             </Box>
           )}
-          {/* {userDetail.role === "PARTNER" && (
+          {userDetail.role === "PARTNER" && (
             <Box
               component={Link}
-              href={`/partner/?page=aclients`}
+              href={`/partner/?page=refer`}
               sx={{
                 color: "#520670",
-                bgcolor: q === "aclients" ? "white" : "",
+                bgcolor: q === "refer" ? "white" : "",
                 display: "flex",
                 gap: 2,
                 alignItems: "center",
                 p: "10px",
               }}
             >
-              <PeopleIcon />
+              <SettingsInputAntennaIcon />
               <Typography
                 component="span"
                 sx={{ color: "black", fontWeight: "bold" }}
               >
-                My Documents
+                References
               </Typography>
             </Box>
-          )} */}
+          )}
           <Divider sx={{ width: "100%" }} />
           {userDetail.role === "CLIENT" && (
             <Box
@@ -223,22 +225,22 @@ const LeftBar = ({ userDetail }) => {
           {userDetail.role === "PARTNER" && (
             <Box
               component={Link}
-              href={`/partner/?page=aclients`}
+              href={`/partner/?page=query`}
               sx={{
                 color: "#520670",
-                bgcolor: q === "aclients" ? "white" : "",
+                bgcolor: q === "query" ? "white" : "",
                 display: "flex",
                 gap: 2,
                 alignItems: "center",
                 p: "10px",
               }}
             >
-              <PeopleIcon />
+              <PsychologyAltIcon />
               <Typography
                 component="span"
                 sx={{ color: "black", fontWeight: "bold" }}
               >
-                My Documents
+                Query
               </Typography>
             </Box>
           )}

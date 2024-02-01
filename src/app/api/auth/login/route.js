@@ -8,6 +8,7 @@ const POST = async (req) => {
         const loginData = await req.json();
         console.log("cookies", req.cookies.get("token"));
         console.log("🚀 ~ file: route.js:4 ~ POST ~ loginData:", loginData)
+        
         const prismaResult = await prisma.user.findUnique({
             where: {
                 email: loginData.email

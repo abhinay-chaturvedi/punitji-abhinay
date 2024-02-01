@@ -5,6 +5,9 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { Checkbox, Divider } from "@mui/material";
+import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import DownloadForOfflineIcon from '@mui/icons-material/DownloadForOffline';
 const style = {
   position: "absolute",
   top: "50%",
@@ -25,7 +28,7 @@ const AssignDoc = ({ client }) => {
   const [docsToAdd, setDocsToAdd] = useState([]);
   const [isAssigningDocs, setIsAssigningDocs] = useState(false);
   const [documents, setDocuments] = useState(client.client?.documents);
-  // console.log("🚀 ~ file: AssignDoc.js:28 ~ AssignDoc ~ documents:", documents);
+  console.log("🚀 ~ file: AssignDoc.js:28 ~ AssignDoc ~ documents:", documents);
   // console.log("🚀 ~ file: AssignDoc.js:25 ~ AssignDoc ~ docsToAdd:", docsToAdd);
   const handleOpen = () => {
     setOpen(true);
@@ -74,6 +77,9 @@ const AssignDoc = ({ client }) => {
       if (result.status == 200) {
         console.log("successfully assigned docs");
         setDocuments(result.data.documents);
+        setDocs(docs?.filter((doc) => {
+          return !result.data?.documents?.find((item) => item.id === doc.id);
+        }));
       }
 
       setIsAssigningDocs(false);
@@ -101,7 +107,14 @@ const AssignDoc = ({ client }) => {
                 <Typography sx={{fontWeight: "bold"}}>{doc.name}</Typography>
                 <Typography sx={{ml: "5px", mt: 0, fontSize: "10px"}}>{doc.desc}</Typography>
               </Box>
-              <Box>view</Box>
+              {doc.url?<Box>
+                <Button component="a" href={doc.url} target="_blank">
+                <VisibilityIcon/>
+                </Button>
+                <Button>
+                <DownloadForOfflineIcon/>
+                </Button>
+              </Box>: "Not Uploaded"}
             </Box>
             <Divider/>
             </>
