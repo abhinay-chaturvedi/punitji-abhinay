@@ -5,7 +5,7 @@ import prisma from "./prisma/connect";
 import jwt from "jsonwebtoken";
 export const middleware = async (req) => {
   try {
-    console.log("middlewares ", req.nextUrl.pathname, req.url);
+    // console.log("middlewares ", req.nextUrl.pathname, req.url);
     // const result = await prisma.
 
     const token = req.cookies.get("token") || "invalid";
@@ -21,7 +21,7 @@ export const middleware = async (req) => {
       }
     );
     const jwtObject = await res.json();
-    console.log("🚀 ~ middleware ~ jwtObject:", jwtObject.data);
+    // console.log("🚀 ~ middleware ~ jwtObject:", jwtObject.data);
     if (req.nextUrl.pathname.startsWith("/admin")) {
       if (token == "invalid") {
         // NextResponse.redirect("/login");
@@ -34,7 +34,7 @@ export const middleware = async (req) => {
         jwtObject.status != 200 ||
         jwtObject.data?.role != "ADMIN"
       ) {
-        console.log(jwtObject, "here we havev jwt object!");
+        // console.log(jwtObject, "here we havev jwt object!");
         return NextResponse.json({
           status: 400,
           message:

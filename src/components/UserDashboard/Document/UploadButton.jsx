@@ -20,7 +20,7 @@ const VisuallyHiddenInput = styled('input')({
   width: 1,
 });
 
-export default function InputFileUpload({doc_id, setFileName, fileName}) {
+export default function InputFileUpload({doc_id, setFileName, fileName, setDocuments}) {
     
     const [uploadText, setUploadText] = React.useState("upload");
     const [file, setFile] = React.useState(null);
@@ -64,9 +64,12 @@ export default function InputFileUpload({doc_id, setFileName, fileName}) {
             //     user.dispatch(setUserDocuments(res.prismaData.documents));
             // }
             console.log(res.data.documents)
-            if(res.status === 200)
-            setUploadText("uploaded")
-            else setUploadText("upload");
+            if(res.status === 200){
+                setFile(null);
+                setUploadText("upload")
+                setFileName(null)
+                setDocuments(res.data.documents)
+            }
         } catch(err) {
             console.log("🚀 ~ file: UploadButton.jsx:58 ~ handleUpload ~ err:", err)
             setUploadText("upload");
@@ -82,7 +85,7 @@ export default function InputFileUpload({doc_id, setFileName, fileName}) {
             <VisuallyHiddenInput onChange={handleChange} type="file" />
             </Button>
         ): (
-            <Button onClick={handleUpload} disabled={(uploadText==='uploading...') || (uploadText==='uploaded')} component="label" variant="contained" sx={{textTransform: "capitalize"}} startIcon={<CloudUploadIcon />}>
+            <Button onClick={handleUpload} disabled={(uploadText==='uploading...')} component="label" variant="contained" sx={{textTransform: "capitalize"}} startIcon={<CloudUploadIcon />}>
             <Typography>{uploadText}</Typography>
             </Button>
         )

@@ -22,6 +22,7 @@ import { useLogin } from "@/hooks/auth";
 import ProfileDetailPage from "@/components/UserDashboard/ProfileDetailPage.jsx/ProfileDetailPage";
 import WithUserContext from "@/hocs/WithUserContext";
 import Loader from "@/components/Loader";
+import QueryPage from "@/components/QueryPage/QueryPage";
 
 const Page = () => {
   // console.log("here is server component in user layourt----------------------------------")
@@ -128,7 +129,7 @@ const Page = () => {
             ) : null}
             {q === "process" ? <ProcessPage userDetail={userState} /> : null}
             {q === "refer" ? <ProcessPage userDetail={userState} /> : null}
-            {q === "query" ? <ProcessPage userDetail={userState} /> : null}
+            {q === "query" ? <QueryPage/> : null}
           </Box>
         </Grid>
       </Grid>

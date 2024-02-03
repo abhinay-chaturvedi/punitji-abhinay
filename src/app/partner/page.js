@@ -25,6 +25,7 @@ import Loader from "@/components/Loader";
 import WithUserContext from "@/hocs/WithUserContext";
 import ClientList from "./ClientList";
 import Client from "./Client";
+import QueryPage from "@/components/QueryPage/QueryPage";
 
 const Page = () => {
   const router = useRouter();
@@ -130,6 +131,8 @@ const Page = () => {
             {q === "cases" && !!ClientId ? <Client params={{clientId: ClientId}} /> : null}
             {q === "aclients" ? <MyDocuments /> : null}
             {/* {q==="process"? <ProcessPage/>: null} */}
+            {q === "query"? <QueryPage/>: null}
+
           </Box>
         </Grid>
       </Grid>

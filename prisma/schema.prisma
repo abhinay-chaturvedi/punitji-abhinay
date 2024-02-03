@@ -21,6 +21,7 @@ model User {
   education      UserEducation[]
   workExperience WorkExperience[]
   languageTest   LanguageTest[]
+  queries        Query[]
   createdAt      DateTime         @default(now())
 
   @@map("user")
@@ -130,6 +131,19 @@ model Document {
   updatedAt DateTime @default(now())
 
   @@map("document")
+}
+
+model Query {
+  id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  query     String?
+  response  String?
+  name      String?
+  email     String?
+  user      User     @relation(fields: [userId], references: [id])
+  userType  String
+  userId    String   @db.Uuid
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
 }
 
 model ConsultingRequest {

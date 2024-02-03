@@ -19,7 +19,7 @@ import InputFileUpload from './UploadButton';
 import { Button, Divider } from '@mui/material';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import VisibilityIcon from '@mui/icons-material/Visibility';
-const CustomListItem = ({ item }) => {
+const CustomListItem = ({ item, setDocuments }) => {
     const [fileName, setFileName] = React.useState(null)
     return (
         <>
@@ -35,17 +35,14 @@ const CustomListItem = ({ item }) => {
                 secondary={item.desc}
               />
           </Box>
-          <Box sx={{display: "flex", flexDirection: "column", alignItems: "center"}}>
-            {
-                item.url? (
-                        <Button target='_blank' href={item.url}  component="a" sx={{textTransform: "capitalize"}} startIcon={<VisibilityIcon />} download>
+          <Box sx={{display: "flex", flexWrap: "wrap", flexDirection: "row", justifyContent: "space-around", alignItems: "center"}}>
+            
+                    <InputFileUpload doc_id={item.id} fileName={fileName}  setFileName={setFileName} setDocuments={setDocuments}/>
+                    {item.url? <Button target='_blank' href={item.url}  component="a" sx={{textTransform: "capitalize"}} startIcon={<VisibilityIcon />} download>
                             <Typography>view</Typography>
-                        </Button>
-                ): (
-                    <InputFileUpload doc_id={item.id} fileName={fileName}  setFileName={setFileName}/>
-                )
-            }
-            <Typography>{fileName}</Typography>
+                        </Button>: null}
+                
+            <Typography sx={{flex: "100%", mt: "5px", bgcolor: "whitesmoke", width: "min-content"}}>{fileName}</Typography>
           </Box>
         </ListItem>
         <Divider/>

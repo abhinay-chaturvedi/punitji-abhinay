@@ -66,7 +66,7 @@ const DocumentPage = () => {
     <Box>
       <List>
         {documents?.map((item) => {
-          return <CustomListItem key={item.id} item={item} />;
+          return <CustomListItem key={item.id} item={item} setDocuments={setDocuments}/>;
         })}
       </List>
     </Box>

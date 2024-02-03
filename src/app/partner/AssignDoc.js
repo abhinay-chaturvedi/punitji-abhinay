@@ -93,6 +93,18 @@ const AssignDoc = ({ client }) => {
   useEffect(() => {
     getAllDocuments();
   }, []);
+  // const handleDownload = async () => {
+  //   try {
+  //     console.log("clling pi")
+  //     const res = await fetch("api/downloadFile", {
+  //       method: "GET",
+  //       // body: JSON.stringify({url: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"})
+  //     })
+  //     console.log("downlode -------------------------", res);
+  //   } catch(err) {
+  //   console.log("🚀 ~ handleDownload ~ err:", err)
+  //   }
+  // }
   return (
     <Box>
       <Box>
@@ -111,7 +123,7 @@ const AssignDoc = ({ client }) => {
                 <Button component="a" href={doc.url} target="_blank">
                 <VisibilityIcon/>
                 </Button>
-                <Button>
+                <Button component="a" href={`/api/downloadFile?url=${doc.url}`} target="_blank" >
                 <DownloadForOfflineIcon/>
                 </Button>
               </Box>: "Not Uploaded"}
