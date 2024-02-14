@@ -121,6 +121,9 @@ export const SideNav = (props) => {
             <Stack component={Link} href={"/admin/documents"} sx={{display: "flex",borderRadius: "5px", p: "10px", bgcolor: "rgba(255, 255, 255, 0.07)"}}>
               Documents
             </Stack>
+            <Stack component={Link} href={"/admin/queries"} sx={{display: "flex",borderRadius: "5px", p: "10px", bgcolor: "rgba(255, 255, 255, 0.07)"}}>
+              Queries
+            </Stack>
             
           </Stack>
         </Box>

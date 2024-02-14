@@ -1,9 +1,11 @@
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 import { Box, Stack, Card, Typography, Button } from "@mui/material";
 import Image from "next/image";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
+import { useRef } from "react";
+import { useEffect } from "react";
 
 const tableContent = [
   {
@@ -12,6 +14,29 @@ const tableContent = [
   },
 ];
 const WhatWeOfferCard = ({ country, imgUrl, cardContent = [] }) => {
+  const [open, setOpen] = useState(false);
+  console.log("🚀 ~ WhatWeOfferCard ~ open:", open)
+  // mouseMoveRef = createRef();
+  const mouseMoveRef = useRef(null);
+  const checkHover = (e) => {
+    if (mouseMoveRef.current) {
+      // const { isHovering } = this.state;
+      const mouseOver = mouseMoveRef.current.contains(e.target);
+      if (!open && mouseOver) {
+        // this.setHover();
+        setOpen(true)
+      }
+
+      if (open && !mouseOver) {
+        // this.setUnhover();
+        setOpen(false);
+      }
+    }
+  }
+  useEffect(() => {
+    window.addEventListener("mousemove", checkHover, true);
+    return () => window.removeEventListener("mousemove", checkHover, true);
+  }, []);
   return (
     <Box
       sx={{
@@ -23,7 +48,12 @@ const WhatWeOfferCard = ({ country, imgUrl, cardContent = [] }) => {
         borderRadius: "10px",
         boxShadow: "0 0 40px 5px rgb(0 0 0 / 5%);",
         position: "relative",
+        opacity: "100"
       }}
+      component={"div"}
+      ref={mouseMoveRef}
+      onMouseEnter={() => setOpen(true)}
+      onMouseOut={() => setOpen(false)}
     >
       <Box>
         <Typography
@@ -52,10 +82,10 @@ const WhatWeOfferCard = ({ country, imgUrl, cardContent = [] }) => {
           );
         })}
       </Box>
-      <Box
+      {!open && <Box
         sx={{
           position: "absolute",
-          "&:hover": { display: "none" },
+          // "&:hover": { display: "none" },
           height: "100%",
           top: 0,
           left: 0,
@@ -68,8 +98,9 @@ const WhatWeOfferCard = ({ country, imgUrl, cardContent = [] }) => {
           layout={"fill"}
           // objectFit="contain"
           src={imgUrl}
+          alt=""
         />
-      </Box>
+      </Box>}
     </Box>
   );
 };

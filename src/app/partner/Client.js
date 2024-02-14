@@ -8,7 +8,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import Steps from "./steps";
 import LeftBar from "@/components/LeftBar";
-import AssignDoc from "./AssignDoc";
+import AssignDoc from "../../components/AssignDoc";
 
 const Client = ({ params }) => {
   const [isLoading, setIsLoading] = useState(true);

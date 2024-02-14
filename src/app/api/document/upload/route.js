@@ -6,7 +6,7 @@ const POST = async (req) => {
     try {
         const formData = await req.formData();
         console.log("🚀 ~ file: route.js:6 ~ POST ~ formData:", formData);
-        const upload = await fetch("http://localhost:5000/api/upload", {
+        const upload = await fetch(`${process.env.DOMAIN}/api/upload`, {
             method: "POST",
             body: formData
         })

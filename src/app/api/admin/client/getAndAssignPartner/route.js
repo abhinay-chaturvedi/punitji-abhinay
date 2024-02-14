@@ -33,6 +33,16 @@ const POST = async (req) => {
                 partnerId: partnerId
             }
         })
+        const update  = await prisma.partner.update({
+            where: {
+                userId: partnerId
+            },
+            data: {
+                casesAssigned: {
+                    increment: 1
+                }
+            }
+        })
         if(!prismaResult) {
             return NextResponse.json({status: 400, message: "error occured"}, {status: 400})
         }

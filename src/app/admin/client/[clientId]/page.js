@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import PartnerInfo from "./PartnerInfo";
 import Steps from "./steps";
+import AssignDoc from "@/components/AssignDoc";
 
 const Page = ({ params }) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -311,6 +312,7 @@ const Page = ({ params }) => {
               </Typography>
             </Box>
             <Steps client={client}/>
+            <AssignDoc client={client}/>
           </Box>
         </Box>
       </Container>

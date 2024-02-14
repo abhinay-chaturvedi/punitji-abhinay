@@ -31,7 +31,7 @@ function NavBar() {
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen]= React.useState(false);
   const [loginUser, setLoginUser] = React.useState(null);
-  const logout = useLogout();
+  // const logout = useLogout();
   const router = useRouter();
   const theme = useTheme();
   const mdDown = useMediaQuery(theme.breakpoints.down("md"));
@@ -181,7 +181,7 @@ function NavBar() {
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
-            {loginUser ? (
+            {userState.name ? (
               <Box>
                 <Tooltip title="Open settings">
                   <IconButton
@@ -223,7 +223,7 @@ function NavBar() {
                   <MenuItem
                     onClick={() => {
                       handleCloseUserMenu();
-                      router.push(`${loginUser.role.toLowerCase()}`);
+                      router.push(`${userState.role.toLowerCase()}`);
                     }}
                   >
                     <Typography textAlign="center">Dashboard</Typography>
@@ -231,8 +231,10 @@ function NavBar() {
                   <MenuItem
                     onClick={() => {
                       handleLogout();
-                      window.location.reload();
-                      window.location.href = "/"
+                      // window.location.href = "/"
+                      // window.location.reload();
+                      router.push(`/`);
+                      // window.location.href = "/"
                       handleCloseUserMenu();
                     }}
                   >

@@ -35,6 +35,7 @@ export const middleware = async (req) => {
         jwtObject.data?.role != "ADMIN"
       ) {
         // console.log(jwtObject, "here we havev jwt object!");
+        return null;
         return NextResponse.json({
           status: 400,
           message:

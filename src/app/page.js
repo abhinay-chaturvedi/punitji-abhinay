@@ -19,12 +19,9 @@ import getUser from "@/services/client/getUser";
 import Footer from "@/components/Footer";
 import Image from "next/image";
 export default async function Home() {
-  // console.log("server//////////////////////////////////////////////////////////")
+ 
   const token = cookies().get("token");
-  console.log("hello from the this side", token);
-  // console.log("server or client?--------------------------------------------000000000000")
-
-  // const user = await getUser();
+  
   return (
     <Box>
       {/* <Box
