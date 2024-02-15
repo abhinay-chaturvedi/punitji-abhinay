@@ -11,7 +11,7 @@ export const middleware = async (req) => {
     const token = req.cookies.get("token") || "invalid";
 
     const res = await fetch(
-      `http://localhost:3000/api/auth/login?token=${token?.value}`,
+      `${process.env.BASE_URL}/api/auth/login?token=${token?.value}`,
       {
         method: "GET",
         headers: {
