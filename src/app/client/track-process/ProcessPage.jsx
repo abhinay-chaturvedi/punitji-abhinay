@@ -1,9 +1,10 @@
 "use client"
-import DocumentStepper from '@/components/UserDashboard/ProcessPage/ProcessStepper'
+// import DocumentStepper from '@/components/UserDashboard/ProcessPage/ProcessStepper'
 import { UserContext } from '@/contexts/user/context'
 import { Box, Typography } from '@mui/material'
 import React from 'react'
 import { useContext } from 'react'
+import DocumentStepper from './ProcessStepper'
 
 const ProcessPage = () => {
   const userDetail = useContext(UserContext);

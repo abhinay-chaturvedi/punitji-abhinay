@@ -29,7 +29,7 @@ model User {
 
 model Client {
   id          String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  user        User      @relation(fields: [userId], references: [id])
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId      String    @unique @db.Uuid
   name        String
   email       String
@@ -46,7 +46,7 @@ model Client {
 
 model Partner {
   id            String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  user          User      @relation(fields: [userId], references: [id])
+  user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId        String    @unique @db.Uuid
   name          String
   email         String
@@ -66,7 +66,7 @@ model Partner {
 
 model ProcessSteps {
   id             String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  user           User    @relation(fields: [userId], references: [id])
+  user           User    @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId         String  @unique @db.Uuid
   assessment     Boolean @default(false)
   visaSelection  Boolean @default(false)
@@ -83,7 +83,7 @@ model ProcessSteps {
 
 model UserEducation {
   id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  user      User     @relation(fields: [userId], references: [id])
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId    String   @db.Uuid
   college   String
   stream    String
@@ -98,7 +98,7 @@ model UserEducation {
 
 model WorkExperience {
   id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  user      User     @relation(fields: [userId], references: [id])
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId    String   @db.Uuid
   jobTitle  String
   company   String
@@ -111,7 +111,7 @@ model WorkExperience {
 
 model LanguageTest {
   id            String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  user          User    @relation(fields: [userId], references: [id])
+  user          User    @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId        String  @db.Uuid
   exam          String
   speakingBand  Decimal
@@ -139,11 +139,11 @@ model Query {
   response  String?
   name      String?
   email     String?
-  user      User     @relation(fields: [userId], references: [id])
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   userType  String
   userId    String   @db.Uuid
   createdAt DateTime @default(now())
-  updatedAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
 }
 
 model ConsultingRequest {

@@ -5,6 +5,7 @@ import { NextRequest, NextResponse } from "next/server";
 const GET = async (req) => {
   try {
     const userId = req.nextUrl.searchParams.get("userId");
+    console.log("🚀 ~ GET ~ userId:", userId)
     if(!userId) {
       return NextResponse.json({status: 400, message: "error occured"}, {status: 400})
     }

@@ -21,7 +21,7 @@ import Image from "next/image";
 export default async function Home() {
  
   const token = cookies().get("token");
-  
+  console.log("token in homepage", token);
   return (
     <Box>
       {/* <Box

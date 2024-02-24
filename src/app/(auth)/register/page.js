@@ -109,6 +109,7 @@ const Register = () => {
     setBtnText("Please Wait...");
 
     // const res = await register({ name, email, password, role });
+
     const res = await sendEmail();
     if (res.status !== 200) {
       setError(res.message);

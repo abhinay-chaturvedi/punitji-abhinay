@@ -83,59 +83,13 @@ const Page = () => {
   }
   return (
     <Box>
-      <Grid container>
-        <Grid item sx={sideBarStyle} md={2.5}>
-          <Box sx={{ minHeight: "100vh", borderRight: "1px solid black" }}>
-            <LeftBar userDetail={userState} />
-          </Box>
-          {mdDown &&
-            (!isOpened ? (
-              <IconButton
-                onClick={() => setIsOpened(true)}
-                sx={{
-                  position: "absolute",
-                  right: "-25%",
-                  cursor: "pointer",
-                  top: "50%",
-                }}
-              >
-                <KeyboardDoubleArrowRightIcon
-                  sx={{ fontSize: 50, ...animation }}
-                >
-                  open
-                </KeyboardDoubleArrowRightIcon>
-              </IconButton>
-            ) : (
-              <IconButton
-                onClick={() => setIsOpened(false)}
-                sx={{
-                  position: "absolute",
-                  right: "-25%",
-                  cursor: "pointer",
-                  top: "50%",
-                }}
-              >
-                <KeyboardDoubleArrowLeftIcon
-                  sx={{ fontSize: 50, ...animation }}
-                >
-                  open
-                </KeyboardDoubleArrowLeftIcon>
-              </IconButton>
-            ))}
-        </Grid>
-        <Grid item xs={12} md={9.5}>
-          <Box sx={{ minHeight: "100vh" }}>
-            {!q && <Profile />}
-            {q === "documents" ? <DocumentPage /> : null}
+            <Profile />
+            {/* {q === "documents" ? <DocumentPage /> : null}
             {q === "cases" && !ClientId ? <ClientList /> : null}
             {q === "cases" && !!ClientId ? <Client params={{clientId: ClientId}} /> : null}
             {q === "aclients" ? <MyDocuments /> : null}
             {/* {q==="process"? <ProcessPage/>: null} */}
-            {q === "query"? <QueryPage/>: null}
-
-          </Box>
-        </Grid>
-      </Grid>
+             {/* {q === "query"? <QueryPage/>: null}  */}
     </Box>
   );
 };

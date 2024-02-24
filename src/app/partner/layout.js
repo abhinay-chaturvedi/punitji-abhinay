@@ -1,5 +1,6 @@
 // "use client"
 import NavBar from "@/components/NavBar/NavBar"
+import USideBar from "@/components/USideBar"
 import { Box } from "@mui/material"
 
 export const metadata = {
@@ -13,7 +14,10 @@ export default function DashboardLayout({ children }) {
     <Box>
         <NavBar/>
         <div>
-        {children}
+        <USideBar/>
+          <Box sx={{marginLeft:{xs: "100px", sm: "150px", md: "200px", lg: "300px"}}}>
+          {children}
+          </Box>
         </div>
     </Box>
   )

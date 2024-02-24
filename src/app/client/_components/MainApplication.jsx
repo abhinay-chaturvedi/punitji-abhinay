@@ -20,7 +20,6 @@ import { useEffect } from "react";
 import dayjs from "dayjs";
 import { UserContext } from "@/contexts/user/context";
 import Loader from "@/components/Loader";
-import { toast } from "sonner";
 const DetailCard = ({
   userState,
   mainApplicationDetail,
@@ -67,7 +66,6 @@ const DetailCard = ({
       if (result.status == 200) {
         setMainApplicationDetail(result.data);
         setBtnText("Data Successfully Saved!");
-        toast.success("Data successfully saved");
       } else {
         setBtnText("save");
         setError(result.message);
@@ -246,7 +244,7 @@ const DetailCard = ({
                 flexDirection: "column",
               }}
             >
-              <Box sx={{ display: {xs: "block", md: "flex"}, gap: "10px" }}>
+              <Box sx={{ display: "flex", gap: "10px" }}>
                 <Typography sx={{ fontWeight: "bold" }}>Name:</Typography>
                 <Typography>{mainApplicationDetail.name}</Typography>
               </Box>
