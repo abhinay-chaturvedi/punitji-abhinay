@@ -64,10 +64,10 @@ const Education = ({userState, mainApplicationDetail}) => {
     endDate: null,
     score: null,
   });
-  console.log(
-    "🚀 ~ file: Education.jsx:57 ~ Education ~ education:",
-    education
-  );
+  // console.log(
+  //   "🚀 ~ file: Education.jsx:57 ~ Education ~ education:",
+  //   education
+  // );
   const handleValidate = (data) => {
     if (!data.degree) {
       return "Please fill degree!";
@@ -103,7 +103,7 @@ const Education = ({userState, mainApplicationDetail}) => {
       }
       setBtnText("saving...");
       const result = await saveEducationDetail(data);
-      console.log("🚀 ~ file: Education.jsx:65 ~ handleSave ~ result:", result);
+      // console.log("🚀 ~ file: Education.jsx:65 ~ handleSave ~ result:", result);
       if(result.status === 200) {
         setBtnText("save");
         setEducationRows([...educationRows, result.data]);
@@ -122,7 +122,7 @@ const Education = ({userState, mainApplicationDetail}) => {
       }
       setFormOpen(false)
     } catch (err) {
-      console.log("🚀 ~ file: Education.jsx:63 ~ handleSave ~ err:", err);
+      // console.log("🚀 ~ file: Education.jsx:63 ~ handleSave ~ err:", err);
       setBtnText("save");
     }
   };
@@ -130,7 +130,7 @@ const Education = ({userState, mainApplicationDetail}) => {
     try {
       const userId = userState.id;
       const result = await getEducationDetail(userId);
-      console.log("🚀 ~ file: Education.jsx:120 ~ geteducationDetail ~ result:", result)
+      // console.log("🚀 ~ file: Education.jsx:120 ~ geteducationDetail ~ result:", result)
       setEducationRows(result.data);
     } catch(err) {
       console.log("🚀 ~ file: Education.jsx:120 ~ getEducationDetail ~ err:", err)

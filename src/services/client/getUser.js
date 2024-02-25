@@ -7,7 +7,6 @@ const getUser = async (email, role = "USER") => {
             }
         })
         const result = await res.json();
-        console.log("🚀 ~ file: getUser.js:11 ~ getUser ~ result:", result)
         return result;
     } catch(err) {
         console.log("🚀 ~ file: getUser.js:5 ~ getUser ~ err:", err);

@@ -1,6 +1,6 @@
 // const { default: QueryPage } = require("@/components/QueryPage/QueryPage")
-import QueryCard from "@/components/QueryPage/QueryCard";
-import QueryForm from "@/components/QueryPage/QueryForm";
+import QueryCard from "@/components/Query/QueryCard";
+import QueryForm from "@/components/Query/QueryForm";
 import { getSession } from "@/lib/auth-service";
 import { getQueries } from "@/lib/query-service";
 import { Box, Container } from "@mui/material";

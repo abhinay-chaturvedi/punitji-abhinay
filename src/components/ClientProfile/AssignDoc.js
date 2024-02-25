@@ -106,7 +106,7 @@ const AssignDoc = ({ client }) => {
   //   }
   // }
   return (
-    <Box>
+    <Box sx={{boxShadow: "0px 3px 8px rgba(0, 0, 0, .24)", p: "10px"}}>
       <Box>
         <Typography sx={{textAlign: "center", fontWeight: "bold"}}>Documents Uploaded</Typography>
       </Box>

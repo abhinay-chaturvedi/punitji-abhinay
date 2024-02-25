@@ -1,3 +1,4 @@
+"use client"
 import CustomInput from "@/components/CustomInput";
 import Loader from "@/components/Loader";
 import { UserContext } from "@/contexts/user/context";
@@ -8,6 +9,7 @@ import {
 import { Alert, Box, Button, Grid, Typography } from "@mui/material";
 import dayjs from "dayjs";
 import React, { useContext, useEffect, useState } from "react";
+import { toast } from "sonner";
 
 const Profile = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -60,6 +62,7 @@ const Profile = () => {
       console.log("🚀 ~ file: Profile.jsx:29 ~ handleSave ~ result:", result);
       if (result.status == 200) {
         setPartnerProfile(result.data);
+        toast.success("Successfully saved!")
       }
       setBtnText("save");
     } catch (err) {
@@ -119,113 +122,90 @@ const Profile = () => {
       )}
       <Grid container>
         <Grid item xs={12} sm={6} lg={4}>
-          {partnerProfile?.company ? (
-            <Box sx={{ padding: "10px" }}>
-              <Typography sx={{ fontWeight: "bold" }}>Company</Typography>
-              <Typography>{partnerProfile?.company}</Typography>
-            </Box>
-          ) : (
             <Box sx={{ padding: "10px" }}>
               <CustomInput
                 name="company"
                 setInput={(e) => setCompany(e.target.value)}
                 label="Company"
                 value={company}
+                defaultValue={partnerProfile?.company}
+                readOnly={partnerProfile?.company}
               />
             </Box>
-          )}
         </Grid>
         <Grid item xs={12} sm={6} lg={4}>
-          <Box sx={{ padding: "10px" }}>
-            <Typography sx={{ fontWeight: "bold" }}>Email</Typography>
-            <Typography>{partnerProfile?.email}</Typography>
-          </Box>
+          {partnerProfile?.email  && <Box sx={{ padding: "10px" }}>
+              <CustomInput
+                name="Email"
+                setInput={(e) => setCompany(e.target.value)}
+                label="Email"
+                value={partnerProfile.email}
+                readOnly
+              />
+            </Box>}
         </Grid>
         <Grid item xs={12} sm={6} lg={4}>
-          {partnerProfile?.dealIn ? (
-            <Box sx={{ padding: "10px" }}>
-              <Typography sx={{ fontWeight: "bold" }}>Deal In</Typography>
-              <Typography>{partnerProfile?.dealIn}</Typography>
-            </Box>
-          ) : (
             <Box sx={{ padding: "10px" }}>
               <CustomInput
                 name="dealIn"
                 setInput={(e) => setDealIn(e.target.value)}
                 label="Deal In"
-                value={dealIn}
+                value={partnerProfile?.dealIn? partnerProfile?.dealIn: dealIn}
+                readOnly={partnerProfile?.dealIn}
               />
             </Box>
-          )}
         </Grid>
         <Grid item xs={12} sm={6} lg={4}>
-          {partnerProfile?.dealIn ? (
-            <Box sx={{ padding: "10px" }}>
-              <Typography sx={{ fontWeight: "bold" }}>Phone </Typography>
-              <Typography>{partnerProfile?.phone}</Typography>
-            </Box>
-          ) : (
             <Box sx={{ padding: "10px" }}>
               <CustomInput
                 name="phone"
                 setInput={(e) => setPhone(e.target.value)}
                 label="Phone"
-                value={phone}
+                // value={phone}
+                value={partnerProfile?.phone? partnerProfile?.phone: phone}
                 type="number"
+                readOnly={partnerProfile?.phone}
               />
             </Box>
-          )}
         </Grid>
         <Grid item xs={12} sm={6} lg={4}>
-          {partnerProfile?.occupation ? (
-            <Box sx={{ padding: "10px" }}>
-              <Typography sx={{ fontWeight: "bold" }}>Occupation</Typography>
-              <Typography>{partnerProfile?.occupation}</Typography>
-            </Box>
-          ) : (
             <Box sx={{ padding: "10px" }}>
               <CustomInput
                 name="occupation"
                 setInput={(e) => setOccupation(e.target.value)}
                 label="Occupation"
-                value={occupation}
+                // value={occupation}
+                value={partnerProfile?.occupation? partnerProfile?.occupation: occupation}
+                defaultValue={partnerProfile?.occupation}
+                readOnly={partnerProfile?.occupation}
               />
             </Box>
-          )}
         </Grid>
         <Grid item xs={12} sm={6} lg={4}>
-          {partnerProfile?.faxNumber ? (
-            <Box sx={{ padding: "10px" }}>
-              <Typography sx={{ fontWeight: "bold" }}>Fax Number</Typography>
-              <Typography>{partnerProfile?.faxNumber}</Typography>
-            </Box>
-          ) : (
+          
             <Box sx={{ padding: "10px" }}>
               <CustomInput
                 name="faxNumber"
                 setInput={(e) => setFaxNumber(e.target.value)}
                 label="Fax Number"
-                value={faxNumber}
+                // value={faxNumber}
+                value={partnerProfile?.faxNumber? partnerProfile?.faxNumber: faxNumber}
+                readOnly={partnerProfile?.faxNumber}
               />
             </Box>
-          )}
         </Grid>
         <Grid item xs={12} sm={6} lg={4}>
-          {partnerProfile?.address ? (
-            <Box sx={{ padding: "10px" }}>
-              <Typography sx={{ fontWeight: "bold" }}>Location</Typography>
-              <Typography>{partnerProfile?.address}</Typography>
-            </Box>
-          ) : (
+          
             <Box sx={{ padding: "10px" }}>
               <CustomInput
                 name="location"
                 setInput={(e) => setLocation(e.target.value)}
                 label="Location"
-                value={location}
+                // value={location}
+                value={partnerProfile?.address? partnerProfile?.address: location}
+                readOnly={partnerProfile?.address}
               />
             </Box>
-          )}
         </Grid>
         <Grid item xs={12} sm={6} lg={4}>
           <Box sx={{ padding: "10px" }}>

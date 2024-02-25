@@ -8,9 +8,11 @@ import { useEffect } from "react";
 import { useState } from "react";
 // import Process from "./ProcessSteps";
 import ProcessSteps from "./ProcessSteps";
-import LeftBar from "@/components/LeftBar";
 // import AssignDoc from "../AssignDoc";
-import AssignDoc from "../AssignDoc";
+import AssignDoc from "./AssignDoc";
+import ClientInfo from "./ClientInfo";
+import Education from "./Education";
+import VerticalLinearStepper from "./VerticalStepper";
 
 const ClientProfile = ({ params }) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -72,119 +74,9 @@ const ClientProfile = ({ params }) => {
     <Box>
       <Box>
         <Box sx={{padding: "10px"}}>
-          <Box>
-            <Typography
-              sx={{ fontWeight: "bold", fontSize: "25px", textAlign: "center" }}
-            >
-              Client Info
-            </Typography>
-          </Box>
-          <Box sx={{ display: "flex", flexWrap: "wrap", gap: "20px" }}>
-            <Box sx={{ display: "flex", gap: "5px" }}>
-              <Typography sx={{ fontWeight: "bold" }}>Name : </Typography>
-              <Typography>{client.client.name}</Typography>
-            </Box>
-            <Box sx={{ display: "flex", gap: "5px" }}>
-              <Typography sx={{ fontWeight: "bold" }}>Email : </Typography>
-              <Typography>{client.client.email}</Typography>
-            </Box>
-            <Box sx={{ display: "flex", gap: "5px" }}>
-              <Typography sx={{ fontWeight: "bold" }}>Phone : </Typography>
-              <Typography>
-                {client.client.phone ? client.client.phone : "NA"}
-              </Typography>
-            </Box>
-            <Box sx={{ display: "flex", gap: "5px" }}>
-              <Typography sx={{ fontWeight: "bold" }}>
-                Date Of Birth :{" "}
-              </Typography>
-              <Typography>
-                {client.client.dob
-                  ? dayjs(client.client.dob).format("DD-MM-YYYY")
-                  : "NA"}
-              </Typography>
-            </Box>
-            <Box sx={{ display: "flex", gap: "5px" }}>
-              <Typography sx={{ fontWeight: "bold" }}>Address : </Typography>
-              <Typography>
-                {client.client.address ? client.client.address : "NA"}
-              </Typography>
-            </Box>
-            <Box sx={{ display: "flex", gap: "5px" }}>
-              <Typography sx={{ fontWeight: "bold" }}>
-                Visa Country :{" "}
-              </Typography>
-              <Typography>
-                {client.client.visaCountry ? client.client.visaCountry : "NA"}
-              </Typography>
-            </Box>
-          </Box>
+          <ClientInfo client={client}/>
           <Divider sx={{ marginY: "10px" }} />
-          <Box>
-            <Box>
-              <Typography
-                sx={{
-                  fontWeight: "bold",
-                  fontSize: "20px",
-                  textAlign: "center",
-                }}
-              >
-                Education
-              </Typography>
-            </Box>
-            {client.education?.map((item, index) => {
-              return (
-                <Box sx={{ display: "flex", flexWrap: "wrap", gap: "20px" }}>
-                  <Box sx={{ display: "flex", gap: "5px" }}>
-                    <Typography sx={{ fontWeight: "bold" }}>
-                      Degree :{" "}
-                    </Typography>
-                    <Typography>{item.degree}</Typography>
-                  </Box>
-                  <Box sx={{ display: "flex", gap: "5px" }}>
-                    <Typography sx={{ fontWeight: "bold" }}>
-                      College :{" "}
-                    </Typography>
-                    <Typography>{item.college}</Typography>
-                  </Box>
-                  <Box sx={{ display: "flex", gap: "5px" }}>
-                    <Typography sx={{ fontWeight: "bold" }}>
-                      Country :{" "}
-                    </Typography>
-                    <Typography>{item.country}</Typography>
-                  </Box>
-                  <Box sx={{ display: "flex", gap: "5px" }}>
-                    <Typography sx={{ fontWeight: "bold" }}>
-                      Stream :{" "}
-                    </Typography>
-                    <Typography>{item.stream}</Typography>
-                  </Box>
-                  <Box sx={{ display: "flex", gap: "5px" }}>
-                    <Typography sx={{ fontWeight: "bold" }}>
-                      Score :{" "}
-                    </Typography>
-                    <Typography>{item.score}</Typography>
-                  </Box>
-                  <Box sx={{ display: "flex", gap: "5px" }}>
-                    <Typography sx={{ fontWeight: "bold" }}>
-                      Start Date :{" "}
-                    </Typography>
-                    <Typography>
-                      {dayjs(item.startDate).format("DD-MM-YY")}
-                    </Typography>
-                  </Box>
-                  <Box sx={{ display: "flex", gap: "5px" }}>
-                    <Typography sx={{ fontWeight: "bold" }}>
-                      End Date :{" "}
-                    </Typography>
-                    <Typography>
-                      {dayjs(item.endDate).format("DD-MM-YYYY")}
-                    </Typography>
-                  </Box>
-                </Box>
-              );
-            })}
-          </Box>
+          <Education client={client} />
           <Divider sx={{ marginY: "10px" }} />
           <Box>
             <Box>
@@ -308,7 +200,7 @@ const ClientProfile = ({ params }) => {
             })}
           </Box>
           <Divider sx={{ marginY: "10px" }} />
-          <Box>
+          <Box sx={{boxShadow: "0px 3px 8px rgba(0, 0, 0, .24)"}}>
             <Box>
               <Typography
                 sx={{
@@ -320,10 +212,13 @@ const ClientProfile = ({ params }) => {
                 Process Status
               </Typography>
             </Box>
-            <ProcessSteps client={client} />
+            {/* <ProcessSteps client={client} /> */}
+            <VerticalLinearStepper steps={client.steps}/>
           </Box>
           <AssignDoc client={client}/>
+          
         </Box>
+        
         </Box>
     </Box>
   );

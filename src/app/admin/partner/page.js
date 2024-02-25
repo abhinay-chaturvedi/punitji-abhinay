@@ -87,7 +87,7 @@ const Page = () => {
         },
       });
       const result = await res.json();
-      console.log("🚀 ~ file: page.js:37 ~ getAllClients ~ result:", result);
+      // console.log("🚀 ~ file: page.js:37 ~ getAllClients ~ result:", result);
       if (result.status == 200) {
         setClients(result.data);
       }

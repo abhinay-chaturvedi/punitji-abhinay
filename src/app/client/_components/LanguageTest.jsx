@@ -88,10 +88,10 @@ const LanguageTest = ({ userState }) => {
       if (!data.overallBand || !data.overallBand.length) {
         return setError("Please fill Overall Band!");
       }
-      console.log("languageDetail", languageDetail);
+      // console.log("languageDetail", languageDetail);
       setBtnText("saving...");
       const result = await saveLanguageTest(data);
-      console.log("🚀 ~ file: LanguageTest.jsx:93 ~ handleSave ~ result:", result)
+      // console.log("🚀 ~ file: LanguageTest.jsx:93 ~ handleSave ~ result:", result)
       if(result.status == 200) {
         
         setFormOpen(false);

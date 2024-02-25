@@ -44,9 +44,6 @@ const columns = [
           <IconButton component={Link} href={`/partner/cases/${params.row.userId}`}>
             <VisibilityIcon />
           </IconButton>
-          <IconButton component={Link} href={`/partner/cases/${params.row.userId}`}>
-            <DeleteOutlineIcon />
-          </IconButton>
         </Box>
       );
     },

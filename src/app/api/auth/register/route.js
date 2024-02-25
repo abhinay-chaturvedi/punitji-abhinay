@@ -5,7 +5,7 @@ import bcrypt from "bcrypt";
 const POST = async (req) => {
     try {
         const regData = await req.json();
-        console.log("Req body for the register api", regData);
+        // console.log("Req body for the register api", regData);
         const check = await prisma.user.findUnique({
             where: {
                 email: regData.email
@@ -26,7 +26,7 @@ const POST = async (req) => {
         if(!prismaResult) {
             return NextResponse.json({message: "error occured!", status: 400}, {status: 400});
         }
-        console.log("prisma result", prismaResult);
+        // console.log("prisma result", prismaResult);
         // need to create to create the client or partner in their respective table
         if(regData.role === "CLIENT") {
             const client = await prisma.client.create({

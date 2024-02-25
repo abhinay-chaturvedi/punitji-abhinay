@@ -22,7 +22,7 @@ const GET = async (req) => {
 const POST = async (req) => {
     try {
         const data = await req.json();
-        console.log("🚀 ~ file: route.js:25 ~ POST ~ data:", data)
+        // console.log("🚀 ~ file: route.js:25 ~ POST ~ data:", data)
         const prismaResult = await prisma.languageTest.create({
             data: {
                 ...data

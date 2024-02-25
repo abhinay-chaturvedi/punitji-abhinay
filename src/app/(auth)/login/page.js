@@ -15,7 +15,6 @@ import { setUser } from '@/contexts/user/action';
 
 const Login = () => {
   const loginUser = useLogin();
-  console.log("use login 0000000000000000", loginUser)
   const [showPassword, setShowPassword] = useState(false);
   const [btnText, setBtnText] = useState("Login");
   const [isClicked, setIsClicked] = useState(false);
@@ -24,7 +23,7 @@ const Login = () => {
   const [error, setError] = useState(null);
   const router = useRouter()
   const {state: userState, dispatch: dispatchUser} = useContext(UserContext);
-  console.log(password)
+  
   const handleClickShowPassword = () => setShowPassword((show) => !show);
   const handleMouseDownPassword = (event) => {
       event.preventDefault();
@@ -33,7 +32,6 @@ const Login = () => {
   const handleLogin  = async () => {
       // first need to validate the email and password
       
-      console.log(email, password);
       if(!email.match(emailPattern)) {
           setError("Email is not valid!");
           setBtnText("Login");
@@ -49,7 +47,6 @@ const Login = () => {
         setBtnText("Login");
         return ;
       }
-      console.log("result while login is!", JSON.stringify(res));
       // setLogin(res.data);
       localStorage.setItem("user", JSON.stringify(res.data));
       dispatchUser(setUser(res.data));

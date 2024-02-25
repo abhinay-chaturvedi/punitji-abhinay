@@ -54,7 +54,7 @@ const Page = () => {
   }, [q]);
   const { state: userState, dispatch: dispatchUserAction } =
     useContext(UserContext);
-  console.log("🚀 ~ file: page.js:45 ~ Page ~ userState:", userState);
+  // console.log("🚀 ~ file: page.js:45 ~ Page ~ userState:", userState);
 
   React.useEffect(() => {
     setIsLoading(false);

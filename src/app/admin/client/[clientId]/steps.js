@@ -33,7 +33,7 @@ const Steps = ({ client }) => {
       console.log("🚀 ~ file: steps.js:32 ~ handleProcess ~ err:", err);
     }
   };
-  console.log(steps);
+  // console.log(steps);
   return (
     <Box>
       {steps == null ? (
@@ -93,7 +93,7 @@ const Process = ({steps, setSteps, step, stepNameShow}) => {
                 body: JSON.stringify({userId: steps.userId, [stepName]: true})
             })
             const result = await res.json();
-            console.log("🚀 ~ file: steps.js:79 ~ completeProcess ~ result:", result)
+            // console.log("🚀 ~ file: steps.js:79 ~ completeProcess ~ result:", result)
             if(result.status == 200) {
                 console.log("we have successfully updated the process");
                 setSteps(result.data);

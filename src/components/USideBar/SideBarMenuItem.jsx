@@ -7,8 +7,13 @@ import React from "react";
 import { useContext } from "react";
 
 const SideBarMenuItem = ({ label, icon, url }) => {
-  const path = usePathname();
-  console.log("🚀 ~ path:", path);
+  const arr = usePathname().split("/");
+
+  console.log("🚀 ~ path:", arr);
+  let path = `/${arr[1]}`;
+  if (arr.length > 2) {
+    path += `/${arr[2]}`;
+  }
   const user = useContext(UserContext);
   console.log("🚀 ~ user:", user);
   return (
@@ -16,15 +21,17 @@ const SideBarMenuItem = ({ label, icon, url }) => {
       <Box
         sx={{
           display: "flex",
-          justifyContent: {xs: "center", md: "start"},
+          justifyContent: { xs: "center", md: "start" },
           p: "10px",
           borderRadius: "10px",
-          bgcolor: url == path ? "white" : "",
+          bgcolor: path == url ? "white" : "",
           alignItems: "center",
           gap: "10px",
         }}
       >
-        <Tooltip title={label} placement="top">{icon}</Tooltip>
+        <Tooltip title={label} placement="top">
+          {icon}
+        </Tooltip>
 
         <Typography
           component="span"

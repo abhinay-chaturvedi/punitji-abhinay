@@ -35,7 +35,7 @@ const ProcessSteps = ({ client }) => {
   };
   console.log(steps);
   return (
-    <Box>
+    <Box sx={{boxShadow: "0px 3px 8px rgba(0, 0, 0, .24)", p: "5px"}}>
       {steps == null ? (
         <Box
           sx={{
@@ -106,7 +106,7 @@ const Process = ({steps, setSteps, step, stepNameShow}) => {
     }
 
   return (
-    <Box>
+  <Box >
       <Box sx={{ display: "flex", alignItems: "center",justifyContent: "space-between", gap: "20px" }}>
         <Typography>
           <b>{"--) "}</b>{stepNameShow}
@@ -118,7 +118,7 @@ const Process = ({steps, setSteps, step, stepNameShow}) => {
             <DoneAllIcon sx={{ color: "green" }} />
           </Box>
         ) : (
-          <Button sx={{border: "1px solid green"}} disabled={isLoading} onClick={() => completeProcess(step)}> {isLoading? "Please Wait...": "mark as completed"}</Button>
+          <Button sx={{border: "1px solid green"}} disabled={isLoading} onClick={() => completeProcess(step)}> {isLoading? "Please Wait...": "Done"}</Button>
         )}
       </Box>
     </Box>
