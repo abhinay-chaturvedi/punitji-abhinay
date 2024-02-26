@@ -7,7 +7,7 @@ import DocumentPage from './DocumentPage'
 
 const Page = () => {
   return (
-    <Box>
+    <Box sx={{p: "10px"}}>
         <DocumentPage/>
     </Box>
   )

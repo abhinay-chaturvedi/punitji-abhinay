@@ -9,15 +9,15 @@ import { cookies, headers } from "next/headers";
 import { notFound, redirect } from "next/navigation";
 const Page = async () => {
   // redirect("/login")
-//   const token = cookies().get("token")?.value;
-//   if (!token) {
-//     redirect("/login");
-//   }
-//   console.log(token, "token in query");
-//   const currentUser = jwt.verify(token, process.env.JWT_SECRET);
-//   console.log("🚀 ~ Page ~ currentUser:", currentUser);
-const currentUser = await getSession();
-console.log("🚀 ~ Page ~ currentUser:", currentUser);
+  //   const token = cookies().get("token")?.value;
+  //   if (!token) {
+  //     redirect("/login");
+  //   }
+  //   console.log(token, "token in query");
+  //   const currentUser = jwt.verify(token, process.env.JWT_SECRET);
+  //   console.log("🚀 ~ Page ~ currentUser:", currentUser);
+  const currentUser = await getSession();
+  console.log("🚀 ~ Page ~ currentUser:", currentUser);
   if (!currentUser) {
     redirect("/login");
     // notFound();
@@ -28,13 +28,15 @@ console.log("🚀 ~ Page ~ currentUser:", currentUser);
   return (
     <Box>
       <Container>
-        <Box>
-            <QueryForm/>
-        </Box>
-        <Box>
-          {queries.map((item, index) => {
-            return <QueryCard key={index} item={item} index={index} />;
-          })}
+        <Box sx={{boxShadow: "0px 3px 8px rgba(0, 0, 0, .24)", p: "5px"}}>
+          <Box >
+            <QueryForm />
+          </Box>
+          <Box>
+            {queries.map((item, index) => {
+              return <QueryCard key={index} item={item} index={index} />;
+            })}
+          </Box>
         </Box>
       </Container>
     </Box>

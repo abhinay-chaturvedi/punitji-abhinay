@@ -57,6 +57,7 @@ model Partner {
   address       String?
   faxNumber     String?
   joiningDate   DateTime?
+  documents     String?
   isVerified    Boolean   @default(false)
   casesSolved   Int       @default(0)
   casesAssigned Int       @default(0)

@@ -20,7 +20,7 @@ const Education = ({ client }) => {
         {client.education?.map((item, index) => {
           return (
             <Box key={index}>
-              <Box sx={{ display: "flex", flexWrap: "wrap", gap: "20px" }}>
+              <Box sx={{ display: "flex", flexWrap: "wrap", gap: "20px", mb: "10px" }}>
                 <Box sx={{ display: "flex", gap: "5px" }}>
                   <Typography sx={{ fontWeight: "bold" }}>Degree : </Typography>
                   <Typography>{item.degree}</Typography>

@@ -78,7 +78,7 @@ export default function QueryForm({ getQueries }) {
       noValidate
       autoComplete="off"
     >
-      <Box sx={{ margin: "auto", maxWidth: "70%" }}>
+      <Box sx={{ margin: "auto", maxWidth: "85%" }}>
         <TextField
           id="outlined-multiline-static"
           label="Write something here..."

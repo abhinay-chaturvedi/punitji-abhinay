@@ -5,7 +5,7 @@ import ProcessPage from './ProcessPage'
 
 const Page = () => {
   return (
-    <Box>
+    <Box sx={{p: "10px"}}>
         <ProcessPage/>
     </Box>
   )

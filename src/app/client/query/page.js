@@ -28,6 +28,9 @@ console.log("🚀 ~ Page ~ currentUser:", currentUser);
   return (
     <Box>
       <Container>
+        <Box sx={{boxShadow: "0px 3px 8px rgba(0, 0, 0, .24)", p: "5px"}}>
+
+       
         <Box>
             <QueryForm/>
         </Box>
@@ -35,6 +38,7 @@ console.log("🚀 ~ Page ~ currentUser:", currentUser);
           {queries.map((item, index) => {
             return <QueryCard key={index} item={item} index={index} />;
           })}
+        </Box>
         </Box>
       </Container>
     </Box>

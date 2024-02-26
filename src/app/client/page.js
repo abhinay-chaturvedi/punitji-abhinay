@@ -9,7 +9,7 @@ import {
   Button,
   IconButton,
 } from "@mui/material";
-import LeftBar from "@/components/LeftBar";
+// import LeftBar from "@/components/LeftBar";
 import { useRouter, useSearchParams } from "next/navigation";
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
 import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";

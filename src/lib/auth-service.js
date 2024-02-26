@@ -19,3 +19,7 @@ export const getSession = async () => {
     throw new Error("some thing went wrong");
   }
 };
+export const logout = async () => {
+
+  cookies().delete("token");
+}

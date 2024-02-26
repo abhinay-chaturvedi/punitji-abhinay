@@ -78,7 +78,7 @@ const ClientProfile = ({ params }) => {
           <Divider sx={{ marginY: "10px" }} />
           <Education client={client} />
           <Divider sx={{ marginY: "10px" }} />
-          <Box>
+          <Box sx={{ p: "5px", boxShadow: "0px 3px 8px rgba(0, 0, 0, .24)" }}>
             <Box>
               <Typography
                 sx={{
@@ -139,7 +139,7 @@ const ClientProfile = ({ params }) => {
             })}
           </Box>
           <Divider sx={{ marginY: "10px" }} />
-          <Box>
+          <Box sx={{ p: "5px", boxShadow: "0px 3px 8px rgba(0, 0, 0, .24)" }}>
             <Box>
               <Typography
                 sx={{

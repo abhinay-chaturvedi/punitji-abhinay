@@ -77,6 +77,18 @@ const PUT = async (req) => {
       );
     }
 
+    if(prismaResult.finalResult) {
+      await prisma.partner.update({
+        where: {
+          userId: userId
+        },
+        data: {
+          casesSolved: {
+            increment: 1
+          }
+        }
+      })
+    }
     return NextResponse.json(
       { status: 200, message: "success", data: prismaResult },
       { satus: 200 }
