@@ -167,7 +167,7 @@ export default function VerticalLinearStepper({ steps: stepsObj }) {
   };
   return (
     <Box sx={{ p: "20px" }}>
-      {stepsObj == null ? (
+      {steps == null ? (
         <Box
           sx={{
             display: "flex",
