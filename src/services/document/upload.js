@@ -1,5 +1,5 @@
 const uploadfile = async (formData) => {
-    console.log("🚀 ~ file: upload.js:2 ~ uploadfile ~ formData:", formData)
+    // console.log("🚀 ~ file: upload.js:2 ~ uploadfile ~ formData:", formData)
     try {
         const res = await fetch("/api/document/upload", {
             method: "POST",

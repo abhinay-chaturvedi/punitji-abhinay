@@ -20,7 +20,6 @@ import Footer from "@/components/Footer";
 import Image from "next/image";
 export default async function Home() {
  
-  const token = cookies().get("token");
   
   return (
     <Box>

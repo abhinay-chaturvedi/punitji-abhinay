@@ -9,7 +9,6 @@ const login = async (payload) => {
             body: JSON.stringify(payload)
         })
         const result = await res.json();
-        console.log("result in service file", result);
         return result;
     } catch(err) {
         return err;

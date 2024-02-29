@@ -6,7 +6,7 @@ const POST = async (req) => {
     try {
         const formData = await req.formData();
         console.log("🚀 ~ file: route.js:6 ~ POST ~ formData:", formData);
-        const upload = await fetch(`${process.env.DOMAIN}/api/upload`, {
+        const upload = await fetch(`${process.env.UPLOAD_DOMAIN}/api/upload`, {
             method: "POST",
             body: formData
         })
@@ -14,7 +14,7 @@ const POST = async (req) => {
         if(data.ok === false) {
             return NextResponse.json({status: 400, message: "invalid file"}, {status: 400})
         }
-        console.log("🚀 ~ file: route.js:11 ~ POST ~ upload:", data);
+        // console.log("🚀 ~ file: route.js:11 ~ POST ~ upload:", data);
         const userId = formData.get('userId');
         const doc_id = formData.get('doc_id');
         // console.log("🚀 ~ file: route.js:16 ~ POST ~ email:", email);
@@ -38,7 +38,7 @@ const POST = async (req) => {
                 documents: updatedDocs
             }
         })
-        console.log("🚀 ~ file: route.js:32 ~ POST ~ prismaResult:", prismaResult)
+        // console.log("🚀 ~ file: route.js:32 ~ POST ~ prismaResult:", prismaResult)
         return NextResponse.json({status: 200, message: "file uploaded successfully!", data:prismaResult, uploadData: data}, {status: 200});
     } catch(err) {
         console.log("🚀 ~ file: route.js:5 ~ POST ~ err:", err)

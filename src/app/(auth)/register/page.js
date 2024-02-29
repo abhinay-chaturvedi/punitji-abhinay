@@ -40,7 +40,6 @@ const Register = () => {
   const [isRegistering, setIsRegistering] = useState(false);
   const [isEmailSent, setIsEmailSent] = useState(false);
   const router = useRouter();
-  console.log(password);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
@@ -88,7 +87,7 @@ const Register = () => {
   const handleRegister = async () => {
     // first need to validate the email and password
 
-    console.log(email, password);
+
     if (!email.match(emailPattern)) {
       setError("Email is not valid!");
       setBtnText("Sign Up");
@@ -109,6 +108,7 @@ const Register = () => {
     setBtnText("Please Wait...");
 
     // const res = await register({ name, email, password, role });
+
     const res = await sendEmail();
     if (res.status !== 200) {
       setError(res.message);
@@ -116,7 +116,6 @@ const Register = () => {
       setIsEmailSent(true);
       setSentCode(res.code);
     }
-    console.log("result while sending email to user!", JSON.stringify(res));
     setIsClicked(false);
     setBtnText("Sign Up");
     // router.push("/login");

@@ -13,7 +13,7 @@ const formRef = useRef(null);
   const handleSubmit = async (formData) => {
     // setIsSubmitting(true);
     const result = await createDocument(formData);
-    console.log("🚀 ~ file: addDocument.js:14 ~ handleSubmit ~ result:", result)
+    // console.log("🚀 ~ file: addDocument.js:14 ~ handleSubmit ~ result:", result)
     if(!result.err) {
         formRef.current?.reset();
     }

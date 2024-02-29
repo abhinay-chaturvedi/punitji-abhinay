@@ -22,6 +22,9 @@ import { UserContext } from "@/contexts/user/context";
 import { clearUser, setUser } from "@/contexts/user/action";
 import CloseIcon from '@mui/icons-material/Close';
 import { useMediaQuery, useTheme } from "@mui/material";
+import { useEffect } from "react";
+import prisma from "@/prisma/connect";
+import { logout } from "@/lib/auth-service";
 
 const pages = [{page:"Home", url: "/"}, {page: "About", url: "/about"}, {page: "Services", url: "/services"}, {page: "Blog", url: "/blog"}, {page: "Visa", url: "/visa"}, {page: "Contact", url: "/contact-us"}];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
@@ -67,7 +70,9 @@ function NavBar() {
   const handleLogout = async () => {
     dispatchUserAction(clearUser());
     localStorage.removeItem('user');
+    await logout();
   }
+  
   return (
     <AppBar sx={{ background: "white", top: 0 }} position="sticky">
       <Container sx={{ bgcolor: "white" }}>
@@ -223,7 +228,7 @@ function NavBar() {
                   <MenuItem
                     onClick={() => {
                       handleCloseUserMenu();
-                      router.push(`${userState.role.toLowerCase()}`);
+                      router.push(`/${userState.role.toLowerCase()}`);
                     }}
                   >
                     <Typography textAlign="center">Dashboard</Typography>

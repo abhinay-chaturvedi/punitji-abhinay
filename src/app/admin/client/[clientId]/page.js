@@ -8,7 +8,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import PartnerInfo from "./PartnerInfo";
 import Steps from "./steps";
-import AssignDoc from "@/components/AssignDoc";
+import AssignDoc from "@/components/ClientProfile/AssignDoc";
 
 const Page = ({ params }) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -26,7 +26,7 @@ const Page = ({ params }) => {
         }
       );
       const result = await res.json();
-      console.log("🚀 ~ file: page.js:24 ~ getClientById ~ result:", result);
+      // console.log("🚀 ~ file: page.js:24 ~ getClientById ~ result:", result);
       if (result.status == 200) {
         setClient(result.data);
       }

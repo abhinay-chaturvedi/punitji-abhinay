@@ -5,7 +5,7 @@ import { NextRequest, NextResponse } from "next/server";
 const GET = async (req) => {
   try {
     const userId = req.nextUrl.searchParams.get("userId");
-    console.log("🚀 ~ file: route.js:8 ~ GET ~ userId:", userId)
+    // console.log("🚀 ~ file: route.js:8 ~ GET ~ userId:", userId)
     if (!userId) {
       return NextResponse.json(
         { status: 400, message: "error occured" },
@@ -29,7 +29,7 @@ const GET = async (req) => {
 const POST = async (req) => {
     try {
         const body = await req.json();
-        console.log("🚀 ~ file: route.js:31 ~ POST ~ body:", body)
+        // console.log("🚀 ~ file: route.js:31 ~ POST ~ body:", body)
         // return NextResponse.json({status: 200});
         const prismaResult = await prisma.userEducation.create({
             data: {

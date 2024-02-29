@@ -6,15 +6,15 @@ import jwt from "jsonwebtoken"
 const POST = async (req) => {
     try {
         const loginData = await req.json();
-        console.log("cookies", req.cookies.get("token"));
-        console.log("🚀 ~ file: route.js:4 ~ POST ~ loginData:", loginData)
+        // console.log("cookies", req.cookies.get("token"));
+        // console.log("🚀 ~ file: route.js:4 ~ POST ~ loginData:", loginData)
         
         const prismaResult = await prisma.user.findUnique({
             where: {
                 email: loginData.email
             }
         })
-        console.log("Result of Prisma query", prismaResult);
+        // console.log("Result of Prisma query", prismaResult);
         if(!prismaResult) {
             return NextResponse.json({message: "User does not exist! Please Use correct email or signup first. 🙁", status: 400}, {status: 400})
         }

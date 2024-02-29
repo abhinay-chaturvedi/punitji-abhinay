@@ -5,6 +5,7 @@ import { NextRequest, NextResponse } from "next/server";
 const GET = async (req) => {
   try {
     const userId = req.nextUrl.searchParams.get("userId");
+    console.log("🚀 ~ GET ~ userId:", userId)
     if(!userId) {
       return NextResponse.json({status: 400, message: "error occured"}, {status: 400})
     }
@@ -76,6 +77,18 @@ const PUT = async (req) => {
       );
     }
 
+    if(prismaResult.finalResult) {
+      await prisma.partner.update({
+        where: {
+          userId: userId
+        },
+        data: {
+          casesSolved: {
+            increment: 1
+          }
+        }
+      })
+    }
     return NextResponse.json(
       { status: 200, message: "success", data: prismaResult },
       { satus: 200 }
