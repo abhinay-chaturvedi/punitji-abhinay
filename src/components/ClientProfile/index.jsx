@@ -13,6 +13,7 @@ import AssignDoc from "./AssignDoc";
 import ClientInfo from "./ClientInfo";
 import Education from "./Education";
 import VerticalLinearStepper from "./VerticalStepper";
+import PartnerInfo from "./PartnerInfo";
 
 const ClientProfile = ({ params }) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -75,6 +76,8 @@ const ClientProfile = ({ params }) => {
       <Box>
         <Box sx={{padding: "10px"}}>
           <ClientInfo client={client}/>
+          <Divider sx={{ marginY: "10px" }} />
+          <PartnerInfo client={client}/>
           <Divider sx={{ marginY: "10px" }} />
           <Education client={client} />
           <Divider sx={{ marginY: "10px" }} />
