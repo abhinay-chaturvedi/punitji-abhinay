@@ -20,18 +20,17 @@ import { useEffect } from "react";
 import dayjs from "dayjs";
 import { UserContext } from "@/contexts/user/context";
 import Loader from "@/components/Loader";
-const DetailCard = ({
-  userState,
-  mainApplicationDetail,
-  setMainApplicationDetail,
-}) => {
+import LoadingAnimation from "@/components/LoadingAnimation";
+const DetailCard = ({ userId }) => {
   const [arrow, setArrow] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [mainApplicationDetail, setMainApplicationDetail] = useState(null);
   const [mainDetail, setMainDetail] = useState({
     address: null,
     visaCountry: null,
   });
   const [dob, setDob] = useState(null);
+  console.log("🚀 ~ DetailCard ~ dob:", dob)
   const [error, setError] = useState(null);
   const [btnText, setBtnText] = useState("save");
   // const [mainApplicationDetail, setMainApplicationDetail] = useState(null);
@@ -40,7 +39,7 @@ const DetailCard = ({
     try {
       const data = {
         dob,
-        userId: userState.id,
+        userId: userId,
         ...mainDetail,
       };
       console.log("data to save is", data);
@@ -59,13 +58,13 @@ const DetailCard = ({
       }
       setBtnText("saving...");
       const result = await saveApplication(data);
-      console.log(
-        "🚀 ~ file: MainApplication.jsx:23 ~ handleSave ~ result:",
-        result
-      );
+      // console.log(
+      //   "🚀 ~ file: MainApplication.jsx:23 ~ handleSave ~ result:",
+      //   result
+      // );
       if (result.status == 200) {
         setMainApplicationDetail(result.data);
-        setBtnText("Data Successfully Saved!");
+        setBtnText("Saved!");
       } else {
         setBtnText("save");
         setError(result.message);
@@ -77,13 +76,20 @@ const DetailCard = ({
   };
   const fetchApplicationDetail = async () => {
     try {
-      const userId = userState.id;
+      // const userId = userState.id;
       const result = await getApplicationDetail(userId);
-      console.log(
-        "🚀 ~ file: MainApplication.jsx:60 ~ fetchApplicationDetail ~ result:",
-        result
-      );
-      setMainApplicationDetail(result.data);
+      // console.log(
+      //   "🚀 ~ file: MainApplication.jsx:60 ~ fetchApplicationDetail ~ result:",
+      //   result
+      // );
+      if(result.status == 200) {
+        setMainApplicationDetail(result.data);
+        setMainDetail({
+          visaCountry: result.data?.visaCountry,
+          address: result.data?.address
+        })
+        setDob(result.data?.dob)
+      }
       setIsLoading(false);
     } catch (err) {
       console.log(
@@ -96,6 +102,23 @@ const DetailCard = ({
   useEffect(() => {
     fetchApplicationDetail();
   }, []);
+  if (isLoading) {
+    return (
+      <Box sx={{ mt: "10px" }}>
+        <Box
+          sx={{
+            p: "10px",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            boxShadow: "2px 2px 5px 5px whitesmoke",
+          }}
+        >
+          <LoadingAnimation />
+        </Box>
+      </Box>
+    );
+  }
   return (
     <Box sx={{ mt: "10px" }}>
       <Box sx={{ p: "10px", boxShadow: "2px 2px 5px 5px whitesmoke" }}>
@@ -121,7 +144,7 @@ const DetailCard = ({
           </Alert>
         )}
         {arrow &&
-          (!mainApplicationDetail.visaCountry ? (
+          // (!mainApplicationDetail.visaCountry ? (
             <Grid container gap={2} justifyContent="center" sx={{ mt: "5px" }}>
               <Grid item xs={12} md={5.5}>
                 <FormControl required sx={{ width: "100%" }} variant="outlined">
@@ -197,7 +220,7 @@ const DetailCard = ({
                 </FormControl>
               </Grid>
               <Grid xs={12} item md={5.5}>
-                <BasicDatePicker setDate={setDob} label="Date of Birth" />
+                <BasicDatePicker dob={dob} setDate={setDob} label="Date of Birth" />
               </Grid>
               <Grid item xs={12} md={5.5}>
                 <FormControl required sx={{ width: "100%" }} variant="outlined">
@@ -235,43 +258,44 @@ const DetailCard = ({
                 </Button>
               </Grid>
             </Grid>
-          ) : (
-            <Box
-              sx={{
-                display: "flex",
-                flexWrap: "wrap",
-                gap: "10px",
-                flexDirection: "column",
-              }}
-            >
-              <Box sx={{ display: "flex", gap: "10px" }}>
-                <Typography sx={{ fontWeight: "bold" }}>Name:</Typography>
-                <Typography>{mainApplicationDetail.name}</Typography>
-              </Box>
-              <Box sx={{ display: "flex", gap: "10px" }}>
-                <Typography sx={{ fontWeight: "bold" }}>Email:</Typography>
-                <Typography>{mainApplicationDetail.email}</Typography>
-              </Box>
-              <Box sx={{ display: "flex", gap: "10px" }}>
-                <Typography sx={{ fontWeight: "bold" }}>Address:</Typography>
-                <Typography>{mainApplicationDetail.address}</Typography>
-              </Box>
-              <Box sx={{ display: "flex", gap: "10px" }}>
-                <Typography sx={{ fontWeight: "bold" }}>
-                  Date of Birth:
-                </Typography>
-                <Typography>
-                  {dayjs(mainApplicationDetail.dob).format("YYYY-MM-DD")}
-                </Typography>
-              </Box>
-              <Box sx={{ display: "flex", gap: "10px" }}>
-                <Typography sx={{ fontWeight: "bold" }}>
-                  Visa Country:
-                </Typography>
-                <Typography>{mainApplicationDetail.visaCountry}</Typography>
-              </Box>
-            </Box>
-          ))}
+          // ) : (
+          //   <Box
+          //     sx={{
+          //       display: "flex",
+          //       flexWrap: "wrap",
+          //       gap: "10px",
+          //       flexDirection: "column",
+          //     }}
+          //   >
+          //     <Box sx={{ display: "flex", gap: "10px" }}>
+          //       <Typography sx={{ fontWeight: "bold" }}>Name:</Typography>
+          //       <Typography>{mainApplicationDetail.name}</Typography>
+          //     </Box>
+          //     <Box sx={{ display: "flex", gap: "10px" }}>
+          //       <Typography sx={{ fontWeight: "bold" }}>Email:</Typography>
+          //       <Typography>{mainApplicationDetail.email}</Typography>
+          //     </Box>
+          //     <Box sx={{ display: "flex", gap: "10px" }}>
+          //       <Typography sx={{ fontWeight: "bold" }}>Address:</Typography>
+          //       <Typography>{mainApplicationDetail.address}</Typography>
+          //     </Box>
+          //     <Box sx={{ display: "flex", gap: "10px" }}>
+          //       <Typography sx={{ fontWeight: "bold" }}>
+          //         Date of Birth:
+          //       </Typography>
+          //       <Typography>
+          //         {dayjs(mainApplicationDetail.dob).format("YYYY-MM-DD")}
+          //       </Typography>
+          //     </Box>
+          //     <Box sx={{ display: "flex", gap: "10px" }}>
+          //       <Typography sx={{ fontWeight: "bold" }}>
+          //         Visa Country:
+          //       </Typography>
+          //       <Typography>{mainApplicationDetail.visaCountry}</Typography>
+          //     </Box>
+          //   </Box>
+          // ))
+        }
       </Box>
     </Box>
   );

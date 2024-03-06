@@ -19,8 +19,9 @@ import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 import DataTable from "@/components/DataTable";
 import { getLanguageTest, saveLanguageTest } from "@/services/client/languageTest";
+import LoadingAnimation from "@/components/LoadingAnimation";
 const LanguageTestColumn = [
-  { field: "id", headerName: "ID" },
+  { field: "index", headerName: "S.NO" },
   { field: "exam", headerName: "Exam", width: 150 },
   { field: "speakingBand", headerName: "Speaking Band", width: 200 },
   {
@@ -52,7 +53,8 @@ const LanguageTestColumn = [
     width: 150,
   },
 ];
-const LanguageTest = ({ userState }) => {
+const LanguageTest = ({ userId }) => {
+  const [isLoading, setIsLoading] = useState(true);
   const [arrow, setArrow] = useState(false);
   const [age, setAge] = useState("");
   const [btnText, setBtnText] = useState("save");
@@ -69,7 +71,7 @@ const LanguageTest = ({ userState }) => {
   })
   const handleSave = async () => {
     try {
-      const data = {userId: userState.id, ...languageDetail};
+      const data = {userId: userId, ...languageDetail};
       if (!data.exam || !data.exam.length) {
         return setError("Please fill Exam!");
       }
@@ -95,7 +97,9 @@ const LanguageTest = ({ userState }) => {
       if(result.status == 200) {
         
         setFormOpen(false);
-        setLanguageRows((prev) => ([result.data, ...prev]))
+        let newItem = result.data;
+        newItem.index = languageRows.length + 1;
+        setLanguageRows((prev) => ([...prev, newItem]))
       }
       setBtnText("save");
     } catch(err) {
@@ -106,19 +110,41 @@ const LanguageTest = ({ userState }) => {
   }
   const fetchLanguageTest = async () => {
     try {
-      const userId = userState.id;
       const result = await getLanguageTest(userId);
       console.log("🚀 ~ file: LanguageTest.jsx:110 ~ fetchLanguageTest ~ result:", result)
       if(result.status == 200) {
-        setLanguageRows(result.data);
+        setLanguageRows(result.data?.map((item, index) => {
+          item.index = index + 1;
+          return item;
+        }));
       }
+      setIsLoading(false);
     } catch(err) {
       console.log("🚀 ~ file: LanguageTest.jsx:115 ~ fetchLanguageTest ~ err:", err)
+      setIsLoading(false);
     }
   }
   useEffect(() => {
     fetchLanguageTest();
   }, []);
+
+  if (isLoading) {
+    return (
+      <Box sx={{ mt: "10px" }}>
+        <Box
+          sx={{
+            p: "10px",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            boxShadow: "2px 2px 5px 5px whitesmoke",
+          }}
+        >
+          <LoadingAnimation />
+        </Box>
+      </Box>
+    );
+  }
   return (
     <Box sx={{ mt: "10px" }}>
       <Box sx={{ p: "10px", boxShadow: "2px 2px 5px 5px whitesmoke" }}>

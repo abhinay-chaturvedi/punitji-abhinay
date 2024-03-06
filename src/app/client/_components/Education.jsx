@@ -10,19 +10,25 @@ import {
   Typography,
   Alert,
 } from "@mui/material";
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 import React, { useState } from "react";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import BasicDatePicker from "@/components/Date";
 import CustomInput from "@/components/CustomInput";
 import DataTable from "@/components/DataTable";
-import { getEducationDetail, saveEducationDetail } from "@/services/client/education";
+import {
+  getEducationDetail,
+  saveEducationDetail,
+} from "@/services/client/education";
 import { useEffect } from "react";
 import { toast } from "sonner";
+import LoadingAnimation from "@/components/LoadingAnimation";
+import dayjs from "dayjs";
 
 const educationColumn = [
-  { field: "id", headerName: "ID" },
+  { field: "index", headerName: "S.NO" },
   { field: "degree", headerName: "Degree" },
   { field: "college", headerName: "College/School", width: 200 },
   {
@@ -40,17 +46,18 @@ const educationColumn = [
   {
     field: "startDate",
     headerName: "Start Date",
-    width: 150
+    width: 150,
   },
   {
     field: "endDate",
     headerName: "End Date",
-    width: 150
+    width: 150,
   },
 ];
-const Education = ({userState, mainApplicationDetail}) => {
+const Education = ({ userId }) => {
   const [arrow, setArrow] = useState(false);
   const [age, setAge] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
   const [educationRows, setEducationRows] = useState(null);
   const [btnText, setBtnText] = useState("save");
   const [error, setError] = useState(null);
@@ -93,8 +100,9 @@ const Education = ({userState, mainApplicationDetail}) => {
     return "success";
   };
   const handleSave = async () => {
+    console.log("-------------")
     try {
-      const userId = userState.id;
+      // const userId = userId;
       const data = { ...education, userId };
       const text = handleValidate(data);
       if (text != "success") {
@@ -104,9 +112,13 @@ const Education = ({userState, mainApplicationDetail}) => {
       setBtnText("saving...");
       const result = await saveEducationDetail(data);
       // console.log("🚀 ~ file: Education.jsx:65 ~ handleSave ~ result:", result);
-      if(result.status === 200) {
+      if (result.status === 200) {
         setBtnText("save");
-        setEducationRows([...educationRows, result.data]);
+        let newItem = result.data;
+        newItem.startDate = dayjs(newItem.startDate).format("MM/DD/YYYY")
+        newItem.endDate = dayjs(newItem.endDate).format("MM/DD/YYYY")
+        newItem.index = educationRows.length + 1;
+        setEducationRows([...educationRows, newItem]);
         setEducation({
           degree: null,
           college: null,
@@ -120,7 +132,7 @@ const Education = ({userState, mainApplicationDetail}) => {
       } else {
         setBtnText("save");
       }
-      setFormOpen(false)
+      setFormOpen(false);
     } catch (err) {
       // console.log("🚀 ~ file: Education.jsx:63 ~ handleSave ~ err:", err);
       setBtnText("save");
@@ -128,17 +140,46 @@ const Education = ({userState, mainApplicationDetail}) => {
   };
   const geteducationDetail = async () => {
     try {
-      const userId = userState.id;
+      // const userId = userId;
       const result = await getEducationDetail(userId);
-      // console.log("🚀 ~ file: Education.jsx:120 ~ geteducationDetail ~ result:", result)
-      setEducationRows(result.data);
-    } catch(err) {
-      console.log("🚀 ~ file: Education.jsx:120 ~ getEducationDetail ~ err:", err)
+      console.log("🚀 ~ file: Education.jsx:120 ~ geteducationDetail ~ result:", result)
+      if(result.status == 200) {
+        setEducationRows(result.data?.map((item, index) => {
+          item.startDate = dayjs(item.startDate).format("MM/DD/YYYY")
+          item.endDate = dayjs(item.endDate).format("MM/DD/YYYY")
+          item.index = index + 1;
+          return item;
+        }));
+      }
+      setIsLoading(false);
+    } catch (err) {
+      console.log(
+        "🚀 ~ file: Education.jsx:120 ~ getEducationDetail ~ err:",
+        err
+      );
+      setIsLoading(false);
     }
-  }
+  };
   useEffect(() => {
     geteducationDetail();
-  }, [])
+  }, []);
+  if (isLoading) {
+    return (
+      <Box sx={{ mt: "10px" }}>
+        <Box
+          sx={{
+            p: "10px",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            boxShadow: "2px 2px 5px 5px whitesmoke",
+          }}
+        >
+          <LoadingAnimation />
+        </Box>
+      </Box>
+    );
+  }
   return (
     <Box sx={{ mt: "10px" }}>
       <Box sx={{ p: "10px", boxShadow: "2px 2px 5px 5px whitesmoke" }}>
@@ -155,7 +196,9 @@ const Education = ({userState, mainApplicationDetail}) => {
             {arrow ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />}
           </Button>
         </Box>
-        {arrow && educationRows&& <DataTable rows={educationRows} columns={educationColumn} />}
+        {arrow && educationRows && (
+          <DataTable rows={educationRows} columns={educationColumn} />
+        )}
         {arrow && error && (
           <Alert
             sx={{ width: "100%", my: 1 }}
@@ -283,9 +326,16 @@ const Education = ({userState, mainApplicationDetail}) => {
             </Grid>
           </Grid>
         )}
-        {arrow&& <Box sx={{display: "flex", justifyContent: "flex-end"}}>
-          <Button startIcon={<AddCircleOutlineIcon/>} onClick={() => setFormOpen((prev) => !prev)}>{formOpen? "Remove": "Add"}</Button>
-        </Box>}
+        {arrow && (
+          <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
+            <Button
+              startIcon={formOpen? <RemoveCircleOutlineIcon/> : <AddCircleOutlineIcon />}
+              onClick={() => setFormOpen((prev) => !prev)}
+            >
+              {formOpen ? "Remove" : "Add"}
+            </Button>
+          </Box>
+        )}
       </Box>
     </Box>
   );

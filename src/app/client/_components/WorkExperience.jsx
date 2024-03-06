@@ -22,8 +22,10 @@ import {
   getWorkExperience,
   saveWorkExperience,
 } from "@/services/client/workExperience";
+import LoadingAnimation from "@/components/LoadingAnimation";
+import dayjs from "dayjs";
 const experienceColumn = [
-  { field: "id", headerName: "ID" },
+  { field: "index", headerName: "S.NO" },
   { field: "jobTitle", headerName: "Job Title", width: 200 },
   { field: "company", headerName: "Company", width: 200 },
   {
@@ -50,7 +52,8 @@ const experienceColumn = [
     width: 150,
   },
 ];
-const WorkExperience = ({ userState }) => {
+const WorkExperience = ({ userId }) => {
+  const [isLoading, setIsLoading] = useState(true);
   const [arrow, setArrow] = useState(false);
   const [age, setAge] = useState("");
   const [experienceRows, setExperienceRows] = useState(null);
@@ -66,20 +69,27 @@ const WorkExperience = ({ userState }) => {
   });
   const fetchExperieceDetail = async () => {
     try {
-      const userId = userState.id;
       const result = await getWorkExperience(userId);
       console.log(
         "🚀 ~ file: WorkExperience.jsx:55 ~ fetchExperieceDetail ~ result:",
         result
       );
       if (result.status == 200) {
-        setExperienceRows(result.data);
+        setExperienceRows(result.data?.map((item, index) => {
+          item.startDate = dayjs(item.startDate).format("MM/DD/YYYY")
+          item.endDate = dayjs(item.endDate).format("MM/DD/YYYY")
+          item.index = index + 1;
+          return item;
+        }));
+        
       }
+      setIsLoading(false);
     } catch (err) {
       console.log(
         "🚀 ~ file: WorkExperience.jsx:54 ~ fetchExperieceDetail ~ err:",
         err
       );
+      setIsLoading(false);
     }
   };
   useEffect(() => {
@@ -88,7 +98,7 @@ const WorkExperience = ({ userState }) => {
   const handleSave = async () => {
     try {
       const data = {
-        userId: userState.id,
+        userId: userId,
         ...workExperience,
       };
       console.log(
@@ -120,7 +130,11 @@ const WorkExperience = ({ userState }) => {
       if (result.status == 200) {
         setBtnText("save");
         setError(null);
-        setExperienceRows((prev) => [result.data, ...prev]);
+        let newItem = result.data;
+        newItem.startDate = dayjs(newItem.startDate).format("MM/DD/YYYY")
+          newItem.endDate = dayjs(newItem.endDate).format("MM/DD/YYYY")
+          newItem.index = experienceRows.length + 1;
+        setExperienceRows((prev) => [ ...prev, newItem]);
         setWorkExperience({
           jobTitle: "",
           company: "",
@@ -128,7 +142,7 @@ const WorkExperience = ({ userState }) => {
           startDate: "",
           endDate: "",
         });
-        setFormOpen(false)
+        setFormOpen(false);
       } else {
         setBtnText("save");
         setError(result.message);
@@ -139,6 +153,23 @@ const WorkExperience = ({ userState }) => {
       setError("something went wrong!");
     }
   };
+  if (isLoading) {
+    return (
+      <Box sx={{ mt: "10px" }}>
+        <Box
+          sx={{
+            p: "10px",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            boxShadow: "2px 2px 5px 5px whitesmoke",
+          }}
+        >
+          <LoadingAnimation />
+        </Box>
+      </Box>
+    );
+  }
   return (
     <Box sx={{ mt: "10px" }}>
       <Box sx={{ p: "10px", boxShadow: "2px 2px 5px 5px whitesmoke" }}>
