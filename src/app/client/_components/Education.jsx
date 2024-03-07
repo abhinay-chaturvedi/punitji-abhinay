@@ -26,7 +26,10 @@ import { useEffect } from "react";
 import { toast } from "sonner";
 import LoadingAnimation from "@/components/LoadingAnimation";
 import dayjs from "dayjs";
-
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import ConfirmModal from "@/components/ConfirmModal";
+import DeleteModal from "./DeleteModal";
+import { useGridApiContext } from "@mui/x-data-grid";
 const educationColumn = [
   { field: "index", headerName: "S.NO" },
   { field: "degree", headerName: "Degree" },
