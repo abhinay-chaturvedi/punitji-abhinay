@@ -78,7 +78,7 @@ const stepsArr = [
     description: "Before continue, make sure you are done with the process.",
   },
 ];
-export default function VerticalLinearStepper({ steps: stepsObj }) {
+export default function VerticalLinearStepper({ steps: stepsObj, userId }) {
   const [activeStep, setActiveStep] = React.useState(0);
   const [steps, setSteps] = useState(stepsObj);
   const [isCreatingProcess, setIsCreatingProcess] = useState(false);
@@ -124,7 +124,7 @@ export default function VerticalLinearStepper({ steps: stepsObj }) {
           Accept: "application/json",
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ userId: stepsObj.userId }),
+        body: JSON.stringify({ userId: userId }),
       });
       const result = await res.json();
       if (result.status == 200) {
