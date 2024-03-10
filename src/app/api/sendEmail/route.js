@@ -26,7 +26,7 @@ const POST = async (req) => {
       from: "HHHimmigration <authService@resend.dev>",
       to: [email],
       subject: "Verification",
-      html: `<h1>Hi there, this is the code for verifying the email address!</h1> <br> <h1>${code}</h1>`,
+      html: `<h2>Dear Valued Customer,</h2> <br> <h3>Greetings from the hhhimmigration!</h3> <br> <span>Please use the verification below to signin.</span> <br> <h2>${code}</h2> <br> <span> if you didn't request this, you can ignore this email.</span> <br> <span><b>NOTE:</b> OTP will expires in 5 minutes </span> <br> <span>Please do not share your OTP with others for security reason. </span> <br> <h4> Best Regards, <br> HHH IMMIGRATION TEAM </h4>`,
     });
     if (error) {
       return NextResponse.json(
@@ -51,3 +51,5 @@ const POST = async (req) => {
   }
 };
 export { POST };
+
+

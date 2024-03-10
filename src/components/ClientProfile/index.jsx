@@ -216,7 +216,7 @@ const ClientProfile = ({ params }) => {
               </Typography>
             </Box>
             {/* <ProcessSteps client={client} /> */}
-            <VerticalLinearStepper steps={client.steps}/>
+            <VerticalLinearStepper userId={client.id} steps={client.steps}/>
           </Box>
           <AssignDoc client={client}/>
           
