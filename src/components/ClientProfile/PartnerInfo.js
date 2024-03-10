@@ -103,7 +103,7 @@ if(isLoading) {
     )
 }
   return (
-    <Box>
+    <Box sx={{p: "5px", boxShadow: "0px 3px 8px rgba(0, 0, 0, .25)"}}>
       {assignedPartner == null ? (
         <Box sx={{display: "flex", alignItems: "center", gap: "10px", flexDirection: {xs: "column", md: "row"}}}>
           <Typography>Partner not assigned, Please assign partner</Typography>
@@ -151,7 +151,7 @@ if(isLoading) {
       ) : (
         <Box sx={{display: "flex", flexWrap: "wrap", gap: "10px"}}>
             <Box sx={{width: "100%"}}>
-                <Typography sx={{fontWeight: "bold"}}>Assigned Partner</Typography>
+                <Typography sx={{fontWeight: "bold", textAlign: "center"}}>Assigned Partner</Typography>
             </Box>
             <Box sx={{display: "flex", gap: "10px"}}>
                 <Typography sx={{fontWeight: "bold"}}>Name : </Typography>
