@@ -23,6 +23,7 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import register from "@/services/auth/register";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 const emailPattern = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
 const adminRefId = "admin";
 const Register = () => {
@@ -47,26 +48,26 @@ const Register = () => {
   };
   const HandleVerification = async () => {
     try {
-      if(!enterCode) {
+      if (!enterCode) {
         setError("Please enter verification code😉");
         return null;
       }
-      if(enterCode != sentCode) {
-        setError("Pleas enter valid code!🙁")
-        return ;
+      if (enterCode != sentCode) {
+        setError("Pleas enter valid code!🙁");
+        return;
       }
       setIsRegistering(true);
       const res = await register({ name, email, password, role });
-      if(res.status == 200){
-      console.log("successfully registered");
-      router.push("/login")
+      if (res.status == 200) {
+        console.log("successfully registered");
+        router.push("/login");
       }
       setIsRegistering(false);
-    } catch(err) {
+    } catch (err) {
       console.log(err);
       setIsRegistering(false);
     }
-  }
+  };
   const sendEmail = async () => {
     try {
       const res = await fetch("/api/sendEmail", {
@@ -86,7 +87,6 @@ const Register = () => {
   };
   const handleRegister = async () => {
     // first need to validate the email and password
-
 
     if (!email.match(emailPattern)) {
       setError("Email is not valid!");
@@ -130,14 +130,26 @@ const Register = () => {
             display: "flex",
             bgcolor: "white",
             flexDirection: "column",
-            p: "10px",
-            flex: { xs: "0 0 90%", sm: "0 0 70%", md: "0 0 40%" },
+            p: "20px",
+            borderRadius: "10px",
+            flex: { xs: "0 0 90%", sm: "0 0 70%", md: "0 0 50%" },
             m: "auto",
             my: "auto",
             alignItems: "center",
             boxShadow: "rgba(0, 0, 0, 0.16) 0px 1px 4px",
           }}
         >
+          <Box
+            component="div"
+            sx={{
+              mr: 2,
+              position: "relative",
+              width: "200px",
+              height: "50px",
+            }}
+          >
+            <Image layout="fill" objectFit="contain" src="/images/logo.png" />
+          </Box>
           {error && (
             <Alert
               sx={{ width: "100%", my: 1 }}
@@ -147,7 +159,7 @@ const Register = () => {
               {error}
             </Alert>
           )}
-          <FormControl required sx={{ m: 1, width: "100%" }} variant="outlined">
+          <FormControl required sx={{ m: 2, width: "100%" }} variant="outlined">
             <InputLabel htmlFor="outlined-adornment-name">Name</InputLabel>
             <OutlinedInput
               id="outlined-adornment-name"
@@ -319,7 +331,7 @@ const Register = () => {
                 textTransform: "capitalize",
               }}
             >
-              {isRegistering? "Please wait...": "Continue"}
+              {isRegistering ? "Please wait..." : "Continue"}
             </Button>
           )}
           <Box

@@ -3,8 +3,14 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import EnterEmailFwd from "./EnterEmailFwd";
+import { getSession } from "@/lib/auth-service";
+import { redirect } from "next/navigation";
 
-const Page = () => {
+const Page = async () => {
+  const session = await getSession();
+  if(session) {
+    redirect("/")
+  }
   return (
     <Box sx={{ bgcolor: "whitesmoke", minHeight: "" }}>
       <Container
@@ -15,8 +21,9 @@ const Page = () => {
             display: "flex",
             bgcolor: "white",
             flexDirection: "column",
-            p: "15px",
-            flex: { xs: "0 0 90%", sm: "0 0 70%", md: "0 0 40%" },
+            p: "20px",
+            borderRadius: "10px",
+            flex: { xs: "0 0 90%", sm: "0 0 70%", md: "0 0 50%" },
             m: "auto",
             my: "auto",
             alignItems: "center",

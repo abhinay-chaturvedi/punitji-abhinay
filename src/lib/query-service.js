@@ -22,11 +22,6 @@ const getQueries = async (id) => {
 
 const createQuery = async (payload) => {
     console.log("create query", payload);
-    await new Promise((resolve, reject) => {
-        setTimeout(() => {
-            resolve();
-        }, 5000);
-    })
     const query = await db.query.create({
         data: payload,
       });
