@@ -26,7 +26,7 @@ import { useEffect } from "react";
 import prisma from "@/prisma/connect";
 import { logout } from "@/lib/auth-service";
 
-const pages = [{page:"Home", url: "/"}, {page: "About", url: "/about"}, {page: "Services", url: "/services"}, {page: "Blog", url: "/blog"}, {page: "Visa", url: "/visa"}, {page: "Contact", url: "/contact-us"}];
+const pages = [{page:"Home", url: "/"}, {page: "About", url: "/about"}, {page: "Services", url: "/services"}, {page: "Visa", url: "/visa"}, {page: "Contact", url: "/contact-us"}];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 function NavBar() {
