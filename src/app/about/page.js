@@ -14,7 +14,7 @@ const Page = () => {
               About Us
             </Typography>
             <Typography
-              sx={{ fontWeight: "800", color: "gray", fontSize: "20px" }}
+              sx={{ fontWeight: "600",textAlign: "justify", color: "gray", fontSize: "18px" }}
             >
               Welcome to HHH Immigration, your steadfast ally on the path to new
               beginnings. With a combined experience of over 10 years, our
@@ -63,7 +63,7 @@ const Page = () => {
             <Typography sx={{ fontWeight: "bold", fontSize: "20px" }}>
               Director Message:{" "}
             </Typography>
-            <Typography sx={{ fontWeight: "600", color: "gray" }}>
+            <Typography sx={{ fontWeight: "600",textAlign: "justify", fontSize: "18px", color: "gray" }}>
               With the years of expertise in this industry, we have built a
               reputation for delivering on our promises as we firmly believe in
               the motto “Your Trust, Our promise”. What sets us apart from the

@@ -113,14 +113,18 @@ const Footer = () => {
           </Box>
           <Box sx={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center" }}>
             <Box sx={{display: "flex", flexDirection: "column", gap: "10px"}}>
-            <Typography sx={{ textAlign: "center", fontWeight:"bold", mb: "10px" }}>Get Free Consultant</Typography>
+            <Typography sx={{ textAlign: "center", fontWeight:"bold", mb: "10px" }}>Get Free Consultation</Typography>
             <Box sx={{display: "flex", gap: "15px", justifyContent: "left"}}>
                 <ContactPhoneIcon/>
-                <Typography sx={{color: "gray"}}>+91 9898989898</Typography>
+                <Typography component={"a"} href="tel: +919878433321" sx={{color: "gray"}}>+91 9878433321</Typography>
+            </Box>
+            <Box sx={{display: "flex", gap: "15px", justifyContent: "left"}}>
+                <ContactPhoneIcon/>
+                <Typography component={"a"} href="tel: +91833511038" sx={{color: "gray"}}>+91 833511038</Typography>
             </Box>
             <Box sx={{display: "flex", gap: "15px", justifyContent: "left"}}>
                 <EmailIcon/>
-                <Typography sx={{color: "gray"}}>info@hhhservice.com</Typography>
+                <Typography component={"a"} href="mailto:info@hhhimmigration.com" sx={{color: "gray"}}>info@hhhimmigration.com</Typography>
             </Box>
             <Box sx={{display: "flex", gap: "15px", justifyContent: "left", alignItems: "center"}}>
                 <AccessTimeFilledIcon/>

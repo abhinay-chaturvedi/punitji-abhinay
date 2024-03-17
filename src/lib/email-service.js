@@ -33,9 +33,10 @@ export const sendForgotEmail = async (prevState, formData) => {
     if (!dbData) {
       return { error: "Bad luck, user does not exist!" };
     }
+    const encode = encodeURIComponent(`userId=${dbData.id}&&timestamp=${Date.now()}`);
     const forgotHtml = `<h2>Dear Valued Client,</h2> <br>
                             <h3> A request has been received to change your password for you hhhimmigration account </h3> <br>
-                            <a href="${process.env.BASE_URL}/update-password?userId=${dbData.id}" target="_blank" style="border: 2px solid blue; text-decoration: none; padding: 5px;border-radius: 5px; cursor: pointer; "> reset password </a>
+                            <a href="${process.env.BASE_URL}/update-password?${encode}" target="_blank" style="border: 2px solid blue; text-decoration: none; padding: 5px;border-radius: 5px; cursor: pointer; "> reset password </a>
                             <h4>Thanks & regards </h4>
                             <h5>HHHimmigration team</h5>`;
     const isEmailSend = await sendEmail(email, "Forgot Password!", forgotHtml);

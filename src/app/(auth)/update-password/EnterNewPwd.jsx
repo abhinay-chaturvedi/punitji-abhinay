@@ -13,21 +13,31 @@ import React from "react";
 import { useState } from "react";
 import EmailIcon from "@mui/icons-material/Email";
 import { sendForgotEmail } from "@/lib/email-service";
-import { useRouter, useSearchParams } from "next/navigation";
+import { notFound, usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useFormStatus } from "react-dom";
 import { useFormState } from "react-dom";
 import { demoAction } from "@/server-actions/query-actions";
 import { updatePassword } from "@/lib/auth-service";
 import Success from "@/components/Success";
 const EnterNewPwd = () => {
+  
   const searchParams = useSearchParams();
+  const query = new URLSearchParams(searchParams.entries().next().value[0])
+  console.log("🚀 ~ EnterNewPwd ~ searchParams:", query.get("userId"))
   const router = useRouter();
-  const userId = searchParams.get("userId");
-  const [state, formAction] = useFormState(updatePassword, { id: userId });
-  // console.log("🚀 ~ EnterNewPwd ~ userId:", userId)
-  if (!userId) {
-    return router.push("/login");
+  
+  const userId = query.get("userId");
+  const timestamp = query.get("timestamp");
+  const timestampDiff = Date.now() - timestamp;
+  console.log("🚀 ~ EnterNewPwd ~ timestampDiff:", timestampDiff)
+  if((5*60*1000)  < timestampDiff) {
+    notFound();
   }
+  const [state, formAction] = useFormState(updatePassword, { id: userId });
+  console.log("🚀 ~ EnterNewPwd ~ userId:", userId)
+  // if (!userId) {
+  //   return router.push("/login");
+  // }
 
   // console.log("🚀 ~ EnterNewPwd ~ state:", state);
   if (state.data) {
