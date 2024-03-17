@@ -32,9 +32,11 @@ export default async function Home() {
       </Box> */}
       <NavBar />
       <Stack gap={5}>
+        <Box sx={{positon: "relative"}}>
         <HeroSection />
-        <Box sx={{ display: { md: "none" } }}>
+        <Box sx={{opacity: .9, position: { md: "absolute" }, top: 130, right: 80, zIndex: 100 }}>
           <ContactForm />
+        </Box>
         </Box>
         {/* <ServiceDatail /> */}
         {/* <AboutUs /> */}

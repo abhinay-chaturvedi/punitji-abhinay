@@ -104,8 +104,30 @@ if(isLoading) {
 }
   return (
     <Box sx={{p: "5px", boxShadow: "0px 3px 8px rgba(0, 0, 0, .25)"}}>
-      {assignedPartner == null ? (
-        <Box sx={{display: "flex", alignItems: "center", gap: "10px", flexDirection: {xs: "column", md: "row"}}}>
+      {assignedPartner != null && (
+        <Box sx={{display: "flex", flexWrap: "wrap", gap: "10px"}}>
+            <Box sx={{width: "100%"}}>
+                <Typography sx={{fontWeight: "bold", textAlign: "center"}}>Assigned Partner</Typography>
+            </Box>
+            <Box sx={{display: "flex", gap: "10px"}}>
+                <Typography sx={{fontWeight: "bold"}}>Name : </Typography>
+                <Typography>{assignedPartner.name}</Typography>
+            </Box>
+            <Box sx={{display: "flex", gap: "10px"}}>
+                <Typography sx={{fontWeight: "bold"}}>Email : </Typography>
+                <Typography>{assignedPartner.email}</Typography>
+            </Box>
+            <Box sx={{display: "flex", gap: "10px"}}>
+                <Typography sx={{fontWeight: "bold"}}>Phone : </Typography>
+                <Typography>{assignedPartner.phone}</Typography>
+            </Box>
+            <Box sx={{display: "flex", gap: "10px"}}>
+                <Typography sx={{fontWeight: "bold"}}>Address : </Typography>
+                <Typography>{assignedPartner.address}</Typography>
+            </Box>
+        </Box>
+      )}
+        <Box sx={{mt: "10px", display: "flex", alignItems: "center", gap: "10px", flexDirection: {xs: "column", md: "row"}}}>
           <Typography>Partner not assigned, Please assign partner</Typography>
           <Autocomplete
             id="asynchronous-demo"
@@ -148,29 +170,6 @@ if(isLoading) {
           />
           <Button disabled={option && !isAssigning? false: true} onClick={handleAssign}>{isAssigning? "Assigning partner": "assign"}</Button>
         </Box>
-      ) : (
-        <Box sx={{display: "flex", flexWrap: "wrap", gap: "10px"}}>
-            <Box sx={{width: "100%"}}>
-                <Typography sx={{fontWeight: "bold", textAlign: "center"}}>Assigned Partner</Typography>
-            </Box>
-            <Box sx={{display: "flex", gap: "10px"}}>
-                <Typography sx={{fontWeight: "bold"}}>Name : </Typography>
-                <Typography>{assignedPartner.name}</Typography>
-            </Box>
-            <Box sx={{display: "flex", gap: "10px"}}>
-                <Typography sx={{fontWeight: "bold"}}>Email : </Typography>
-                <Typography>{assignedPartner.email}</Typography>
-            </Box>
-            <Box sx={{display: "flex", gap: "10px"}}>
-                <Typography sx={{fontWeight: "bold"}}>Phone : </Typography>
-                <Typography>{assignedPartner.phone}</Typography>
-            </Box>
-            <Box sx={{display: "flex", gap: "10px"}}>
-                <Typography sx={{fontWeight: "bold"}}>Address : </Typography>
-                <Typography>{assignedPartner.address}</Typography>
-            </Box>
-        </Box>
-      )}
     </Box>
   );
 };

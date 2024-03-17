@@ -94,6 +94,12 @@ const Register = () => {
       setIsClicked(false);
       return;
     }
+    if(password.length < 8) {
+      setError("Password must be at least 8 character!");
+      setBtnText("Sign Up");
+      setIsClicked(false);
+      return;
+    }
     if (role === "PARTNER") {
       if (!refId) {
         setError("Please enter reference id!");
@@ -217,6 +223,9 @@ const Register = () => {
                 </InputAdornment>
               }
               label="Password"
+              inputProps={{
+                minLength: "8",
+              }}
             />
           </FormControl>
           <FormControl

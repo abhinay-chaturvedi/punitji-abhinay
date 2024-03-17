@@ -3,7 +3,7 @@ import CustomInput from "@/components/CustomInput";
 import { Box, Button, Input, Typography } from "@mui/material";
 import React, { useRef, useState } from "react";
 // import { useFormStatus } from "react-dom";
-import { experimental_useFormStatus as useFormStatus } from 'react-dom'
+import {  useFormStatus } from 'react-dom'
 
 const AddDocument = ({ createDocument }) => {
   const [isFormOpen, setIsFormOpen] = useState(true);

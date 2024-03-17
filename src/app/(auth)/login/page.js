@@ -38,7 +38,7 @@ const Login = () => {
   const handleClickShowPassword = () => setShowPassword((show) => !show);
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
-    console.log("hi i am mouse down!");
+    // console.log("hi i am mouse down!");
   };
   const handleLogin = async () => {
     // first need to validate the email and password
@@ -52,6 +52,7 @@ const Login = () => {
     setIsClicked(true);
     setBtnText("Please Wait...");
     const res = await login({ email, password });
+    // console.log("🚀 ~ handleLogin ~ res:", res)
     if (res.status !== 200) {
       setError(res.message);
       setIsClicked(false);
@@ -61,7 +62,7 @@ const Login = () => {
     // setLogin(res.data);
     localStorage.setItem("user", JSON.stringify(res.data));
     dispatchUser(setUser(res.data));
-    router.push("/");
+    router.push("/" + res.data.role.toLowerCase());
     setIsClicked(false);
     setBtnText("Login");
   };
