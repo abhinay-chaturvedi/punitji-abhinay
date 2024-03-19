@@ -26,7 +26,7 @@ import { useEffect } from "react";
 import prisma from "@/prisma/connect";
 import { logout } from "@/lib/auth-service";
 
-const pages = [{page:"Home", url: "/"}, {page: "About", url: "/about"}, {page: "Services", url: "/services"}, {page: "Blog", url: "/blog"}, {page: "Visa", url: "/visa"}, {page: "Contact", url: "/contact-us"}];
+const pages = [{page:"Home", url: "/"}, {page: "About", url: "/about"}, {page: "Services", url: "/services"}, {page: "Visa", url: "/visa"}, {page: "Contact", url: "/contact-us"}];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 function NavBar() {
@@ -66,7 +66,7 @@ function NavBar() {
     }
   }, []);
 
-  console.log("🚀 ~ file: NavBar.jsx:56 ~ NavBar ~ userState:", userState);
+  // console.log("🚀 ~ file: NavBar.jsx:56 ~ NavBar ~ userState:", userState);
   const handleLogout = async () => {
     dispatchUserAction(clearUser());
     localStorage.removeItem('user');
@@ -78,7 +78,8 @@ function NavBar() {
       <Container sx={{ bgcolor: "white" }}>
         <Toolbar disableGutters sx={{ height: "85px" }}>
           <Box
-            component="div"
+            component={Link}
+            href={"/"}
             sx={{
               mr: 2,
               display: { xs: "none", md: "flex" },
@@ -196,7 +197,7 @@ function NavBar() {
                     <Typography
                       sx={{ fontWeight: "bold", color: "#223241", mr: "10px" }}
                     >
-                      {userState?.name?.slice(0, 8)}
+                      {userState?.name?.split(" ")[0]}
                     </Typography>
                     <Avatar
                       alt="Abhinay"

@@ -10,7 +10,7 @@ import {
 import React from "react";
 import ReplyAllIcon from "@mui/icons-material/ReplyAll";
 import { useState } from "react";
-import { experimental_useFormStatus as useFormStatus } from "react-dom";
+import { useFormStatus } from "react-dom";
 import { useRef } from "react";
 import { toast } from "sonner";
 const style = {

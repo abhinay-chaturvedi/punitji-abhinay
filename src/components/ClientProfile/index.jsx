@@ -32,7 +32,7 @@ const ClientProfile = ({ params }) => {
         }
       );
       const result = await res.json();
-      console.log("🚀 ~ file: page.js:24 ~ getClientById ~ result:", result);
+      // console.log("🚀 ~ file: page.js:24 ~ getClientById ~ result:", result);
       if (result.status == 200) {
         setClient(result.data);
       }

@@ -10,7 +10,7 @@ import {
 import React from "react";
 import ReplyAllIcon from "@mui/icons-material/ReplyAll";
 import { useState } from "react";
-import { experimental_useFormStatus as useFormStatus } from "react-dom";
+import {  useFormStatus } from "react-dom";
 import { useRef } from "react";
 const style = {
   position: "absolute",
@@ -114,7 +114,7 @@ const Submit = () => {
   );
   return (
     <Button sx={{bgcolor: "whitesmoke"}} type="submit" component="button" disabled={formStatus.pending}>
-      {formStatus.pending ? "Please wait..." : "add doc"}
+      {formStatus.pending ? "Please wait..." : "Done"}
     </Button>
   );
 };

@@ -2,6 +2,8 @@
 import { cookies } from "next/headers";
 import jwt from "jsonwebtoken";
 import { redirect } from "next/navigation";
+import db from "./db";
+import bcrypt from "bcrypt";
 
 export const getSession = async () => {
   try {
@@ -20,7 +22,20 @@ export const getSession = async () => {
   }
 };
 
-export const logout = async () => {
+export const updatePassword = async (prevState, formData) => {
 
+  const password = formData.get("password");
+  const hashedPassword = await bcrypt.hash(password, 10);
+  const res = await db.user.update({
+    where: {
+      id: prevState.id
+    },
+    data: {
+      password: hashedPassword
+    }
+  })
+  return { id: prevState.id, data: res };
+};
+export const logout = async () => {
   cookies().delete("token");
-}
+};
