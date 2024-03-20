@@ -22,6 +22,7 @@ model User {
   workExperience WorkExperience[]
   languageTest   LanguageTest[]
   queries        Query[]
+  spouseDetail   SpouseDetail?
   createdAt      DateTime         @default(now())
 
   @@map("user")
@@ -42,6 +43,23 @@ model Client {
   createdAt   DateTime? @default(now()) @db.Timestamptz(6)
 
   @@map("client")
+}
+
+model SpouseDetail {
+  id              String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  user            User     @relation(fields: [userId], references: [id])
+  userId          String   @unique @db.Uuid
+  name            String?
+  email           String?
+  phone           String?
+  dob             DateTime?
+  previousRefusal Json[]
+  education       Json[]
+  workExperience  Json[]
+  language        Json[]
+  personalTies    Json?
+  createdAt       DateTime @default(now())
+  updateAt        DateTime @default(now()) @updatedAt
 }
 
 model Partner {
