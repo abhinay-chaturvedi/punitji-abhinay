@@ -1,5 +1,5 @@
 "use client"
-import { Box } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import React, { useState } from 'react'
 import Row from './Row';
 import AddForm from './AddForm';
@@ -8,6 +8,16 @@ const SpouseLanguage = ({userId, languages}) => {
   const [languageList, setLanguageList] = useState(languages);
   return (
     <Box>
+      <Typography
+        sx={{
+          textAlign: "center",
+          m: "10px 0px",
+          fontSize: "22px",
+          fontWeight: "600",
+        }}
+      >
+        Spouse Language
+      </Typography>
     <Box sx={{ overflow: "auto" }}>
       <Box component={"table"} sx={{ width: "100%", textAlign: "left" }}>
         <Box component={"thead"}>

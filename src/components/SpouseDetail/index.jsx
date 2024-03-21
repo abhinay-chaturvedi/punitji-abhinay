@@ -1,4 +1,4 @@
-import { Box, Container } from '@mui/material'
+import { Box, Container, Typography } from '@mui/material'
 import React from 'react'
 import BasicDetails from './BasicDetails'
 import PreviousRefusals from './PreviousRefusals'
@@ -29,6 +29,7 @@ const SpouseDetail = async ({session}) => {
   return (
     <Box>
         <Container>
+            <Typography sx={{textAlign: "center",m: "10px 0px", fontSize: "28px", fontWeight: "600"}}>Spouse Details</Typography>
             <BasicDetails basicDetail={basicDetail}/>
             <PreviousRefusals />
             <PersonalTies/>

@@ -11,7 +11,7 @@ const PUT = async (req) => {
         if(body.field == "dob") {
             body.value = new Date(body.value);
         }
-        if(body.field == "education") {
+        if(body.field == "education" || body.field == "workExperience") {
             body.value.startDate = new Date(body.value.startDate);
             body.value.endDate = new Date(body.value.endDate);
             body.value.id = uuidv4();
