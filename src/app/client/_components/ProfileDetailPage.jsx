@@ -12,6 +12,7 @@ import { UserContext } from '@/contexts/user/context';
 import { getApplicationDetail } from '@/services/client/mainApplication';
 import Loader from '@/components/Loader';
 const ProfileDetailPage = ({ userId }) => {
+  console.log("revalidate check", userId);
   const [mainApplicationDetail, setMainApplicationDetail] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const { state: userState, dispatch: dispatchUserAction } =

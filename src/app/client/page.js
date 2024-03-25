@@ -16,16 +16,19 @@ import { redirect } from "next/navigation";
 
 import ProfileDetailPage from "./_components/ProfileDetailPage";
 import { getSession } from "@/lib/auth-service";
+import SpouseDetail from "@/components/SpouseDetail";
 
 const Page = async () => {
   
   const session = await getSession();
+  console.log("revalidate check ---------------", session)
   if(!session) {
     redirect("/login")
   }
   return (
     <Box sx={{width: "100%", height: "100%", p: "10px"}}>
       <ProfileDetailPage userId={session._id} />
+      <SpouseDetail session={session}/>
     </Box>
   );
 };

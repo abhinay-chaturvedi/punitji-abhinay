@@ -1,4 +1,5 @@
 import { Box, Container, Divider, Typography } from "@mui/material";
+import Image from "next/image";
 const serviceData = [
   {
     id: "cec9884e-24c8-4aab-8b4d-54261186a0e0",
@@ -55,6 +56,7 @@ const Page = () => {
   return (
     <Box>
       <Container>
+        
         <Box sx={{ marginY: "15px" }}>
           <Typography
             sx={{
@@ -66,7 +68,14 @@ const Page = () => {
             Services We offer
           </Typography>
         </Box>
-        <Box component="ul">
+        <Box component="ul" position={"relative"} overflow={"clip"}>
+        <Box sx={{position: "absolute",transform: "rotate(52deg)", width: "88%", height: "99%", left: "17%"}}>
+          <Image
+          src={"/images/stamp-red.png"}
+          layout="fill"
+          objectFit="contain"
+          />
+        </Box>
           {serviceData.map((service) => {
             return (
               <Box key={service.id}>
