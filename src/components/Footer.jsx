@@ -10,6 +10,7 @@ import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 import ContactPhoneIcon from '@mui/icons-material/ContactPhone';
 import EmailIcon from '@mui/icons-material/Email';
 import AccessTimeFilledIcon from '@mui/icons-material/AccessTimeFilled';
+import Link from "next/link";
 const Footer = () => {
   return (
     <Box >
@@ -85,30 +86,26 @@ const Footer = () => {
           >
             <Typography sx={{ textAlign: "center", fontWeight:"bold", mb: "10px" }}>Quick Links</Typography>
             <Box sx={{display: "flex", flexDirection: "column", gap: "10px"}}>
-              <Button sx={{ display: "flex", gap: "10px", color: "gray", justifyContent: "left" }}>
+              <Box component={Link} href={"/"} sx={{ display: "flex", gap: "10px", color: "gray", justifyContent: "left" }}>
                 <ArrowRightAltIcon />
                 <Typography>Home</Typography>
-              </Button>
-              <Button sx={{ display: "flex", gap: "10px", color: "gray", justifyContent: "left" }}>
+              </Box>
+              <Box component={Link} href={"/about"} sx={{ display: "flex", gap: "10px", color: "gray", justifyContent: "left" }}>
                 <ArrowRightAltIcon />
                 <Typography>About</Typography>
-              </Button>
-              <Button sx={{ display: "flex", gap: "10px", color: "gray", justifyContent: "left" }}>
+              </Box>
+              <Box component={Link} href={"/services"} sx={{ display: "flex", gap: "10px", color: "gray", justifyContent: "left" }}>
                 <ArrowRightAltIcon />
                 <Typography>Services</Typography>
-              </Button>
-              <Button sx={{ display: "flex", gap: "10px", color: "gray", justifyContent: "left" }}>
-                <ArrowRightAltIcon />
-                <Typography>Blog</Typography>
-              </Button>
-              <Button sx={{ display: "flex", gap: "10px", color: "gray", justifyContent: "left" }}>
+              </Box>
+              <Box component={Link} href={"/visadetail"} sx={{ display: "flex", gap: "10px", color: "gray", justifyContent: "left" }}>
                 <ArrowRightAltIcon />
                 <Typography>Visa</Typography>
-              </Button>
-              <Button sx={{ display: "flex", gap: "10px", color: "gray", justifyContent: "left" }}>
+              </Box>
+              <Box component={Link} href={"/"} sx={{ display: "flex", gap: "10px", color: "gray", justifyContent: "left" }}>
                 <ArrowRightAltIcon />
                 <Typography>Contact</Typography>
-              </Button>
+              </Box>
             </Box>
           </Box>
           <Box sx={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center" }}>

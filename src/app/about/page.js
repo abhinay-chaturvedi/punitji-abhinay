@@ -1,4 +1,4 @@
-import { Box, Container, Typography } from "@mui/material";
+import { Box, CardMedia, Container, Typography } from "@mui/material";
 import Image from "next/image";
 import React from "react";
 
@@ -36,7 +36,7 @@ const Page = () => {
                 style={{ borderRadius: "10px" }}
                 layout={"fill"}
                 objectFit="cover"
-                src={"/images/1.jpg"}
+                src={"/images/Office Picture.jpg"}
               />
             </Box>
           </Box>
@@ -44,11 +44,24 @@ const Page = () => {
         <Box sx={{ display: { md: "flex" }, gap: "30px", marginTop: "30px" }}>
           <Box sx={{ flex: 1 }}>
             <Box sx={{ width: "100%", height: "100%", position: "relative" }}>
-              <Image
+              {/* <Image
                 style={{ borderRadius: "10px" }}
                 layout={"fill"}
                 objectFit="contain"
                 src={"/images/director.png"}
+              /> */}
+              <CardMedia
+                sx={{ height: "100%", width: "100%",borderRadius: "3px", objectFit: "cover" }}
+                component="video"
+                // className={classes.media}
+                autoPlay
+                loop
+                // controls
+                muted
+                image={
+                  "https://upload.hhhimmigration.com/uploads/admin/1703922279234-Final%20Comp%20(1).mp4"
+                }
+                
               />
             </Box>
           </Box>

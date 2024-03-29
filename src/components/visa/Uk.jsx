@@ -13,6 +13,7 @@ const Uk = () => {
         {ukVisaList.map((item, index) => {
           return (
             <Box
+              key={index}
               component={Link}
               href={item.link}
               sx={{

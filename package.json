@@ -28,6 +28,7 @@
     "react-dom": "^18.2.0",
     "resend": "^3.0.0",
     "simplebar-react": "^3.2.4",
-    "sonner": "^1.4.1"
+    "sonner": "^1.4.1",
+    "uuid": "^9.0.1"
   }
 }
