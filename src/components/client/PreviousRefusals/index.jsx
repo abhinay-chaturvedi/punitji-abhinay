@@ -1,10 +1,10 @@
-"use client"
-import { Box, Typography } from '@mui/material'
-import React, { useState } from 'react'
-import Row from './Row';
-import AddForm from './AddForm';
+"use client";
+import { Box, Typography } from "@mui/material";
+import React, { useState } from "react";
+import Row from "./Row";
+import AddForm from "./AddForm";
 
-const PreviousRefusals = ({userId, refusals, updateProfile}) => {
+const PreviousRefusals = ({ userId, refusals, updateProfile, session }) => {
   const [refusalList, setRefusalList] = useState(refusals);
   return (
     <Box>
@@ -48,15 +48,17 @@ const PreviousRefusals = ({userId, refusals, updateProfile}) => {
           </Box>
         </Box>
       </Box>
-      <Box>
-        <AddForm
-          userId={userId}
-          setRefusalList={setRefusalList}
-          updateProfile={updateProfile}
-        />
-      </Box>
+      {session?.role == "CLIENT" && (
+        <Box>
+          <AddForm
+            userId={userId}
+            setRefusalList={setRefusalList}
+            updateProfile={updateProfile}
+          />
+        </Box>
+      )}
     </Box>
   );
-}
+};
 
-export default PreviousRefusals
+export default PreviousRefusals;

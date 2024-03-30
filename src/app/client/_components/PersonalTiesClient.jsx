@@ -1,12 +1,17 @@
-"use client"
+"use client";
 import PersonalTies from "@/components/client/PersonalTies";
 import { Box, Button, Typography } from "@mui/material";
 import React, { useState } from "react";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 
-const PersonalTiesClient = ({ userId, personalTies, updateProfile }) => {
-    const [arrow, setArrow] = useState(false);
+const PersonalTiesClient = ({
+  userId,
+  personalTies,
+  updateProfile,
+  session,
+}) => {
+  const [arrow, setArrow] = useState(false);
   return (
     // <Box>
     //     <PersonalTies userId={userId} personalTies={personalTies} updateProfile={updateProfile}/>
@@ -27,6 +32,7 @@ const PersonalTiesClient = ({ userId, personalTies, updateProfile }) => {
 
       {arrow && (
         <PersonalTies
+          session={session}
           userId={userId}
           personalTies={personalTies}
           updateProfile={updateProfile}

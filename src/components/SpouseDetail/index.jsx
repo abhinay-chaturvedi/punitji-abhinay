@@ -10,22 +10,23 @@ import PersonalTies from '../client/PersonalTies'
 import CreateForm from './CreateForm'
 import { revalidatePath } from 'next/cache'
 
-const SpouseDetail = async ({session}) => {
+const SpouseDetail = async ({session, _id}) => {
     const spouseDetails = await db.spouseDetail.findUnique({
         where: {
-            userId: session._id
+            userId: _id
         }
     });
     const createSpouseRow = async () => {
         "use server"
         await db.spouseDetail.create({
             data: {
-                userId: session._id
+                userId: _id
             }
         });
         revalidatePath("/client");
     }
     if(!spouseDetails) {
+        if(session.role != "CLIENT") return ;
         return (
             <CreateForm createSpouseRow={createSpouseRow}/>
         )
@@ -35,7 +36,7 @@ const SpouseDetail = async ({session}) => {
         email: spouseDetails==null? null: spouseDetails.email,
         phone: spouseDetails==null? null: spouseDetails.phone,
         dob: spouseDetails==null? null: spouseDetails.dob,
-        userId: session._id
+        userId: _id
     }
     const education = spouseDetails==null? []: spouseDetails.education;
     const languages = spouseDetails==null? []: spouseDetails.language;
@@ -60,13 +61,13 @@ const SpouseDetail = async ({session}) => {
     <Box>
         <Container>
             <Typography sx={{textAlign: "center",m: "10px 0px", fontSize: "28px", fontWeight: "600"}}>Spouse Details</Typography>
-            <BasicDetails basicDetail={basicDetail}/>
+            <BasicDetails session={session} basicDetail={basicDetail}/>
             
-            <SpouseEducation userId={session._id} education={education}/>
-            <SpouseWorkExperience userId={session._id} workExperience={workExperience}/>
-            <SpouseLanguage userId={session._id} languages={languages}/>
-            <PreviousRefusals userId={session._id} refusals={refusals} updateProfile={updateProfile} />
-            <PersonalTies userId={session._id} personalTies={personalTies} updateProfile={updateProfile}/>
+            <SpouseEducation session={session} userId={_id} education={education}/>
+            <SpouseWorkExperience session={session} userId={_id} workExperience={workExperience}/>
+            <SpouseLanguage session={session} userId={_id} languages={languages}/>
+            <PreviousRefusals session={session} userId={_id} refusals={refusals} updateProfile={updateProfile} />
+            <PersonalTies session={session} userId={_id} personalTies={personalTies} updateProfile={updateProfile}/>
         </Container>
     </Box>
   )

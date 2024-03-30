@@ -1,3 +1,4 @@
+"use client";
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Stepper from "@mui/material/Stepper";
@@ -9,7 +10,8 @@ import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import { useEffect } from "react";
 import { useState } from "react";
-import ConfirmModal from "../ConfirmModal";
+import ConfirmModal from "./ConfirmModal";
+import { Container } from "@mui/material";
 
 // const steps = [
 //   {
@@ -89,7 +91,7 @@ export default function VerticalLinearStepper({ steps: stepsObj, userId }) {
   );
 
   const handleNext = async (stepName) => {
-    console.log("🚀 ~ handleNext ~ stepName:", stepName)
+    console.log("🚀 ~ handleNext ~ stepName:", stepName);
     let result = await completeProcess(stepName);
     return result;
   };
@@ -107,7 +109,7 @@ export default function VerticalLinearStepper({ steps: stepsObj, userId }) {
       return !steps[item.name];
     });
     console.log("index is : ", index);
-    if(index == -1) index = stepsArr.length;
+    if (index == -1) index = stepsArr.length;
     setActiveStep(index);
   };
   useEffect(() => {
@@ -137,7 +139,7 @@ export default function VerticalLinearStepper({ steps: stepsObj, userId }) {
     }
   };
   const completeProcess = async (stepName) => {
-    console.log("🚀 ~ completeProcess ~ stepName:", stepName)
+    console.log("🚀 ~ completeProcess ~ stepName:", stepName);
     // return "complete process";
 
     setIsLoading(true);
@@ -166,69 +168,90 @@ export default function VerticalLinearStepper({ steps: stepsObj, userId }) {
     }
   };
   return (
-    <Box sx={{ p: "20px" }}>
-      {steps == null ? (
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: { xs: "column", md: "row" },
-            alignItems: "center",
-          }}
-        >
-          <Typography>Process not started, please have a look.</Typography>
-          <Button onClick={startProccess} disabled={isCreatingProcess}>
-            {isCreatingProcess
-              ? "Please wait while we create process"
-              : "Start Process"}
-          </Button>
+    <Container>
+      <Box sx={{ boxShadow: "0px 3px 8px rgba(0, 0, 0, .24)" }}>
+        <Box>
+          <Typography
+            sx={{
+              fontWeight: "bold",
+              fontSize: "20px",
+              textAlign: "center",
+            }}
+          >
+            Process Status
+          </Typography>
         </Box>
-      ) : (
-        <Stepper activeStep={activeStep} orientation="vertical">
-          {stepsArr.map((step, index) => (
-            <Step key={step.label}>
-              <StepLabel
-                optional={
-                  index === 8 ? (
-                    <Typography variant="caption">Final step</Typography>
-                  ) : null
-                }
-              >
-                {step.label}
-              </StepLabel>
-              <StepContent>
-                <Typography>{step.description}</Typography>
-                <Box sx={{ mb: 2 }}>
-                  <div>
-                    {/* <Button
+
+        <Box sx={{ p: "20px" }}>
+          {steps == null ? (
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: { xs: "column", md: "row" },
+                alignItems: "center",
+              }}
+            >
+              <Typography>Process not started, please have a look.</Typography>
+              <Button onClick={startProccess} disabled={isCreatingProcess}>
+                {isCreatingProcess
+                  ? "Please wait while we create process"
+                  : "Start Process"}
+              </Button>
+            </Box>
+          ) : (
+            <Stepper activeStep={activeStep} orientation="vertical">
+              {stepsArr.map((step, index) => (
+                <Step key={step.label}>
+                  <StepLabel
+                    optional={
+                      index === 8 ? (
+                        <Typography variant="caption">Final step</Typography>
+                      ) : null
+                    }
+                  >
+                    {step.label}
+                  </StepLabel>
+                  <StepContent>
+                    <Typography>{step.description}</Typography>
+                    <Box sx={{ mb: 2 }}>
+                      <div>
+                        {/* <Button
                       variant="contained"
                       onClick={() => handleNext(step.name)}
                       sx={{ mt: 1, mr: 1 }}
                     >
                       {index === stepsArr.length - 1 ? "Finish" : "Continue"}
                     </Button> */}
-                    <ConfirmModal text={"Are You sure want to Complete?"} onContinue={async () => await handleNext(step.name)}/>
-                    {/* <Button
+                        <ConfirmModal
+                          text={"Are You sure want to Complete?"}
+                          onContinue={async () => await handleNext(step.name)}
+                        />
+                        {/* <Button
                       disabled={index === 0}
                       onClick={handleBack}
                       sx={{ mt: 1, mr: 1 }}
                     >
                       Back
                     </Button> */}
-                  </div>
-                </Box>
-              </StepContent>
-            </Step>
-          ))}
-        </Stepper>
-      )}
-      {activeStep === stepsArr.length && (
-        <Paper square elevation={0} sx={{ p: 3 }}>
-          <Typography>All steps completed - you&apos;re finished</Typography>
-          <Button onClick={handleReset} sx={{ mt: 1, mr: 1 }}>
-            Reset
-          </Button>
-        </Paper>
-      )}
-    </Box>
+                      </div>
+                    </Box>
+                  </StepContent>
+                </Step>
+              ))}
+            </Stepper>
+          )}
+          {activeStep === stepsArr.length && (
+            <Paper square elevation={0} sx={{ p: 3 }}>
+              <Typography>
+                All steps completed - you&apos;re finished
+              </Typography>
+              <Button onClick={handleReset} sx={{ mt: 1, mr: 1 }}>
+                Reset
+              </Button>
+            </Paper>
+          )}
+        </Box>
+      </Box>
+    </Container>
   );
 }

@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Row from "./Row";
 import AddForm from "./AddForm";
 
-const SpouseWorkExperience = ({ userId, workExperience }) => {
+const SpouseWorkExperience = ({ userId, workExperience, session }) => {
   const [workExperienceList, setWorkExperienceList] = useState(workExperience);
   return (
     <Box>
@@ -48,12 +48,14 @@ const SpouseWorkExperience = ({ userId, workExperience }) => {
           </Box>
         </Box>
       </Box>
-      <Box>
-        <AddForm
-          userId={userId}
-          setWorkExperienceList={setWorkExperienceList}
-        />
-      </Box>
+      {session.role == "CLIENT" && (
+        <Box>
+          <AddForm
+            userId={userId}
+            setWorkExperienceList={setWorkExperienceList}
+          />
+        </Box>
+      )}
     </Box>
   );
 };

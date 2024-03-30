@@ -5,7 +5,7 @@ import React, { useState } from 'react'
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 
-const PreviousRefusalClient = ({userId, refusals, updateProfile}) => {
+const PreviousRefusalClient = ({userId, refusals, updateProfile, session}) => {
   const [arrow, setArrow] = useState(false);
   return (
     // <PreviousRefusals  userId={userId} refusals={refusals} updateProfile={updateProfile}/>
@@ -24,7 +24,7 @@ const PreviousRefusalClient = ({userId, refusals, updateProfile}) => {
         </Box>
         
         {arrow && (
-          <PreviousRefusals  userId={userId} refusals={refusals} updateProfile={updateProfile}/>
+          <PreviousRefusals session={session}  userId={userId} refusals={refusals} updateProfile={updateProfile}/>
         )
         }
       </Box>

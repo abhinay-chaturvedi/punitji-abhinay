@@ -9,13 +9,13 @@ import { useState } from "react";
 // import Process from "./ProcessSteps";
 import ProcessSteps from "./ProcessSteps";
 // import AssignDoc from "../AssignDoc";
-import AssignDoc from "./AssignDoc";
+import AssignDoc from "../AssignDoc";
 import ClientInfo from "./ClientInfo";
 import Education from "./Education";
-import VerticalLinearStepper from "./VerticalStepper";
+import VerticalLinearStepper from "../VerticalStepper";
 import PartnerInfo from "./PartnerInfo";
 
-const ClientProfile = ({ params }) => {
+const ClientProfile = ({ params, session }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [client, setClient] = useState(null);
   const [loginUser, setLoginUser] = useState(null);
@@ -51,7 +51,7 @@ const ClientProfile = ({ params }) => {
     const user = userData ? JSON.parse(userData) : null;
     if (user) {
       setLoginUser(user);
-    //   setIsLoading(false);
+      //   setIsLoading(false);
     } else {
       router.push("/login");
     }
@@ -74,10 +74,10 @@ const ClientProfile = ({ params }) => {
   return (
     <Box>
       <Box>
-        <Box sx={{padding: "10px"}}>
-          <ClientInfo client={client}/>
+        <Box sx={{ padding: "10px" }}>
+          <ClientInfo client={client} />
           <Divider sx={{ marginY: "10px" }} />
-          <PartnerInfo client={client}/>
+          <PartnerInfo client={client} session={session}/>
           <Divider sx={{ marginY: "10px" }} />
           <Education client={client} />
           <Divider sx={{ marginY: "10px" }} />
@@ -203,7 +203,7 @@ const ClientProfile = ({ params }) => {
             })}
           </Box>
           <Divider sx={{ marginY: "10px" }} />
-          <Box sx={{boxShadow: "0px 3px 8px rgba(0, 0, 0, .24)"}}>
+          {/* <Box sx={{ boxShadow: "0px 3px 8px rgba(0, 0, 0, .24)" }}>
             <Box>
               <Typography
                 sx={{
@@ -215,14 +215,10 @@ const ClientProfile = ({ params }) => {
                 Process Status
               </Typography>
             </Box>
-            {/* <ProcessSteps client={client} /> */}
-            <VerticalLinearStepper userId={client.id} steps={client.steps}/>
-          </Box>
-          <AssignDoc client={client}/>
-          
+            <VerticalLinearStepper userId={client.id} steps={client.steps} />
+          </Box> */}
         </Box>
-        
-        </Box>
+      </Box>
     </Box>
   );
 };

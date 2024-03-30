@@ -15,7 +15,7 @@ export default function DashboardLayout({ children }) {
         <NavBar/>
         <div>
         <USideBar/>
-          <Box sx={{marginLeft:{xs: "100px", sm: "150px", md: "200px", lg: "300px"}}}>
+          <Box sx={{marginLeft:{xs: "90px", sm: "150px", md: "200px", lg: "300px"}}}>
           {children}
           </Box>
         </div>

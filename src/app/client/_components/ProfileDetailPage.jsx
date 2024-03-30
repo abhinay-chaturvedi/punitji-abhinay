@@ -9,7 +9,7 @@ import LanguageTest from './LanguageTest';
 import PreviousRefusalClient from './PreviousRefusalClient';
 import PersonalTiesClient from './PersonalTiesClient';
 
-const ProfileDetailPage = ({ userId, refusals, personalTies }) => {
+const ProfileDetailPage = ({ userId, refusals, personalTies, session }) => {
 
   const updateProfile = async (userId, field, data) => {
     "use server"
@@ -30,8 +30,8 @@ const ProfileDetailPage = ({ userId, refusals, personalTies }) => {
       <Education userId={userId} />
       <WorkExperience userId={userId}/>
       <LanguageTest userId={userId}/>
-      <PreviousRefusalClient userId={userId} refusals={refusals} updateProfile={updateProfile}/>
-      <PersonalTiesClient userId={userId} personalTies={personalTies} updateProfile={updateProfile}/>
+      <PreviousRefusalClient session={session} userId={userId} refusals={refusals} updateProfile={updateProfile}/>
+      <PersonalTiesClient session={session} userId={userId} personalTies={personalTies} updateProfile={updateProfile}/>
     </Box>
   )
 }

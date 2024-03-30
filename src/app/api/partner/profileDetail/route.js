@@ -23,8 +23,7 @@ const GET = async (req) => {
 const PATCH = async (req) => {
     try {
         const {userId, ...rest} = await req.json();
-        console.log("🚀 ~ file: route.js:26 ~ PATCH ~ rest:", rest)
-        console.log("🚀 ~ file: route.js:26 ~ PATCH ~ userId:", userId)
+        
 // return NextResponse.json({status: 200, message: "success", data: rest}, {status: 200});;
         const prismaResult = await prisma.partner.update({
             where: {
@@ -34,7 +33,6 @@ const PATCH = async (req) => {
                 ...rest
             }
         })
-        console.log("🚀 ~ file: route.js:35 ~ PATCH ~ prismaResult:", prismaResult)
         if(!prismaResult) {
             return NextResponse.json({status: 400, message: "error occured"}, {status: 400});
         }

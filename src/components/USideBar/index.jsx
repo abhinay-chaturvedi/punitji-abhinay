@@ -17,7 +17,7 @@ const USideBar = async () => {
         bgcolor: "#F7F6FB",
         position: "fixed",
         height: "calc(100vh - 85px)",
-        width: { xs: "100px", sm: "150px", md: "200px", lg: "300px" },
+        width: { xs: "90px", sm: "150px", md: "200px", lg: "300px" },
       }}
     >
       <Box

@@ -3,32 +3,32 @@ import { Alert, Box, Button, TextField, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { toast } from "sonner";
 
-const PersonalTies = ({ userId, personalTies, updateProfile }) => {
+const PersonalTies = ({ userId, personalTies, updateProfile, session }) => {
   const [pTies, setPTies] = useState(personalTies);
   const [disabled, setDisabled] = useState(false);
   const [error, setError] = useState(null);
   const handleSave = async () => {
     try {
-      if(!pTies.name) {
+      if (!pTies.name) {
         setError("please enter name");
-        return ;
+        return;
       }
-      if(!pTies.relation) {
+      if (!pTies.relation) {
         setError("please add relation");
-        return ;
+        return;
       }
-      if(!pTies.country) {
+      if (!pTies.country) {
         setError("please enter country");
-        return ;
+        return;
       }
       setDisabled(true);
       const result = await updateProfile(userId, "personalTies", pTies);
-      if(result.status == 200) {
+      if (result.status == 200) {
         toast.success("successfully saved");
       } else {
         toast.error(result.message);
       }
-      
+
       setDisabled(false);
     } catch (err) {
       toast.error(err.message);
@@ -65,13 +65,14 @@ const PersonalTies = ({ userId, personalTies, updateProfile }) => {
             label={"Name"}
             sx={{ width: "100%", minWidth: "200px" }}
             name="name"
-            value={pTies.name? pTies.name: ""}
+            value={pTies.name ? pTies.name : ""}
             onChange={(e) =>
               setPTies((prev) => ({
                 ...prev,
                 [e.target.name]: e.target.value,
               }))
             }
+            inputProps={{readOnly: session?.role != "CLIENT"}}
           />
         </Box>
         <Box sx={{ flex: 1, m: "5px" }}>
@@ -80,13 +81,14 @@ const PersonalTies = ({ userId, personalTies, updateProfile }) => {
             label={"Relation"}
             sx={{ width: "100%", minWidth: "200px" }}
             name="relation"
-            value={pTies.relation? pTies.relation: ""}
+            value={pTies.relation ? pTies.relation : ""}
             onChange={(e) =>
               setPTies((prev) => ({
                 ...prev,
                 [e.target.name]: e.target.value,
               }))
             }
+            inputProps={{readOnly: session?.role != "CLIENT"}}
           />
         </Box>
 
@@ -96,31 +98,35 @@ const PersonalTies = ({ userId, personalTies, updateProfile }) => {
             label={"Country"}
             sx={{ width: "100%", minWidth: "200px" }}
             name="country"
-            value={pTies.country? pTies.country: ""}
+            value={pTies.country ? pTies.country : ""}
             onChange={(e) =>
               setPTies((prev) => ({
                 ...prev,
                 [e.target.name]: e.target.value,
               }))
             }
+            inputProps={{readOnly: session?.role != "CLIENT"}}
+            // aria-readonly
           />
         </Box>
       </Box>
-      <Box>
-        <Button
-          onClick={handleSave}
-          disabled={disabled}
-          sx={{
-            bgcolor: "gray",
-            color: "black",
-            m: "auto",
-            display: "block",
-            marginY: "10px",
-          }}
-        >
-          Save
-        </Button>
-      </Box>
+      {session?.role == "CLIENT" && (
+        <Box>
+          <Button
+            onClick={handleSave}
+            disabled={disabled}
+            sx={{
+              bgcolor: "gray",
+              color: "black",
+              m: "auto",
+              display: "block",
+              marginY: "10px",
+            }}
+          >
+            Save
+          </Button>
+        </Box>
+      )}
     </Box>
   );
 };

@@ -1,10 +1,11 @@
+"use client"
 import React, { useEffect, useState } from "react";
 // import * as React from 'react';
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-import { Checkbox, Divider } from "@mui/material";
+import { Checkbox, Container, Divider } from "@mui/material";
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import DownloadForOfflineIcon from '@mui/icons-material/DownloadForOffline';
@@ -15,11 +16,12 @@ const style = {
   transform: "translate(-50%, -50%)",
   width: 400,
   bgcolor: "background.paper",
-  border: "2px solid #000",
+  border: "2px solid gray",
   boxShadow: 24,
   p: 4,
+  borderRadius: "7px"
 };
-const AssignDoc = ({ client }) => {
+const AssignDoc = ({ client, clientDocuments, userId }) => {
   // console.log("🚀 ~ file: AssignDoc.js:20 ~ AssignDoc ~ client:", client)
   const [open, setOpen] = useState(false);
 
@@ -27,7 +29,7 @@ const AssignDoc = ({ client }) => {
   const [docs, setDocs] = useState([]);
   const [docsToAdd, setDocsToAdd] = useState([]);
   const [isAssigningDocs, setIsAssigningDocs] = useState(false);
-  const [documents, setDocuments] = useState(client.client?.documents);
+  const [documents, setDocuments] = useState(clientDocuments);
   console.log("🚀 ~ file: AssignDoc.js:28 ~ AssignDoc ~ documents:", documents);
   // console.log("🚀 ~ file: AssignDoc.js:25 ~ AssignDoc ~ docsToAdd:", docsToAdd);
   const handleOpen = () => {
@@ -44,10 +46,7 @@ const AssignDoc = ({ client }) => {
         },
       });
       const result = await res.json();
-      // console.log(
-      //   "🚀 ~ file: AssignDoc.js:34 ~ getAllDocuments ~ result:",
-      //   result
-      // );
+
       if (result.status == 200) {
         setDocs(result.data?.filter((doc) => {
           return !documents.find((item) => item.id === doc.id);
@@ -67,7 +66,7 @@ const AssignDoc = ({ client }) => {
           "Content-Type": "application/json",
           Accept: "application/json",
         },
-        body: JSON.stringify({ userId: client.id, docs: docsToAdd }),
+        body: JSON.stringify({ userId: userId, docs: docsToAdd }),
       });
       const result = await res.json();
       console.log(
@@ -106,6 +105,7 @@ const AssignDoc = ({ client }) => {
   //   }
   // }
   return (
+    <Container>
     <Box sx={{boxShadow: "0px 3px 8px rgba(0, 0, 0, .24)", p: "10px"}}>
       <Box>
         <Typography sx={{textAlign: "center", fontWeight: "bold"}}>Documents Uploaded</Typography>
@@ -134,7 +134,7 @@ const AssignDoc = ({ client }) => {
         })}
       </Box>
       <Box sx={{display: "flex", justifyContent: "center", mt: "5px", alignItems: "center"}}>
-        <Button onClick={handleOpen}>Assign Documents</Button>
+        <Button sx={{bgcolor: "gray", color: "black", marginY: "5px"}} onClick={handleOpen}>Assign Documents</Button>
         <Modal
           open={open}
           onClose={handleClose}
@@ -187,7 +187,7 @@ const AssignDoc = ({ client }) => {
               </>
             ))}
             <Box sx={{ display: "flex", mt: "5px", justifyContent: "center" }}>
-              <Button disabled={isAssigningDocs} onClick={handleAssign}>
+              <Button sx={{bgcolor: "lightgray", color: "black"}} disabled={isAssigningDocs} onClick={handleAssign}>
                 {isAssigningDocs ? "Please Wait..." : "Done"}
               </Button>
             </Box>
@@ -195,6 +195,7 @@ const AssignDoc = ({ client }) => {
         </Modal>
       </Box>
     </Box>
+    </Container>
   );
 };
 

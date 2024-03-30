@@ -30,9 +30,9 @@ const Page = async () => {
   })
   return (
     <Box sx={{width: "100%", height: "100%", p: "10px"}}>
-      <ProfileDetailPage userId={session._id} refusals={prismaResult.previousRefusal} personalTies={prismaResult.personalTies? prismaResult.personalTies: {}} />
+      <ProfileDetailPage session={session} userId={session._id} refusals={prismaResult.previousRefusal} personalTies={prismaResult.personalTies? prismaResult.personalTies: {}} />
       <Divider sx={{mt: "5px"}}/>
-      <SpouseDetail session={session}/>
+      <SpouseDetail session={session} _id={session._id}/>
     </Box>
   );
 };

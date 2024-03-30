@@ -5,7 +5,7 @@ import { useState } from "react";
 import "./style.css";
 import Row from "./Row";
 import AddForm from "./AddForm";
-const SpouseEducation = ({ education, userId }) => {
+const SpouseEducation = ({ education, userId, session }) => {
   const [educationList, setEducationList] = useState(education);
   return (
     <Box>
@@ -51,9 +51,11 @@ const SpouseEducation = ({ education, userId }) => {
           </Box>
         </Box>
       </Box>
-      <Box>
-        <AddForm userId={userId} setEducationList={setEducationList} />
-      </Box>
+      {session.role == "CLIENT" && (
+        <Box>
+          <AddForm userId={userId} setEducationList={setEducationList} />
+        </Box>
+      )}
     </Box>
   );
 };

@@ -1,36 +1,34 @@
 import React from "react";
 import {
   Box,
-  Grid,
-  Avatar,
-  useTheme,
-  useMediaQuery,
-  Button,
-  IconButton,
 } from "@mui/material";
 
-import { useRouter, useSearchParams } from "next/navigation";
-import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
-import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
-import UserContextProvider, { UserContext } from "@/contexts/user/context";
 
-import getUser from "@/services/client/getUser";
-import { setUser } from "@/contexts/user/action";
-import { useLogin } from "@/hooks/auth";
-// import Profile from "@/components/PartnerDashboard/Profile/Profile";
+
 import Loader from "@/components/Loader";
-import WithUserContext from "@/hocs/WithUserContext";
+
 
 // import QueryPage from "@/components/Query/QueryPage";
-import Profile from "./Profile";
+import Profile from "./_components/Profile";
+import { getSession } from "@/lib/auth-service";
+import { redirect } from "next/navigation";
+import db from "@/lib/db";
 
-const Page = () => {
-  
-
-    
+const Page = async () => {
+      const session = await getSession();
+      console.log("🚀 ~ Page ~ session:", session)
+      if(!session) {
+        return redirect("/login");
+      }
+      const partnerDetail = await db.partner.findUnique({
+        where: {
+          userId: session._id
+        }
+      })
+      console.log("🚀 ~ Page ~ partnerDetail:", partnerDetail)
   return (
     <Box sx={{p:"10px"}}>
-      <Profile />
+      <Profile userId={session._id} partnerDetail={partnerDetail} />
     </Box>
   );
 };
