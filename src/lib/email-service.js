@@ -8,7 +8,7 @@ export const sendEmail = async (email, subject, html) => {
   try {
     const resend = new Resend(process.env.RESEND_API_KEY);
     const { data, error } = await resend.emails.send({
-      from: "HHHimmigration <authService@resend.dev>",
+      from: `HHHimmigration <authService@${process.env.EMAIL_DOMAIN}>`,
       to: [email],
       subject: subject,
       html: html,

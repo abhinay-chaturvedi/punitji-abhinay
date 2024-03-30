@@ -19,9 +19,17 @@ const UKDetails = () => {
         gap: "5px",
       }}
     >
-      <Box sx={{ flex: 1, bgcolor: "white", p: "5px", borderRadius: "5px" }}>
+      <Box sx={{ flex: 1, bgcolor: "white", p: "5px", position: "relative", borderRadius: "5px" }}>
+      <Box sx={{ position: "absolute",top: 60,left: 50, width: "70%", height: "70%" }}>
+        <Image
+          style={{ opacity: 0.5 }}
+          layout={"fill"}
+          objectFit="contain"
+          src={"/images/uk-flag.jpg"}
+        />
+      </Box>
         <Typography
-          sx={{ textAlign: "center", fontWeight: "bold", fontSize: "20px" }}
+          sx={{ textAlign: "center",marginY: "12px", fontWeight: "bold", fontSize: "20px" }}
         >
           UNITED KINGDOM
         </Typography>
@@ -37,7 +45,15 @@ const UKDetails = () => {
           borderRadius: "5px",
         }}
       >
-        <Box
+        <Box sx={{ position: "absolute",top: 60,left: 50, width: "70%", height: "70%" }}>
+        <Image
+          style={{ opacity: 0.5 }}
+          layout={"fill"}
+          objectFit="contain"
+          src={"/images/uk-flag.jpg"}
+        />
+      </Box>
+        {/* <Box
           sx={{
             position: "absolute",
             display: "flex",
@@ -55,7 +71,7 @@ const UKDetails = () => {
             src={"/images/uk-flag.jpg"}
           />
           </Box>
-        </Box>
+        </Box> */}
         <Content visaType={visaType} />
       </Box>
     </Box>
@@ -67,14 +83,14 @@ const Uk = ({ setVisaType }) => {
   console.log(ukVisaList);
   return (
     <Box sx={{ position: "relative" }}>
-      <Box sx={{ position: "absolute", width: "100%", height: "100%" }}>
+      {/* <Box sx={{ position: "absolute", width: "100%", height: "100%" }}>
         <Image
           style={{ opacity: 0.5 }}
           layout={"fill"}
           objectFit="contain"
           src={"/images/uk-flag.jpg"}
         />
-      </Box>
+      </Box> */}
       <Box
         sx={{
           display: "flex",
@@ -99,9 +115,9 @@ const Uk = ({ setVisaType }) => {
                   justifyContent: "left",
                 }}
               >
-                {item.name}
+                {"*  " + item.name}
               </Button>
-              <Divider />
+              {/* <Divider /> */}
             </Box>
           );
         })}
@@ -129,7 +145,7 @@ const Content = ({ visaType }) => {
               fontWeight: "bold",
               textAlign: "center",
               fontSize: "25px",
-              marginY: "10px",
+              // marginY: "10px",
             }}
           >
             {uk.heading}

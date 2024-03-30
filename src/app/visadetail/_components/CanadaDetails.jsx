@@ -28,7 +28,7 @@ const CanadaDetails = () => {
           position: "relative",
         }}
       >
-        <Box
+        {/* <Box
           sx={{
             position: "absolute",
             display: "flex",
@@ -46,6 +46,16 @@ const CanadaDetails = () => {
               src={"/images/canada-flag.jpg"}
             />
           </Box>
+        </Box> */}
+        <Box
+          sx={{ position: "absolute",top: 60,left: 50, width: "70%", height: "70%"}}
+        >
+          <Image
+            style={{ opacity: 0.5 }}
+            layout={"fill"}
+            objectFit="contain"
+            src={"/images/canada-flag.jpg"}
+          />
         </Box>
         <Content visaType={visaType} />
       </Box>
@@ -56,12 +66,31 @@ const CanadaDetails = () => {
           height: "auto",
           p: "5px",
           borderRadius: "5px",
+          position: "relative"
         }}
       >
-        <Typography
-          sx={{ textAlign: "center", fontWeight: "bold", fontSize: "20px" }}
+        <Box
+          sx={{ position: "absolute",top: 60,left: 50, width: "70%", height: "70%" }}
         >
-          Canada
+          <Image
+            style={{ opacity: 0.5 }}
+            layout={"fill"}
+            objectFit="contain"
+            src={"/images/canada-flag.jpg"}
+          />
+        </Box>
+        {/* <Box sx={{ position: "absolute", width: "100%", height: "100%" }}>
+        <Image
+          style={{ opacity: 0.5 }}
+          layout={"fill"}
+          objectFit="contain"
+          src={"/images/canada-flag.jpg"}
+        />
+      </Box> */}
+        <Typography
+          sx={{ textAlign: "center",marginY: "12px", fontWeight: "bold", fontSize: "20px" }}
+        >
+          CANADA
         </Typography>
         <Canada setVisaType={setVisaType} />
       </Box>
@@ -75,14 +104,14 @@ const Canada = ({ setVisaType }) => {
   // console.log(ukVisaList)
   return (
     <Box sx={{ position: "relative" }}>
-      <Box sx={{ position: "absolute", width: "100%", height: "100%" }}>
+      {/* <Box sx={{ position: "absolute", width: "100%", height: "100%" }}>
         <Image
           style={{ opacity: 0.5 }}
           layout={"fill"}
           objectFit="contain"
           src={"/images/canada-flag.jpg"}
         />
-      </Box>
+      </Box> */}
       <Box
         sx={{
           display: "flex",
@@ -107,9 +136,10 @@ const Canada = ({ setVisaType }) => {
                   justifyContent: "left",
                 }}
               >
-                {item.name}
+                {/* {item.name} */}
+                {"*  " + item.name}
               </Button>
-              <Divider />
+              {/* <Divider /> */}
             </Box>
           );
         })}
@@ -145,7 +175,6 @@ const Content = ({ visaType }) => {
               fontWeight: "bold",
               textAlign: "center",
               fontSize: "25px",
-              marginY: "10px",
             }}
           >
             {canada.heading}

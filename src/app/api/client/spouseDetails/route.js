@@ -25,6 +25,14 @@ const PUT = async (req) => {
                 push: body.value
             }
         }
+        if(body.field == "previousRefusal") {
+            body.value.id = uuidv4();
+            body.value = {
+                push: body.value
+            }
+        }
+        // if(body.field == "personalTies") {
+        // }
         // const res = await db.spouseDetail.upsert({
         //     where: {
         //         userId: body.userId,

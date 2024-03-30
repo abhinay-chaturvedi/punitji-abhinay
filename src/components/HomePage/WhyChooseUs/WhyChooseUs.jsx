@@ -38,6 +38,10 @@ const WhyChooseUs = () => {
                 objectFit="contain"
                 src={"/images/Harsimran.png"}
               />
+              <Box sx={{position: "absolute", bottom: 0, left: "35%", color: "green",}}>
+              <Typography sx={{fontWeight: "bold", textAlign: "center"}}>CEO Harsimran Singh Mtech.</Typography>
+              <Typography sx={{fontWeight: "bold", textAlign: "center"}}>(Enterprise System)</Typography>
+              </Box>
             </Box>
           </Grid>
         </Grid>

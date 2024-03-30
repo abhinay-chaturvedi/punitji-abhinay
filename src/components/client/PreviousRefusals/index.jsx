@@ -1,11 +1,11 @@
-"use client";
-import { Box, Typography } from "@mui/material";
-import React, { useState } from "react";
-import Row from "./Row";
-import AddForm from "./AddForm";
+"use client"
+import { Box, Typography } from '@mui/material'
+import React, { useState } from 'react'
+import Row from './Row';
+import AddForm from './AddForm';
 
-const SpouseWorkExperience = ({ userId, workExperience }) => {
-  const [workExperienceList, setWorkExperienceList] = useState(workExperience);
+const PreviousRefusals = ({userId, refusals, updateProfile}) => {
+  const [refusalList, setRefusalList] = useState(refusals);
   return (
     <Box>
       <Typography
@@ -16,7 +16,7 @@ const SpouseWorkExperience = ({ userId, workExperience }) => {
           fontWeight: "600",
         }}
       >
-        Spouse Work Experience
+        Previous Refusals
       </Typography>
       {/*  here is the table of the work Experience */}
       <Box sx={{ overflow: "auto" }}>
@@ -24,25 +24,25 @@ const SpouseWorkExperience = ({ userId, workExperience }) => {
           <Box component={"thead"}>
             <Box component={"tr"}>
               <Box component={"th"} sx={{ minWidth: "150px" }}>
-                Job Title
+                Country
               </Box>
               <Box component={"th"} sx={{ minWidth: "150px" }}>
-                Company
+                Year
               </Box>
 
               <Box component={"th"} sx={{ minWidth: "100px" }}>
-                Start Date
+                File Category
               </Box>
               <Box component={"th"} sx={{ minWidth: "100px" }}>
-                Till
+                Reason
               </Box>
               <Box component={"th"} sx={{ minWidth: "100px" }}>
-                Country
+                CAIPS Notes
               </Box>
             </Box>
           </Box>
           <Box component={"tbody"}>
-            {workExperienceList?.map((item, index) => {
+            {refusalList?.map((item, index) => {
               return <Row key={item.id} item={item} />;
             })}
           </Box>
@@ -51,11 +51,12 @@ const SpouseWorkExperience = ({ userId, workExperience }) => {
       <Box>
         <AddForm
           userId={userId}
-          setWorkExperienceList={setWorkExperienceList}
+          setRefusalList={setRefusalList}
+          updateProfile={updateProfile}
         />
       </Box>
     </Box>
   );
-};
+}
 
-export default SpouseWorkExperience;
+export default PreviousRefusals

@@ -151,7 +151,7 @@ const VisaBar = () => {
               style={{ borderRadius: "50%", objectFit: "cover", border: "1px solid white" }}
             />
           </Box>
-          <Typography>Australia</Typography>
+          <Typography>AUSTRALIA</Typography>
         </Box>
         <Box
           sx={{
@@ -228,7 +228,7 @@ const VisaBar = () => {
             />
             
           </Box>
-          <Typography>Germany</Typography>
+          <Typography>GERMANY</Typography>
         </Box>
         {/* <Box sx={{width: "5px",height: "40px",m: "3px",borderRadius: "5px", bgcolor: "white"}}></Box> */}
       </Box>

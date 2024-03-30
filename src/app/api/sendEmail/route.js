@@ -23,7 +23,7 @@ const POST = async (req) => {
     }
     const code = Math.floor(100000 + Math.random() * 900000);
     const { data, error } = await resend.emails.send({
-      from: "HHHimmigration <authService@resend.dev>",
+      from: `HHHimmigration <authService@${process.env.EMAIL_DOMAIN}>`,
       to: [email],
       subject: "Verification",
       html: `<h2>Dear Valued Customer,</h2> <br> <h3>Greetings from the hhhimmigration!</h3> <br> <span>Please use the verification below to signin.</span> <br> <h2>${code}</h2> <br> <span> if you didn't request this, you can ignore this email.</span> <br> <span><b>NOTE:</b> OTP will expires in 5 minutes </span> <br> <span>Please do not share your OTP with others for security reason. </span> <br> <h4> Best Regards, <br> HHH IMMIGRATION TEAM </h4>`,

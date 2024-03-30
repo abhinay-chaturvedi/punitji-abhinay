@@ -29,26 +29,28 @@ model User {
 }
 
 model Client {
-  id          String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId      String    @unique @db.Uuid
-  name        String
-  email       String
-  phone       String?
-  address     String?
-  dob         DateTime?
-  visaCountry String?
-  partnerId   String?   @db.Uuid
-  documents   Json[]
-  createdAt   DateTime? @default(now()) @db.Timestamptz(6)
+  id              String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  user            User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId          String    @unique @db.Uuid
+  name            String
+  email           String
+  phone           String?
+  address         String?
+  dob             DateTime?
+  visaCountry     String?
+  partnerId       String?   @db.Uuid
+  documents       Json[]
+  previousRefusal Json[]
+  personalTies    Json?
+  createdAt       DateTime? @default(now()) @db.Timestamptz(6)
 
   @@map("client")
 }
 
 model SpouseDetail {
-  id              String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  user            User     @relation(fields: [userId], references: [id])
-  userId          String   @unique @db.Uuid
+  id              String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  user            User      @relation(fields: [userId], references: [id])
+  userId          String    @unique @db.Uuid
   name            String?
   email           String?
   phone           String?
@@ -58,8 +60,8 @@ model SpouseDetail {
   workExperience  Json[]
   language        Json[]
   personalTies    Json?
-  createdAt       DateTime @default(now())
-  updateAt        DateTime @default(now()) @updatedAt
+  createdAt       DateTime  @default(now())
+  updateAt        DateTime  @default(now()) @updatedAt
 }
 
 model Partner {

@@ -16,7 +16,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         {/* <UserContextProvider>{children}</UserContextProvider> */}
-        <Toaster position="bottom-center" richColors  />
+        <Toaster position="bottom-right" richColors closeButton />
         <UserContextWithAuthGaurd>{children}</UserContextWithAuthGaurd>
         {/* {children} */}
       </body>
