@@ -36,10 +36,8 @@ const DocumentPage = () => {
   // const User = useLogin();
   const [documents, setDocuments] = useState([]);
   const router = useRouter();
-  // console.log("Logged in user is", User);
-  // console.log("hello");
+  
   const user = useContext(UserContext);
-  // console.log("🚀 ~ file: DocumentPage.jsx:36 ~ DocumentPage ~ user:", user);
   const getDocuments = async () => {
     try {
       const userId = user.state.id || "";
@@ -54,7 +52,6 @@ const DocumentPage = () => {
         }
       );
       const result = await res.json();
-      console.log("🚀 ~ file: DocumentPage.jsx:54 ~ getDocuments ~ result:", result)
       if (result.status == 200) {
         setDocuments(result.data?.documents);
       }
@@ -73,6 +70,13 @@ const DocumentPage = () => {
     return (
       <Box sx={{height: "90vh", width: "100%"}}>
         <Loader/>
+      </Box>
+    )
+  }
+  if(!documents || documents.length == 0) {
+    return (
+      <Box>
+        <Typography>There are no documents to upload. This could be because the process has not yet started, or you have not been assigned any documents.</Typography>
       </Box>
     )
   }

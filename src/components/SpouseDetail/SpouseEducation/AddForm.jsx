@@ -48,7 +48,6 @@ const AddForm = ({userId, setEducationList}) => {
         setError("please enter country");
         return ;
       }
-      // console.log(education)
       setDisabled(true);
       const res = await fetch("/api/client/spouseDetails", {
         method: "PUT",
@@ -59,7 +58,6 @@ const AddForm = ({userId, setEducationList}) => {
         body: JSON.stringify({userId: userId, field: "education", value: education})
       })
       const result = await res.json();
-      // console.log("🚀 ~ handleAdd ~ result:", result)
       if(result.status == 200) {
         setEducationList(result.data.education);
         setAdd(false);

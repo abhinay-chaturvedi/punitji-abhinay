@@ -13,7 +13,6 @@ const ProfileDetailPage = ({ userId, refusals, personalTies }) => {
 
   const updateProfile = async (userId, field, data) => {
     "use server"
-    // console.log("client previous refusal");
     const res = await fetch(`${process.env.BASE_URL}/api/client`, {
       method: "PUT",
       headers: {

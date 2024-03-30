@@ -49,7 +49,7 @@ model Client {
 
 model SpouseDetail {
   id              String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  user            User      @relation(fields: [userId], references: [id])
+  user            User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId          String    @unique @db.Uuid
   name            String?
   email           String?

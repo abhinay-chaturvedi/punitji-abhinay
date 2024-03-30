@@ -71,10 +71,7 @@ const WorkExperience = ({ userId }) => {
   const fetchExperieceDetail = async () => {
     try {
       const result = await getWorkExperience(userId);
-      console.log(
-        "🚀 ~ file: WorkExperience.jsx:55 ~ fetchExperieceDetail ~ result:",
-        result
-      );
+      
       if (result.status == 200) {
         setExperienceRows(result.data?.map((item, index) => {
           item.startDate = dayjs(item.startDate).format("MM/DD/YYYY")
@@ -102,10 +99,7 @@ const WorkExperience = ({ userId }) => {
         userId: userId,
         ...workExperience,
       };
-      console.log(
-        "🚀 ~ file: WorkExperience.jsx:91 ~ handleSave ~ data:",
-        data
-      );
+      
       if (!data.jobTitle || !data.jobTitle.length) {
         return setError("Please fill Job Title!");
       }
@@ -124,10 +118,7 @@ const WorkExperience = ({ userId }) => {
       // return ;
       setBtnText("saving...");
       const result = await saveWorkExperience(data);
-      console.log(
-        "🚀 ~ file: WorkExperience.jsx:113 ~ handleSave ~ result:",
-        result
-      );
+      
       if (result.status == 200) {
         setBtnText("save");
         setError(null);

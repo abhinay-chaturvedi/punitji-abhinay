@@ -1,4 +1,4 @@
-import { Box, Container, Typography } from '@mui/material'
+import { Box, Button, Container, Typography } from '@mui/material'
 import React from 'react'
 import BasicDetails from './BasicDetails'
 import PreviousRefusals from '../client/PreviousRefusals'
@@ -7,6 +7,8 @@ import SpouseWorkExperience from './SpouseWorkExperience'
 import SpouseLanguage from './SpouseLanguage'
 import db from '@/lib/db'
 import PersonalTies from '../client/PersonalTies'
+import CreateForm from './CreateForm'
+import { revalidatePath } from 'next/cache'
 
 const SpouseDetail = async ({session}) => {
     const spouseDetails = await db.spouseDetail.findUnique({
@@ -14,8 +16,20 @@ const SpouseDetail = async ({session}) => {
             userId: session._id
         }
     });
-    // const spouseDetails = await db.spouseDetail.findMany();
-    console.log("🚀 ~ SpouseDetail ~ spouseDetails:", spouseDetails)
+    const createSpouseRow = async () => {
+        "use server"
+        await db.spouseDetail.create({
+            data: {
+                userId: session._id
+            }
+        });
+        revalidatePath("/client");
+    }
+    if(!spouseDetails) {
+        return (
+            <CreateForm createSpouseRow={createSpouseRow}/>
+        )
+    }
     const basicDetail = {
         name: spouseDetails==null? null: spouseDetails.name,
         email: spouseDetails==null? null: spouseDetails.email,
@@ -31,8 +45,6 @@ const SpouseDetail = async ({session}) => {
 
     const updateProfile = async (userId, field, data) => {
         "use server"
-        console.log(userId, field, data, "----------------");
-        // return {data: {}};
         const res = await fetch(`${process.env.BASE_URL}/api/client/spouseDetails`, {
             method: "PUT",
             headers: {

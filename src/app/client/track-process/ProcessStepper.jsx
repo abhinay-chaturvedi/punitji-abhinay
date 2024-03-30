@@ -8,10 +8,7 @@ import UnpublishedIcon from "@mui/icons-material/Unpublished";
 import VerifiedIcon from "@mui/icons-material/Verified";
 import Loader from "@/components/Loader";
 const DocumentStepper = ({ userDetail }) => {
-  console.log(
-    "🚀 ~ file: ProcessStepper.jsx:10 ~ DocumentStepper ~ userDetail:",
-    userDetail
-  );
+  
   const [isLoadingSteps, setIsLoadingSteps] = useState(true);
   const [steps, setSteps] = useState(null);
   const getProcessSteps = async () => {
@@ -23,10 +20,7 @@ const DocumentStepper = ({ userDetail }) => {
         Accept: "application/json",
       });
       const result = await res.json();
-      console.log(
-        "🚀 ~ file: ProcessStepper.jsx:22 ~ getProcessSteps ~ result:",
-        result
-      );
+      
       if (result.status == 200) {
         setSteps(result.data);
       }

@@ -91,10 +91,9 @@ const LanguageTest = ({ userId }) => {
       if (!data.overallBand || !data.overallBand.length) {
         return setError("Please fill Overall Band!");
       }
-      // console.log("languageDetail", languageDetail);
+      
       setBtnText("saving...");
       const result = await saveLanguageTest(data);
-      // console.log("🚀 ~ file: LanguageTest.jsx:93 ~ handleSave ~ result:", result)
       if(result.status == 200) {
         
         setFormOpen(false);
@@ -112,7 +111,6 @@ const LanguageTest = ({ userId }) => {
   const fetchLanguageTest = async () => {
     try {
       const result = await getLanguageTest(userId);
-      console.log("🚀 ~ file: LanguageTest.jsx:110 ~ fetchLanguageTest ~ result:", result)
       if(result.status == 200) {
         setLanguageRows(result.data?.map((item, index) => {
           item.index = index + 1;

@@ -1,7 +1,7 @@
 
 import React from "react";
 import {
-  Box,
+  Box, Divider,
 } from "@mui/material";
 
 import { redirect } from "next/navigation";
@@ -16,7 +16,6 @@ import db from "@/lib/db";
 const Page = async () => {
   
   const session = await getSession();
-  console.log("revalidate check ---------------", session)
   if(!session) {
     redirect("/login")
   }
@@ -29,10 +28,10 @@ const Page = async () => {
       personalTies: true
     }
   })
-  // console.log("🚀 ~ Page ~ refusals:", refusals)
   return (
     <Box sx={{width: "100%", height: "100%", p: "10px"}}>
       <ProfileDetailPage userId={session._id} refusals={prismaResult.previousRefusal} personalTies={prismaResult.personalTies? prismaResult.personalTies: {}} />
+      <Divider sx={{mt: "5px"}}/>
       <SpouseDetail session={session}/>
     </Box>
   );

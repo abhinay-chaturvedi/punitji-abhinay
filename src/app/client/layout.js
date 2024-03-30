@@ -10,10 +10,7 @@ export const metadata = {
   description: 'Welcome client!',
 }
 
-export default function DashboardLayout({ children }) {
-  console.log("here is server component in user layourt")
-  // const token = cookies().get("token");
-  // console.log("hello from the this side", token) 
+export default function DashboardLayout({ children }) { 
   return (
     <div>
         <NavBar/>

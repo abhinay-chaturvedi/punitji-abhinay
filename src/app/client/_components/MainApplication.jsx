@@ -31,7 +31,6 @@ const DetailCard = ({ userId }) => {
     visaCountry: null,
   });
   const [dob, setDob] = useState(null);
-  console.log("🚀 ~ DetailCard ~ dob:", dob)
   const [error, setError] = useState(null);
   const [btnText, setBtnText] = useState("save");
   // const [mainApplicationDetail, setMainApplicationDetail] = useState(null);
@@ -43,8 +42,6 @@ const DetailCard = ({ userId }) => {
         userId: userId,
         ...mainDetail,
       };
-      console.log("data to save is", data);
-
       if (!data.address) {
         setError("Please fill address!");
         return;
@@ -59,10 +56,7 @@ const DetailCard = ({ userId }) => {
       }
       setBtnText("saving...");
       const result = await saveApplication(data);
-      // console.log(
-      //   "🚀 ~ file: MainApplication.jsx:23 ~ handleSave ~ result:",
-      //   result
-      // );
+      
       if (result.status == 200) {
         setMainApplicationDetail(result.data);
         setBtnText("Saved!");
@@ -79,10 +73,7 @@ const DetailCard = ({ userId }) => {
     try {
       // const userId = userState.id;
       const result = await getApplicationDetail(userId);
-      // console.log(
-      //   "🚀 ~ file: MainApplication.jsx:60 ~ fetchApplicationDetail ~ result:",
-      //   result
-      // );
+      
       if(result.status == 200) {
         setMainApplicationDetail(result.data);
         setMainDetail({
@@ -155,9 +146,7 @@ const DetailCard = ({ userId }) => {
                   <OutlinedInput
                     id="outlined-adornment-name"
                     onChange={(e) => {
-                      // setName(e.target.value)
-                      // setError(null);
-                      console.log("onchange");
+                      
                       setMainDetail((prev) => ({
                         ...prev,
                         [e.target.name]: e.target.value,
@@ -204,9 +193,7 @@ const DetailCard = ({ userId }) => {
                   <OutlinedInput
                     id="outlined-adornment-address"
                     onChange={(e) => {
-                      // setName(e.target.value)
-                      // setError(null);
-                      console.log("onchange");
+                      
                       setMainDetail((prev) => ({
                         ...prev,
                         [e.target.name]: e.target.value,
@@ -231,9 +218,7 @@ const DetailCard = ({ userId }) => {
                   <OutlinedInput
                     id="outlined-adornment-name"
                     onChange={(e) => {
-                      // setName(e.target.value)
-                      // setError(null);
-                      console.log("onchange");
+                      
                       setMainDetail((prev) => ({
                         ...prev,
                         [e.target.name]: e.target.value,

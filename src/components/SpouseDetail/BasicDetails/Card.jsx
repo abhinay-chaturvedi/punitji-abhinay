@@ -20,7 +20,7 @@ const Card = ({ title, label, value, userId }) => {
             body: JSON.stringify({value: inputValue, field: title, userId: userId})
         })
         const result = await res.json();
-        console.log(result);
+        
         if(result.status == 200) {
             setText(result.data[title]);
         }

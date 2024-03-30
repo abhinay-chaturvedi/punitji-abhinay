@@ -8,23 +8,14 @@ import jwt from "jsonwebtoken";
 import { cookies, headers } from "next/headers";
 import { notFound, redirect } from "next/navigation";
 const Page = async () => {
-  // redirect("/login")
-//   const token = cookies().get("token")?.value;
-//   if (!token) {
-//     redirect("/login");
-//   }
-//   console.log(token, "token in query");
-//   const currentUser = jwt.verify(token, process.env.JWT_SECRET);
-//   console.log("🚀 ~ Page ~ currentUser:", currentUser);
+  
 const currentUser = await getSession();
-console.log("🚀 ~ Page ~ currentUser:", currentUser);
   if (!currentUser) {
     // redirect("/login");
     notFound();
   }
 
   const queries = await getQueries(currentUser._id);
-  console.log(queries);
   return (
     <Box>
       <Container>

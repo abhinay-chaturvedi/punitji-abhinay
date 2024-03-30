@@ -45,7 +45,7 @@ const handleAdd = async () => {
         // })
         // const result = await res.json();
         const result = await updateProfile(userId, "previousRefusal", refusal);
-        console.log("🚀 ~ handleAdd ~ result:", result)
+        // console.log("🚀 ~ handleAdd ~ result:", result)
         if(result.status == 200) {
             setRefusalList(result.data.previousRefusal);
             setAdd(false);

@@ -36,7 +36,6 @@ const DeleteModal = ({ text, onContinue }) => {
   const handleContinue = async () => {
     setIsLoading(true);
     let result = await onContinue();
-    console.log("000000000", result);
     setIsLoading(false);
     if (result) {
       setOpen(false);

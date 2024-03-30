@@ -8,7 +8,6 @@ import DocumentStepper from './ProcessStepper'
 
 const ProcessPage = () => {
   const userDetail = useContext(UserContext);
-  console.log("🚀 ~ file: ProcessPage.jsx:6 ~ ProcessPage ~ userDetail:", userDetail)
   return (
     <Box sx={{boxShadow: "0px 3px 8px rgba(0, 0, 0 .24)", p: "10px"}}>
         <Box>

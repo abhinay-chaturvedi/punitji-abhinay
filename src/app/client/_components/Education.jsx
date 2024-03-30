@@ -75,10 +75,7 @@ const Education = ({ userId }) => {
     endDate: null,
     score: null,
   });
-  // console.log(
-  //   "🚀 ~ file: Education.jsx:57 ~ Education ~ education:",
-  //   education
-  // );
+  
   const handleValidate = (data) => {
     if (!data.degree) {
       return "Please fill degree!";
@@ -104,7 +101,7 @@ const Education = ({ userId }) => {
     return "success";
   };
   const handleSave = async () => {
-    console.log("-------------")
+    
     try {
       // const userId = userId;
       const data = { ...education, userId };
@@ -115,7 +112,7 @@ const Education = ({ userId }) => {
       }
       setBtnText("saving...");
       const result = await saveEducationDetail(data);
-      // console.log("🚀 ~ file: Education.jsx:65 ~ handleSave ~ result:", result);
+      
       if (result.status === 200) {
         setBtnText("save");
         let newItem = result.data;
@@ -138,7 +135,7 @@ const Education = ({ userId }) => {
       }
       setFormOpen(false);
     } catch (err) {
-      // console.log("🚀 ~ file: Education.jsx:63 ~ handleSave ~ err:", err);
+      console.log("🚀 ~ file: Education.jsx:63 ~ handleSave ~ err:", err);
       setBtnText("save");
     }
   };
@@ -146,7 +143,7 @@ const Education = ({ userId }) => {
     try {
       // const userId = userId;
       const result = await getEducationDetail(userId);
-      console.log("🚀 ~ file: Education.jsx:120 ~ geteducationDetail ~ result:", result)
+      
       if(result.status == 200) {
         setEducationRows(result.data?.map((item, index) => {
           item.startDate = dayjs(item.startDate).format("MM/DD/YYYY")
