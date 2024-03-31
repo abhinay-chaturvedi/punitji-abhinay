@@ -12,6 +12,7 @@ import PartnerAssignInfo from "@/components/PartnerAssignInfo";
 import PreviousRefusals from "@/components/client/PreviousRefusals";
 import PersonalTies from "@/components/client/PersonalTies";
 import { cookies } from "next/headers";
+import db from "@/lib/db";
 export const dynamic = 'force-dynamic'
 const Page = async ({ params }) => {
   // cookies().getAll();
