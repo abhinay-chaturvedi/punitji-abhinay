@@ -9,7 +9,7 @@ import React from "react";
 import VerifyPartnerCard from "./VerifyPartnerCard";
 import { revalidatePath } from "next/cache";
 import db from "@/lib/db";
-
+export const dynamic = 'force-dynamic'
 const Page = async ({ params }) => {
   const session = await getSession();
 

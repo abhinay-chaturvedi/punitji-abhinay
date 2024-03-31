@@ -3,14 +3,14 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import EnterNewPwd from "./EnterNewPwd";
-import { redirect } from "next/navigation";
-import { getSession } from "@/lib/auth-service";
+// import { redirect } from "next/navigation";
+// import { getSession } from "@/lib/auth-service";
 
 const Page = async () => {
-  const session = await getSession();
-  if (session) {
-    redirect("/");
-  }
+  // const session = await getSession();
+  // if (session) {
+  //   redirect("/");
+  // }
   return (
     <Box sx={{ bgcolor: "whitesmoke", minHeight: "" }}>
       <Container

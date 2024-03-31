@@ -1,59 +1,111 @@
-import { Box, Typography } from '@mui/material'
-import dayjs from 'dayjs'
-import React from 'react'
+import { Box, Typography } from "@mui/material";
+import dayjs from "dayjs";
+import React from "react";
 // box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-const ClientInfo = ({client}) => {
+const ClientInfo = ({ basicInfo }) => {
+  
   return (
-    <Box sx={{p: "5px", boxShadow: "0px 3px 8px rgba(0, 0, 0, .25)"}}>
-        <Box>
-            <Typography
-              sx={{ fontWeight: "bold", fontSize: "25px", textAlign: "center" }}
-            >
-              Client Info
-            </Typography>
-          </Box>
-          <Box sx={{ display: "flex", flexDirection: {xs: "column", md: "row"}, flexWrap: "wrap", gap: "20px" }}>
-            <Box sx={{ display: {md: "flex"}, gap: "5px" }}>
-              <Typography sx={{ fontWeight: "bold" }}>Name : </Typography>
-              <Typography>{client.client.name}</Typography>
-            </Box>
-            <Box sx={{ display: {md: "flex"}, gap: "5px" }}>
-              <Typography sx={{ fontWeight: "bold" }}>Email : </Typography>
-              <Typography>{client.client.email}</Typography>
-            </Box>
-            <Box sx={{ display: {md: "flex"}, gap: "5px" }}>
-              <Typography sx={{ fontWeight: "bold" }}>Phone : </Typography>
-              <Typography>
-                {client.client.phone ? client.client.phone : "NA"}
-              </Typography>
-            </Box>
-            <Box sx={{ display: {md: "flex"}, gap: "5px" }}>
-              <Typography sx={{ fontWeight: "bold" }}>
-                Date Of Birth :{" "}
-              </Typography>
-              <Typography>
-                {client.client.dob
-                  ? dayjs(client.client.dob).format("DD-MM-YYYY")
-                  : "NA"}
-              </Typography>
-            </Box>
-            <Box sx={{ display: {md: "flex"}, gap: "5px" }}>
-              <Typography sx={{ fontWeight: "bold" }}>Address : </Typography>
-              <Typography>
-                {client.client.address ? client.client.address : "NA"}
-              </Typography>
-            </Box>
-            <Box sx={{ display: {md: "flex"}, gap: "5px" }}>
-              <Typography sx={{ fontWeight: "bold" }}>
-                Visa Country :{" "}
-              </Typography>
-              <Typography>
-                {client.client.visaCountry ? client.client.visaCountry : "NA"}
-              </Typography>
-            </Box>
-          </Box>
+    <Box>
+      <Typography sx={{ textAlign: "center", color: "gray", fontSize: "18px" }}>
+        Basic Info
+      </Typography>
+      <Box sx={{ display: { md: "flex" }, flexWrap: "wrap", gap: "5px" }}>
+        <Box
+          sx={{
+            bgcolor: "lightgray",
+            minWidth: { md: "320px" },
+            p: "5px",
+            mb: "5px",
+            borderRadius: "5px",
+            flex: 1,
+          }}
+        >
+          {/* <Typography sx={{fontWeight: "bold"}}>title</Typography>
+          <Typography>value</Typography> */}
+          <Typography sx={{ fontWeight: "bold" }}>Name </Typography>
+          <Typography>{basicInfo.name}</Typography>
+        </Box>
+        <Box
+          sx={{
+            bgcolor: "lightgray",
+            minWidth: { md: "320px" },
+            p: "5px",
+            mb: "5px",
+            gap: "5px",
+            borderRadius: "5px",
+            flex: 1,
+          }}
+        >
+          <Typography sx={{ fontWeight: "bold" }}>Email </Typography>
+          <Typography>{basicInfo.email}</Typography>
+        </Box>
+        <Box
+          sx={{
+            bgcolor: "lightgray",
+            minWidth: { md: "320px" },
+            p: "5px",
+            mb: "5px",
+            gap: "5px",
+            borderRadius: "5px",
+            flex: 1,
+          }}
+        >
+          <Typography sx={{ fontWeight: "bold" }}>Phone : </Typography>
+          <Typography>
+            {basicInfo.phone ? client.client.phone : "NA"}
+          </Typography>
+        </Box>
+        <Box
+          sx={{
+            bgcolor: "lightgray",
+            minWidth: { md: "320px" },
+            p: "5px",
+            mb: "5px",
+            gap: "5px",
+            borderRadius: "5px",
+            flex: 1,
+          }}
+        >
+          <Typography sx={{ fontWeight: "bold" }}>Date Of Birth</Typography>
+          <Typography>
+            {basicInfo.dob ? dayjs(basicInfo.dob).format("DD-MM-YYYY") : "NA"}
+          </Typography>
+        </Box>
+        <Box
+          sx={{
+            bgcolor: "lightgray",
+            minWidth: { md: "320px" },
+            p: "5px",
+            mb: "5px",
+            gap: "5px",
+            borderRadius: "5px",
+            flex: 1,
+          }}
+        >
+          <Typography sx={{ fontWeight: "bold" }}>Address </Typography>
+          <Typography>
+            {basicInfo.address ? basicInfo.address : "NA"}
+          </Typography>
+        </Box>
+        <Box
+          sx={{
+            bgcolor: "lightgray",
+            minWidth: { md: "320px" },
+            p: "5px",
+            mb: "5px",
+            gap: "5px",
+            borderRadius: "5px",
+            flex: 1,
+          }}
+        >
+          <Typography sx={{ fontWeight: "bold" }}>Visa Country : </Typography>
+          <Typography>
+            {basicInfo.visaCountry ? basicInfo.visaCountry : "NA"}
+          </Typography>
+        </Box>
+      </Box>
     </Box>
-  )
-}
+  );
+};
 
-export default ClientInfo
+export default ClientInfo;

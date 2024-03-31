@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React from "react";
 import { Box, Typography, Button } from "@mui/material";
 import { useState } from "react";
@@ -7,14 +7,9 @@ import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import CircularProgress from "@mui/material/CircularProgress";
 
-function sleep(duration) {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve();
-    }, duration);
-  });
-}
-const PartnerInfo = ({ client,partnerId, userId, session }) => {
+const PartnerAssignInfo = ({ partnerId, userId, session }) => {
+  console.log("🚀 ~ PartnerAssignInfo ~ userId:", userId);
+  console.log("🚀 ~ PartnerAssignInfo ~ partnerId:", partnerId);
   const [isLoading, setIsLoading] = useState(true);
   const [assignedPartner, setAssignedPartner] = useState(null);
   const [isPartnerLoading, setIsPartnerLoading] = useState(false);
@@ -24,10 +19,10 @@ const PartnerInfo = ({ client,partnerId, userId, session }) => {
   const [isAssigning, setIsAssigning] = useState(false);
   const getPartnerAssigned = async () => {
     try {
-      const pId = client.client.partnerId
-      console.log(pId, "-------", partnerId)
+      //   const pId = partnerId;
+      //   const pId = partnerId;
       const res = await fetch(
-        `/api/admin/client/getAndAssignPartner?userId=${"6130e062-7aec-47b0-a628-ebdd68c01b2d"}`,
+        `/api/admin/client/getAndAssignPartner?userId=${partnerId}`,
         {
           method: "GET",
           headers: {
@@ -132,68 +127,64 @@ const PartnerInfo = ({ client,partnerId, userId, session }) => {
           </Box>
         </Box>
       )}
-      {session.role != "ADMIN" && (
-        <Box
-          sx={{
-            mt: "10px",
-            display: "flex",
-            alignItems: "center",
-            gap: "10px",
-            flexDirection: { xs: "column", md: "row" },
-          }}
-        >
-          <Typography>Please assign or change partner</Typography>
-          <Autocomplete
-            id="asynchronous-demo"
-            sx={{ width: 300 }}
-            open={open}
-            onOpen={() => {
-              setOpen(true);
-              console.log("set open clicked");
-              if (!partnerList) {
-                getVerifiedPartnerList();
-              }
-            }}
-            onClose={() => {
-              setOpen(false);
-            }}
-            isOptionEqualToValue={(option, value) =>
-              option.title === value.title
+      <Box
+        sx={{
+          mt: "10px",
+          display: "flex",
+          alignItems: "center",
+          gap: "10px",
+          flexDirection: { xs: "column", md: "row" },
+        }}
+      >
+        <Typography>Please assign or change partner</Typography>
+        <Autocomplete
+          id="asynchronous-demo"
+          sx={{ width: 300 }}
+          open={open}
+          onOpen={() => {
+            setOpen(true);
+            console.log("set open clicked");
+            if (!partnerList) {
+              getVerifiedPartnerList();
             }
-            onChange={(event, option) => setOption(option)}
-            getOptionLabel={(option) => {
-              return `${option.email}(${option.name})`;
-            }}
-            options={partnerList || []}
-            loading={isPartnerLoading}
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                label="Select Partner"
-                InputProps={{
-                  ...params.InputProps,
-                  endAdornment: (
-                    <React.Fragment>
-                      {isPartnerLoading ? (
-                        <CircularProgress color="inherit" size={20} />
-                      ) : null}
-                      {params.InputProps.endAdornment}
-                    </React.Fragment>
-                  ),
-                }}
-              />
-            )}
-          />
-          <Button
-            disabled={option && !isAssigning ? false : true}
-            onClick={handleAssign}
-          >
-            {isAssigning ? "Assigning partner" : "assign"}
-          </Button>
-        </Box>
-      )}
+          }}
+          onClose={() => {
+            setOpen(false);
+          }}
+          isOptionEqualToValue={(option, value) => option.title === value.title}
+          onChange={(event, option) => setOption(option)}
+          getOptionLabel={(option) => {
+            return `${option.email}(${option.name})`;
+          }}
+          options={partnerList || []}
+          loading={isPartnerLoading}
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              label="Select Partner"
+              InputProps={{
+                ...params.InputProps,
+                endAdornment: (
+                  <React.Fragment>
+                    {isPartnerLoading ? (
+                      <CircularProgress color="inherit" size={20} />
+                    ) : null}
+                    {params.InputProps.endAdornment}
+                  </React.Fragment>
+                ),
+              }}
+            />
+          )}
+        />
+        <Button
+          disabled={option && !isAssigning ? false : true}
+          onClick={handleAssign}
+        >
+          {isAssigning ? "Assigning partner" : "assign"}
+        </Button>
+      </Box>
     </Box>
   );
 };
 
-export default PartnerInfo;
+export default PartnerAssignInfo;

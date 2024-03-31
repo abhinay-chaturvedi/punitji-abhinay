@@ -2,72 +2,68 @@ import { Box, Divider, Typography } from "@mui/material";
 import dayjs from "dayjs";
 import React from "react";
 
-const Education = ({ client }) => {
+const Education = ({ education }) => {
   return (
-    <div>
-      <Box sx={{ p: "5px", boxShadow: "0px 3px 8px rgba(0, 0, 0, .24)" }}>
-        <Box>
-          <Typography
-            sx={{
-              fontWeight: "bold",
-              fontSize: "20px",
-              textAlign: "center",
-            }}
-          >
-            Education
-          </Typography>
-        </Box>
-        {client.education?.map((item, index) => {
-          return (
-            <Box key={index}>
-              <Box sx={{ display: "flex", flexWrap: "wrap", gap: "20px", mb: "10px" }}>
-                <Box sx={{ display: "flex", gap: "5px" }}>
-                  <Typography sx={{ fontWeight: "bold" }}>Degree : </Typography>
-                  <Typography>{item.degree}</Typography>
-                </Box>
-                <Box sx={{ display: "flex", gap: "5px" }}>
-                  <Typography sx={{ fontWeight: "bold" }}>
-                    College :{" "}
-                  </Typography>
-                  <Typography>{item.college}</Typography>
-                </Box>
-                <Box sx={{ display: "flex", gap: "5px" }}>
-                  <Typography sx={{ fontWeight: "bold" }}>
-                    Country :{" "}
-                  </Typography>
-                  <Typography>{item.country}</Typography>
-                </Box>
-                <Box sx={{ display: "flex", gap: "5px" }}>
-                  <Typography sx={{ fontWeight: "bold" }}>Stream : </Typography>
-                  <Typography>{item.stream}</Typography>
-                </Box>
-                <Box sx={{ display: "flex", gap: "5px" }}>
-                  <Typography sx={{ fontWeight: "bold" }}>Score : </Typography>
-                  <Typography>{item.score}</Typography>
-                </Box>
-                <Box sx={{ display: "flex", gap: "5px" }}>
-                  <Typography sx={{ fontWeight: "bold" }}>
-                    Start Date :{" "}
-                  </Typography>
-                  <Typography>
-                    {dayjs(item.startDate).format("DD-MM-YY")}
-                  </Typography>
-                </Box>
-                <Box sx={{ display: "flex", gap: "5px" }}>
-                  <Typography sx={{ fontWeight: "bold" }}>
-                    End Date :{" "}
-                  </Typography>
-                  <Typography>
-                    {dayjs(item.endDate).format("DD-MM-YYYY")}
-                  </Typography>
-                </Box>
+    <Box>
+      <Typography
+        sx={{
+          color: "gray",
+          fontSize: "18px",
+          marginY: "5px",
+          textAlign: "center",
+        }}
+      >
+        Education
+      </Typography>
+      <Box sx={{ overflow: "auto" }}>
+        <Box component={"table"} sx={{ width: "100%", textAlign: "left" }}>
+          <Box component={"thead"}>
+            <Box component={"tr"}>
+              <Box component={"th"} sx={{ minWidth: "150px" }}>
+                Degree
               </Box>
-              <Divider />
+              <Box component={"th"} sx={{ minWidth: "150px" }}>
+                College
+              </Box>
+              <Box component={"th"} sx={{ minWidth: "150px" }}>
+                Country
+              </Box>
+              <Box component={"th"} sx={{ minWidth: "150px" }}>
+                Stream
+              </Box>
+              <Box component={"th"} sx={{ minWidth: "150px" }}>
+                Score
+              </Box>
+              <Box component={"th"} sx={{ minWidth: "100px" }}>
+                Start Date
+              </Box>
+              <Box component={"th"} sx={{ minWidth: "130px" }}>
+                End Date
+              </Box>
             </Box>
-          );
-        })}
+          </Box>
+          <Box component={"tbody"}>
+            {education?.map((item, index) => {
+              return (
+                <Box key={index} component={"tr"}>
+                  <Box component={"td"}>{item.degree}</Box>
+                  <Box component={"td"}>{item.college}</Box>
+                  <Box component={"td"}>{item.country}</Box>
+                  <Box component={"td"}>{item.stream}</Box>
+                  <Box component={"td"}>{item.score}</Box>
+                  <Box component={"td"}>
+                    {dayjs(item.startDate).format("YYYY-MM-DD")}
+                  </Box>
+                  <Box component={"td"}>
+                    {dayjs(item.endDate).format("YYYY-MM-DD")}
+                  </Box>
+                </Box>
+              );
+            })}
+          </Box>
+        </Box>
       </Box>
-    </div>
+    </Box>
   );
 };
 

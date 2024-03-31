@@ -12,9 +12,10 @@ import ProfileDetailPage from "./_components/ProfileDetailPage";
 import { getSession } from "@/lib/auth-service";
 import SpouseDetail from "@/components/SpouseDetail";
 import db from "@/lib/db";
+import { cookies } from "next/headers";
 
 const Page = async () => {
-  
+  cookies().getAll();
   const session = await getSession();
   if(!session) {
     redirect("/login")

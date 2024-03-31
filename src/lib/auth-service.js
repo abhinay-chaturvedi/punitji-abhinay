@@ -7,6 +7,7 @@ import bcrypt from "bcrypt";
 
 export const getSession = async () => {
   try {
+    
     const token = cookies().get("token")?.value;
     console.log(token, "token in session");
     if (!token) {
