@@ -1,5 +1,6 @@
 // const { NextRequest } = require("next/server");
 import prisma from "@/prisma/connect";
+import { revalidatePath } from "next/cache";
 import { NextRequest, NextResponse } from "next/server"
 
 const GET = async (req) => {
@@ -31,6 +32,7 @@ const PUT = async (req) => {
                 joiningDate: new Date()
             }
         })
+        revalidatePath("/admin/partner/6130e062-7aec-47b0-a628-ebdd68c01b2d")
         return NextResponse.json({status: 200, message: "success", data: prismaResult}, {status: 200})
     } catch(err) {
         return NextResponse.json({status: 500, message: "something went wrong!", err: err}, {status: 500})

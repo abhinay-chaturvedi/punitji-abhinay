@@ -25,10 +25,10 @@ const Page = async () => {
           userId: session._id
         }
       })
-      console.log("🚀 ~ Page ~ partnerDetail:", partnerDetail)
+      // console.log("🚀 ~ Page ~ partnerDetail:", partnerDetail)
   return (
     <Box sx={{p:"10px"}}>
-      <Profile userId={session._id} partnerDetail={partnerDetail} />
+      <Profile session={session} userId={session._id} partnerDetail={partnerDetail} />
     </Box>
   );
 };

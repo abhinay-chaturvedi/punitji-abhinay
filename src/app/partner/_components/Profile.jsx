@@ -1,4 +1,4 @@
-"use client"
+// "use client"
 import CustomInput from "@/components/CustomInput";
 import Loader from "@/components/Loader";
 import { UserContext } from "@/contexts/user/context";
@@ -8,12 +8,13 @@ import {
 } from "@/services/partner/profileDetail";
 import { Alert, Box, Button, Grid, Typography } from "@mui/material";
 import dayjs from "dayjs";
-import React, { useContext, useEffect, useState } from "react";
+import React from "react";
 import { toast } from "sonner";
 import UpdateCard from "./UpdateCard";
 import StaticCard from "./StaticCard";
 
-const Profile = ({userId, partnerDetail}) => {
+const Profile = ({userId, partnerDetail, session}) => {
+  console.log("here i am in profile")
   // const [isLoading, setIsLoading] = useState(false);
   // const [partnerProfile, setPartnerProfile] = useState(null);
   // const [error, setError] = useState(null);
@@ -100,7 +101,7 @@ const Profile = ({userId, partnerDetail}) => {
   //   );
   // }
   return (
-    <Box sx={{ marginY: 3 }}>
+    <Box sx={{ marginY: 2 }}>
       <Box>
         <Typography
           sx={{ fontWeight: "900",mb: "5px", textAlign: "center", fontSize: "20px" }}
@@ -109,17 +110,17 @@ const Profile = ({userId, partnerDetail}) => {
         </Typography>
       </Box>
       <Box sx={{display: {md: "flex", flexWrap: "wrap"}, gap: "5px"}}>
-        <UpdateCard userId={userId} name={"company"} title={"Company"} value={partnerDetail.company}/>
-        <UpdateCard userId={userId} name={"email"} title={"Email"} value={partnerDetail.email}/>
-        <UpdateCard userId={userId} name={"dealIn"} title={"Deal in"} value={partnerDetail.dealIn}/>
-        <UpdateCard userId={userId} name={"phone"} title={"Phone"} value={partnerDetail.phone}/>
-        <UpdateCard userId={userId} name={"occupation"} title={"Occupation"} value={partnerDetail.occupation}/>
-        <UpdateCard userId={userId} name={"faxNumber"} title={"Fax Number"} value={partnerDetail.faxNumber}/>
-        <UpdateCard userId={userId} name={"address"} title={"Address"} value={partnerDetail.address}/>
-        <StaticCard name={"isVerified"} title={"Status"} value={partnerDetail.isVerified}/>
-        <StaticCard name={"casesSolved"} title={"Cases Solved"} value={partnerDetail.casesSolved}/>
-        <StaticCard name={"casesAssigned"} title={"Cases Assigned"} value={partnerDetail.casesAssigned}/>
-        <StaticCard name={"joiningDate"} title={"Joining Date"} value={!partnerDetail.joiningDate? "NA": dayjs(partnerDetail.joiningDate).format("YYYY-MM-DD")}/>
+        <UpdateCard session={session} userId={userId} name={"company"} title={"Company"} value={partnerDetail.company}/>
+        <UpdateCard session={session} userId={userId} name={"email"} title={"Email"} value={partnerDetail.email}/>
+        <UpdateCard session={session} userId={userId} name={"dealIn"} title={"Deal in"} value={partnerDetail.dealIn}/>
+        <UpdateCard session={session} userId={userId} name={"phone"} title={"Phone"} value={partnerDetail.phone}/>
+        <UpdateCard session={session} userId={userId} name={"occupation"} title={"Occupation"} value={partnerDetail.occupation}/>
+        <UpdateCard session={session} userId={userId} name={"faxNumber"} title={"Fax Number"} value={partnerDetail.faxNumber}/>
+        <UpdateCard session={session} userId={userId} name={"address"} title={"Address"} value={partnerDetail.address}/>
+        <StaticCard session={session} name={"isVerified"} title={"Status"} value={partnerDetail.isVerified}/>
+        <StaticCard session={session} name={"casesSolved"} title={"Cases Solved"} value={partnerDetail.casesSolved}/>
+        <StaticCard session={session} name={"casesAssigned"} title={"Cases Assigned"} value={partnerDetail.casesAssigned}/>
+        <StaticCard session={session} name={"joiningDate"} title={"Joining Date"} value={!partnerDetail.joiningDate? "NA": dayjs(partnerDetail.joiningDate).format("YYYY-MM-DD")}/>
         {/* <StaticCard name={"joiningDate"} title={"Joining Date"} value={dayjs(partnerDetail.joiningDate).format("YYYY-MM-DD")}/> */}
       </Box>
       {/* {error && (

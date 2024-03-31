@@ -130,7 +130,7 @@ const PartnerInfo = ({ client, session }) => {
           </Box>
         </Box>
       )}
-      {session.role == "ADMIN" && (
+      {session.role != "ADMIN" && (
         <Box
           sx={{
             mt: "10px",

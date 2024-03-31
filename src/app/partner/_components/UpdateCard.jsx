@@ -1,8 +1,9 @@
+"use client"
 import { Box, Button, TextField, Typography } from "@mui/material";
 import React, { useState } from "react";
 import EditNoteIcon from '@mui/icons-material/EditNote';
 import { toast } from "sonner";
-const UpdateCard = ({ userId, title, name, value }) => {
+const UpdateCard = ({ userId, title, name, value, session }) => {
   const [isEdit, setIsEdit] = useState(false);
   const [text, setText] = useState(value);
   const [editedValue, setEditedValue] = useState(value);
@@ -42,10 +43,10 @@ const UpdateCard = ({ userId, title, name, value }) => {
         }}
       >
         <Typography sx={{fontWeight: "bold"}}>{title}</Typography>
-        <Button disabled={name=="email"} sx={{bgcolor: "gray", color: "white"}} onClick={() => setIsEdit((prev) => !prev)}>
+        {session?.role=="PARTNER" &&<Button disabled={name=="email"} sx={{bgcolor: "gray", color: "white"}} onClick={() => setIsEdit((prev) => !prev)}>
             <EditNoteIcon/>
             edit
-            </Button>
+            </Button>}
       </Box>
       <Box>
         {isEdit ? (
