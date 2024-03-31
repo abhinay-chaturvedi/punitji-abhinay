@@ -65,7 +65,7 @@ const Page = async ({ params }) => {
         <PersonalTies
           session={session}
           userId={params.clientId}
-          personalTies={prismaResult.personalTies}
+          personalTies={prismaResult.personalTies? prismaResult.personalTies: {}}
         />
       </Container>
 
