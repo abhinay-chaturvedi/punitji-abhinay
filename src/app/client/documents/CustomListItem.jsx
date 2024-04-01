@@ -44,6 +44,7 @@ const CustomListItem = ({ item, setDocuments }) => {
             flexDirection: "row",
             justifyContent: "space-around",
             alignItems: "center",
+            gap: "5px"
           }}
         >
           <InputFileUpload
@@ -57,7 +58,7 @@ const CustomListItem = ({ item, setDocuments }) => {
               target="_blank"
               href={item.url}
               component="a"
-              sx={{ textTransform: "capitalize" }}
+              sx={{ textTransform: "capitalize", bgcolor: "lightgray",color: "black" }}
               startIcon={<VisibilityIcon />}
               download
             >
@@ -65,7 +66,7 @@ const CustomListItem = ({ item, setDocuments }) => {
             </Button>
           ) : null}
 
-          <Typography
+          {fileName && <Typography
             sx={{
               flex: "100%",
               mt: "5px",
@@ -76,7 +77,7 @@ const CustomListItem = ({ item, setDocuments }) => {
             }}
           >
             {fileName}
-          </Typography>
+          </Typography>}
         </Box>
       </ListItem>
       <Divider />
