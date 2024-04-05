@@ -14,12 +14,12 @@ const ClientSays = () => {
             </Box>
             <Box>
                 <Carousel>
-                    <ClientSaysCard/>
-                    <ClientSaysCard/>
-                    <ClientSaysCard/>
-                    <ClientSaysCard/>
-                    <ClientSaysCard/>
-                    <ClientSaysCard/>
+                    <ClientSaysCard clientName={"Amit kumar"} imgUrl={"/images/amit.jpg"} message={"There are many variations of passages of Lorem Ipsum available but the majority have suffered alteration in some form by injected humour or randomised words."}/>
+                    <ClientSaysCard clientName={"Anjali"} imgUrl={"/images/anjali.jpg"} message={"There are many variations of passages of Lorem Ipsum available but the majority have suffered alteration in some form by injected humour or randomised words."}/>
+                    {/* <ClientSaysCard clientName={"Devendra singg"} imgUrl={"/images/client1.png"} message={"There are many variations of passages of Lorem Ipsum available but the majority have suffered alteration in some form by injected humour or randomised words."}/> */}
+                    <ClientSaysCard clientName={"Sarnesh"} imgUrl={"/images/sarnesh.jpg"} message={"There are many variations of passages of Lorem Ipsum available but the majority have suffered alteration in some form by injected humour or randomised words."}/>
+                    {/* <ClientSaysCard clientName={"Ram kumar"} imgUrl={"/images/client1.png"} message={"There are many variations of passages of Lorem Ipsum available but the majority have suffered alteration in some form by injected humour or randomised words."}/> */}
+                    <ClientSaysCard clientName={"Anuj kumar"} imgUrl={"/images/anuj.jpg"} message={"There are many variations of passages of Lorem Ipsum available but the majority have suffered alteration in some form by injected humour or randomised words."}/>
                 </Carousel>
             </Box>
         </Container>

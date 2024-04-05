@@ -4,16 +4,16 @@ import WhyChooseUsDetail from "./WhyChooseUsDetail";
 import Image from "next/image";
 const WhyChooseUs = () => {
   return (
-    <Box>
+    <Box sx={{ bgcolor: "white" }}>
       <Container>
         <Grid container>
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12} md={7}>
             <WhyChooseUsDetail />
           </Grid>
           <Grid
             item
             xs={12}
-            md={6}
+            md={5}
             sx={{ height: { xs: "400px", md: "auto" } }}
           >
             <Box sx={{ width: "100%", height: "100%", position: "relative" }}>
@@ -38,9 +38,27 @@ const WhyChooseUs = () => {
                 objectFit="contain"
                 src={"/images/Harsimran.png"}
               />
-              <Box sx={{position: "absolute", bottom: 0, left: "35%", color: "green",}}>
-              <Typography sx={{fontWeight: "bold", textAlign: "center"}}>CEO Harsimran Singh Mtech.</Typography>
-              <Typography sx={{fontWeight: "bold", textAlign: "center"}}>(Enterprise System)</Typography>
+              <Box
+                sx={{
+                  position: "absolute",
+                  width: "80%",
+                  bgcolor: "whitesmoke",
+                  display: "block",
+                  bottom: 0,
+                  left: "10%",
+                  m: "auto",
+                  p: "5px",
+                  color: "black",
+                  borderRadius: "5px",
+                  boxShadow: "1px 0px 4px lightgray"
+                }}
+              >
+                <Typography sx={{ fontWeight: "bold", textAlign: "center" }}>
+                  CEO HARSIMRAN SINGH MTECH.
+                </Typography>
+                <Typography sx={{textAlign: "center" }}>
+                  (ENTERPRISE SYSTEM)
+                </Typography>
               </Box>
             </Box>
           </Grid>
