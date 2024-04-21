@@ -7,7 +7,7 @@ import Image from 'next/image';
 const ClientSaysCard = ({clientName, imgUrl, message}) => {
   return (
     <Box sx={{flex: {md: "0 0 31%", sm: "0 0 46%", xs: "0 0 100%"}, mr: {md: "calc(7%/3)", sm: "calc(8%/2)", xs: "10px"}, borderRadius: "10px", bgcolor: "#dbdbdb", p: "20px"}}>
-        <Stack gap={2}>
+        <Stack height={"100%"} gap={2}>
             <Box sx={{display: "flex", justifyContent: "space-between", alignItems: "center"}}>
                 <Typography sx={{fontWeight: "bold", textTransform: "uppercase", color: "#8a8a8a", fontSize: "18px"}}>⭐⭐⭐⭐⭐</Typography>
                 <Box sx={{bgcolor: "gray",position: "relative", width: "60px", height: "60px", border: "2px solid white", outline: "2px dotted black", borderRadius: "50%"}}>
@@ -24,7 +24,7 @@ const ClientSaysCard = ({clientName, imgUrl, message}) => {
             <Typography sx={{color: "#1e225"}}>{message}</Typography>
             
             <Box
-             sx={{display: "flex", justifyContent: "space-between", alignItems: "center"}}
+             sx={{display: "flex",marginTop: "auto", justifyContent: "space-between", alignItems: "center"}}
             >
                 <Box>
                     <Typography component="p" sx={{fontWeight: "bold", fontSize: "18px", color: "", textTransform: "capitalize"}}>{clientName}</Typography>
