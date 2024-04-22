@@ -52,12 +52,15 @@ export default function ContactForm() {
   return (
     <Box
       sx={{
+        // backgroundColor: "transparent",
         minHeight: "500px",
         maxWidth: { xs: 350, md: 400 },
         margin: "5px auto",
-        bgcolor: "whitesmoke",
+        // bgcolor: "whitesmoke",
+        background: "rgba(255,255,255,0.6)",
+        // backdropFilter: "blur(5px)",
         color: "black",
-        opacity: 1,
+        // opacity: 1,
         p: 3,
       }}
     >
@@ -80,11 +83,14 @@ export default function ContactForm() {
             margin="normal"
             // color='black'
             sx={{
+              background: "rgb(255, 255, 255, .8)",
+              borderRadius: "8px",
               input: { color: "black", fontWeight: "600" },
               "&::placeholder": { color: "black", fontWeight: "600" },
             }}
           />
           <TextField
+            sx={{background: "rgb(255, 255, 255, .8)", borderRadius: "8px"}}
             required
             fullWidth
             label="Email"
@@ -96,6 +102,7 @@ export default function ContactForm() {
             margin="normal"
           />
           <TextField
+            sx={{background: "rgb(255, 255, 255, .8)", borderRadius: "8px"}}
             required
             fullWidth
             label="Subject"
@@ -106,6 +113,7 @@ export default function ContactForm() {
             margin="normal"
           />
           <TextField
+            sx={{background: "rgb(255, 255, 255, .8)", borderRadius: "8px"}}
             required
             fullWidth
             label="Phone Number"
@@ -116,9 +124,10 @@ export default function ContactForm() {
             margin="normal"
           />
           <Button
+            sx={{bgcolor: "black", color: "white", "&:hover": {color: "black"}}}
             type="submit"
-            variant="contained"
-            color="primary"
+            // variant="contained"
+            // color="primary"
             fontWeight="bold"
             fullWidth
             disabled={pending}
