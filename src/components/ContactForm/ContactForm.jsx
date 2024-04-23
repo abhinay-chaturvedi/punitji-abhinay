@@ -7,6 +7,7 @@ import Typography from "@mui/material/Typography";
 import submitContactFrom from "@/services/SubmitForm/SubmitContactForm";
 import { useFormStatus } from "react-dom";
 import Success from "../Success";
+import Image from "next/image";
 
 export default function ContactForm() {
   const [pending, setPending] = useState(false);
@@ -64,12 +65,21 @@ export default function ContactForm() {
         p: 3,
       }}
     >
-      <Typography variant="h4" fontWeight="bold" gutterBottom>
+      {/* <Typography variant="h4" fontWeight="bold" gutterBottom>
         Anytime Consulting
       </Typography>
       <Typography sx={{ color: "black" }} variant="p" gutterBottom>
         Our team can assist you in transforming Your business through.
-      </Typography>
+      </Typography> */}
+      <Box sx={{ display: "flex", justifyContent: "center" }}>
+        <Image
+          sx={{left: "50%"}}
+          width={150}
+          height={120}
+          objectFit="contain"
+          src={"/images/contact_us.png"}
+        />
+      </Box>
       {!show ? (
         <form onSubmit={handleSubmit}>
           <TextField
@@ -90,7 +100,7 @@ export default function ContactForm() {
             }}
           />
           <TextField
-            sx={{background: "rgb(255, 255, 255, .8)", borderRadius: "8px"}}
+            sx={{ background: "rgb(255, 255, 255, .8)", borderRadius: "8px" }}
             required
             fullWidth
             label="Email"
@@ -102,7 +112,7 @@ export default function ContactForm() {
             margin="normal"
           />
           <TextField
-            sx={{background: "rgb(255, 255, 255, .8)", borderRadius: "8px"}}
+            sx={{ background: "rgb(255, 255, 255, .8)", borderRadius: "8px" }}
             required
             fullWidth
             label="Subject"
@@ -113,7 +123,7 @@ export default function ContactForm() {
             margin="normal"
           />
           <TextField
-            sx={{background: "rgb(255, 255, 255, .8)", borderRadius: "8px"}}
+            sx={{ background: "rgb(255, 255, 255, .8)", borderRadius: "8px" }}
             required
             fullWidth
             label="Phone Number"
@@ -124,7 +134,11 @@ export default function ContactForm() {
             margin="normal"
           />
           <Button
-            sx={{bgcolor: "black", color: "white", "&:hover": {color: "black"}}}
+            sx={{
+              bgcolor: "black",
+              color: "white",
+              "&:hover": { color: "black" },
+            }}
             type="submit"
             // variant="contained"
             // color="primary"
