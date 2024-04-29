@@ -23,8 +23,7 @@ const Page = () => {
             </Typography>
             <Divider />
             <Typography>
-              We are located all over india. Want to get started? just mail us,
-              or call us, or fill out enquiry form.
+              Contact us on mail, call or fill out enquiry form.
             </Typography>
             <Divider sx={{ marginY: "15px" }} />
             <Box>
