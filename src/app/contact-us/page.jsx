@@ -15,7 +15,7 @@ const Page = () => {
       <Container>
         <Box sx={{ display: "flex", mt: "10px", gap: "8px", flexWrap: "wrap" }}>
           <Box sx={{ flex: { md: 2, xs: "100%" }, bgcolor: "whitesmoke" }}>
-            <GoogleMap address="1600 Amphitheatre Parkway, Mountain View, CA"/>
+            <GoogleMap address="1600 Amphitheatre Parkway, Mountain View, CA" />
           </Box>
           <Box sx={{ flex: { sm: 1, xs: "100%" } }}>
             <Typography sx={{ fontWeight: "bold", fontSize: "20px" }}>
@@ -34,19 +34,29 @@ const Page = () => {
                   Head Office Address
                 </Typography>
               </Box>
-              <Typography sx={{ml: "5px"}}>
-                Crystal plaza, SCO-48, Garha Rd, opposite PIMS Hospital Chhoti
-                Barandari , jalandhar, punjab 144003, india
+              <Typography sx={{ ml: "5px" }}>
+                SCF NO.39, B-BLOCK MARKET, NEW AMRITSAR (143001)
               </Typography>
             </Box>
             <Divider sx={{ marginY: "15px" }} />
-            <Box>
+            <Box sx={{display: "flex", flexDirection: "column"}}>
               <Box sx={{ display: "flex", gap: "5px" }}>
                 <PhoneIcon />
                 <Typography sx={{ fontWeight: "bold" }}>Phone</Typography>
               </Box>
-              <Typography sx={{ml: "5px"}} component={"a"} href="tel: +91833511038">
-                +91-099089893
+              <Typography
+                sx={{ ml: "5px" }}
+                component={"a"}
+                href="tel: +91833511038"
+              >
+                +9183 35 11 038
+              </Typography>
+              <Typography
+                sx={{ ml: "5px" }}
+                component={"a"}
+                href="tel: +919878433321"
+              >
+                +91 98784 33321
               </Typography>
             </Box>
             <Divider sx={{ marginY: "15px" }} />
@@ -55,8 +65,12 @@ const Page = () => {
                 <MailIcon />
                 <Typography sx={{ fontWeight: "bold" }}>Email</Typography>
               </Box>
-              <Typography sx={{ml: "5px"}} component={"a"} href="mailto:info@hhhimmigration.com">
-                admin@gmail.com
+              <Typography
+                sx={{ ml: "5px" }}
+                component={"a"}
+                href="mailto:info@hhhimmigration.com"
+              >
+                info@hhhimmigration.com
               </Typography>
             </Box>
           </Box>
